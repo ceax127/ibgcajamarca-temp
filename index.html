@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iglesia Gracia Cajamarca - En Construcción</title>
+    <style>
+        /* Reset básico para que se vea igual en todos los navegadores */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Degradado suave de fondo (de blanco frío a azul cielo muy claro) */
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+            text-align: center;
+        }
+
+        /* La tarjeta central */
+        .card {
+            background-color: #fff;
+            padding: 50px 40px;
+            border-radius: 25px; /* Bordes muy suaves */
+            /* Sombra profunda pero suave para dar efecto flotante */
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 450px;
+            width: 90%;
+            /* Borde superior decorativo en dorado para dar calidez */
+            border-top: 5px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Estilo para el logo placeholder */
+        img.logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 30px;
+            /* Animación suave de entrada */
+            animation: fadeInDown 1s ease-out;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .church-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #d4af37; /* Usamos el dorado de acento */
+            margin-top: 20px;
+        }
+
+        /* Un pequeño elemento decorativo animado al final */
+        .loader {
+            margin: 30px auto 0;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #d4af37;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        /* Definición de animaciones CSS */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translate3d(0, -20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Ajustes para pantallas pequeñas (móviles) */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .card { padding: 30px 20px; }
+            img.logo { max-width: 140px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="logo.png" alt="Logo Iglesia Gracia Cajamarca" class="logo">
+        
+        <h1>Sitio Web en Construcción</h1>
+        
+        <p>Estamos trabajando para traerte nuestra nueva plataforma digital muy pronto.</p>
+        
+        <p class="church-name">Iglesia Gracia Cajamarca</p>
+        
+        <div class="loader"></div>
+    </div>
+</body>
+</html>
