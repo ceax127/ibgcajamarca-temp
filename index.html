@@ -3,119 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iglesia Gracia Cajamarca - En Construcción</title>
+    <title>Iglesia Gracia Cajamarca | En Construcción</title>
     <style>
-        /* Reset básico para que se vea igual en todos los navegadores */
-        * {
+        body {
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* FONDO AZUL OSCURO: Perfecto para el logo blanco */
+            background-color: #041528;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* Degradado suave de fondo (de blanco frío a azul cielo muy claro) */
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
-            text-align: center;
+        /* EL LOGO AHORA FLOTA SOBRE EL FONDO OSCURO */
+        .logo {
+            max-height: 130px; 
+            width: auto;
+            margin-bottom: 30px; /* Espacio entre el logo y la tarjeta blanca */
+            display: block;
+            /* Opcional: un ligero filtro de sombra si el logo necesita más profundidad */
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
         }
 
-        /* La tarjeta central */
-        .card {
-            background-color: #fff;
+        .container {
+            /* TARJETA BLANCA: Máxima legibilidad para los textos */
+            background-color: #ffffff;
             padding: 50px 40px;
-            border-radius: 25px; /* Bordes muy suaves */
-            /* Sombra profunda pero suave para dar efecto flotante */
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 450px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+            max-width: 600px;
             width: 90%;
-            /* Borde superior decorativo en dorado para dar calidez */
-            border-top: 5px solid #d4af37;
-            position: relative;
-            overflow: hidden;
+            box-sizing: border-box;
         }
-
-        /* Estilo para el logo placeholder */
-        img.logo {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 30px;
-            /* Animación suave de entrada */
-            animation: fadeInDown 1s ease-out;
-        }
-
+        
         h1 {
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-weight: 700;
+            color: #1a2a3a; /* Texto principal oscuro */
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: #b59410; /* Dorado/Arena sobrio */
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
         }
 
         p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-            line-height: 1.6;
-            margin-bottom: 10px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            color: #4a5568;
+            font-size: 16px;
         }
 
-        .church-name {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #d4af37; /* Usamos el dorado de acento */
-            margin-top: 20px;
+        .contact-info {
+            background-color: #f8fafc;
+            padding: 25px;
+            border-radius: 6px;
+            border-left: 4px solid #b59410;
+            text-align: left;
         }
 
-        /* Un pequeño elemento decorativo animado al final */
-        .loader {
-            margin: 30px auto 0;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #d4af37;
-            border-radius: 50%;
-            animation: spin 2s linear infinite;
+        .contact-info h3 {
+            margin-top: 0;
+            color: #1a2a3a;
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
-        /* Definición de animaciones CSS */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translate3d(0, -20px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
+        .contact-info ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        .contact-info li {
+            margin-bottom: 12px;
+            font-size: 15px;
+            color: #4a5568;
         }
 
-        /* Ajustes para pantallas pequeñas (móviles) */
-        @media (max-width: 480px) {
-            h1 { font-size: 1.8rem; }
-            .card { padding: 30px 20px; }
-            img.logo { max-width: 140px; }
+        .contact-info strong {
+            color: #1a2a3a;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 13px;
+            color: #8fa3b8; /* Gris claro para que se lea sobre el fondo azul oscuro */
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <img src="logo.png" alt="Logo Iglesia Gracia Cajamarca" class="logo">
+    
+    <img src="logo.png" alt="Logo Iglesia Gracia Cajamarca" class="logo">
+    
+    <div class="container">
+        <div class="subtitle">Plataforma en Desarrollo</div>
+        <h1>Iglesia Gracia Cajamarca</h1>
         
-        <h1>Sitio Web en Construcción</h1>
-        
-        <p>Estamos trabajando para traerte nuestra nueva plataforma digital muy pronto.</p>
-        
-        <p class="church-name">Iglesia Gracia Cajamarca</p>
-        
-        <div class="loader"></div>
+        <p>Somos una congregación cristiana dedicada a compartir el mensaje del evangelio, estudiar la Palabra de Dios y servir activamente a nuestra comunidad. Actualmente estamos actualizando nuestra infraestructura digital para servirles mejor.</p>
+
+        <div class="contact-info">
+            <h3>Información de Contacto</h3>
+            <ul>
+                <li><strong>Dirección:</strong> Av. Atahualpa 943, Cajamarca, Perú</li>
+                <li><strong>Email:</strong> it@ibgcajamarca.org</li>
+            </ul>
+        </div>
     </div>
+    
+    <div class="footer">
+        &copy; 2026 Iglesia Gracia Cajamarca. Todos los derechos reservados.
+    </div>
+
 </body>
 </html>
