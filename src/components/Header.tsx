@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import logoMark from '../assets/Marca_IBG_placa.png'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 import { LanguageToggle } from './LanguageToggle'
@@ -28,9 +29,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <NavLink to="/" className="flex items-center gap-2 text-brand-800" onClick={() => setOpen(false)}>
-          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-700 text-lg font-bold text-white">
-            G
-          </span>
+          <img src={logoMark} alt={churchInfo.name} className="h-10 w-10" />
           <span className="text-base font-semibold leading-tight sm:text-lg">
             {churchInfo.shortName}
           </span>

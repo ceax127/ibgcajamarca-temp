@@ -4,28 +4,29 @@
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Merriweather', Georgia, serif;
 
-  --color-brand-50: #eef4fb;
-  --color-brand-100: #d6e6f4;
-  --color-brand-200: #adcce9;
-  --color-brand-300: #7fadd9;
-  --color-brand-400: #4c88c2;
-  --color-brand-500: #2f6aa3;
-  --color-brand-600: #245483;
-  --color-brand-700: #1e4269;
-  --color-brand-800: #1a3554;
-  --color-brand-900: #172c46;
-  --color-brand-950: #0d1a2b;
+  /* Anchored to the real IBG Cajamarca logo: navy #13294d, gold #cfac52 */
+  --color-brand-50: #f3f4f6;
+  --color-brand-100: #e3e5ea;
+  --color-brand-200: #c4cad3;
+  --color-brand-300: #a1a9b8;
+  --color-brand-400: #7d899d;
+  --color-brand-500: #5a6982;
+  --color-brand-600: #3d506d;
+  --color-brand-700: #283c5d;
+  --color-brand-800: #1a2f52;
+  --color-brand-900: #13294d;
+  --color-brand-950: #0e1f3a;
 
-  --color-gold-50: #fdf9ec;
-  --color-gold-100: #f9eec9;
-  --color-gold-200: #f2db97;
-  --color-gold-300: #eac25e;
-  --color-gold-400: #e3ab38;
-  --color-gold-500: #c9922a;
-  --color-gold-600: #a97321;
-  --color-gold-700: #87581f;
-  --color-gold-800: #6f481f;
-  --color-gold-900: #5e3d1e;
+  --color-gold-50: #fbf8f1;
+  --color-gold-100: #f5eedc;
+  --color-gold-200: #ecdeba;
+  --color-gold-300: #e0c98f;
+  --color-gold-400: #d6b86c;
+  --color-gold-500: #cfac52;
+  --color-gold-600: #b09246;
+  --color-gold-700: #917839;
+  --color-gold-800: #725f2d;
+  --color-gold-900: #534521;
 }
 
 html {

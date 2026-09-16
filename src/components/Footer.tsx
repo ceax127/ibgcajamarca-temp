@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import logoWhite from '../assets/Logo_IBG_blanco.png'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 
@@ -10,9 +11,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-400 text-lg font-bold text-brand-950">
-              G
-            </span>
+            <img src={logoWhite} alt="" className="h-10 w-10" />
             <span className="text-lg font-semibold">{churchInfo.shortName}</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-brand-200">{t.footer.tagline}</p>
