@@ -11,7 +11,7 @@ import { Sermons } from './pages/Sermons'
 
 function App() {
   return (
-    <div className="flex min-h-screen flex-col bg-white text-slate-900">
+    <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-night-950 dark:text-night-100">
       <Header />
       <main className="flex-1">
         <Routes>

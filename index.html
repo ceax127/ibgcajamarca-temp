@@ -15,6 +15,17 @@
       rel="stylesheet"
     />
     <title>Iglesia Bíblica Gracia Cajamarca</title>
+    <script>
+      // Applied before React mounts, so the page never flashes the wrong
+      // theme on load. Kept in sync with src/context/ThemeContext.tsx.
+      (function () {
+        try {
+          var stored = localStorage.getItem('ibg-cajamarca-theme')
+          var dark = stored ? stored === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+          document.documentElement.classList.toggle('dark', dark)
+        } catch (e) {}
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

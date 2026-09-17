@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+/* Dark mode is toggled by a `.dark` class on <html> (see ThemeContext),
+   not by OS preference — a visitor's explicit choice should stick. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: 'Inter', system-ui, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Merriweather', Georgia, serif;
@@ -27,6 +31,20 @@
   --color-gold-700: #917839;
   --color-gold-800: #725f2d;
   --color-gold-900: #534521;
+
+  /* Night mode surfaces: a true-black scale (not just dark navy/gray), per
+     the "black palette" request — gold stays the accent on top of it. */
+  --color-night-50: #f5f5f5;
+  --color-night-100: #e0e0e0;
+  --color-night-200: #c2c2c2;
+  --color-night-300: #9a9a9a;
+  --color-night-400: #6b6b6b;
+  --color-night-500: #404040;
+  --color-night-600: #2b2b2b;
+  --color-night-700: #1f1f1f;
+  --color-night-800: #141414;
+  --color-night-900: #0a0a0a;
+  --color-night-950: #000000;
 }
 
 html {
@@ -37,4 +55,8 @@ body {
   margin: 0;
   color-scheme: light;
   font-family: var(--font-sans);
+}
+
+.dark body {
+  color-scheme: dark;
 }

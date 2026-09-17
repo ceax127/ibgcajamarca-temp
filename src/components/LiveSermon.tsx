@@ -21,13 +21,13 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
 
   if (!hasAnyContent) {
     return (
-      <div className="rounded-2xl border border-dashed border-brand-200 bg-brand-50 p-8 text-center">
-        <p className="text-slate-600">{t.sermons.notConfigured}</p>
+      <div className="rounded-2xl border border-dashed border-brand-200 bg-brand-50 p-8 text-center dark:border-night-600 dark:bg-night-900">
+        <p className="text-slate-600 dark:text-night-300">{t.sermons.notConfigured}</p>
         <a
           href={churchInfo.youtubeUrl}
           target="_blank"
           rel="noreferrer"
-          className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800"
+          className="mt-4 inline-flex items-center gap-2 rounded-full bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 dark:bg-gold-500 dark:text-night-950 dark:hover:bg-gold-400"
         >
           {t.sermons.visitChannel}
         </a>
@@ -39,7 +39,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
     <div className="flex flex-col gap-10">
       <div>
         {data.live ? (
-          <div className="aspect-video w-full overflow-hidden rounded-2xl bg-brand-950 shadow-lg">
+          <div className="aspect-video w-full overflow-hidden rounded-2xl bg-brand-950 shadow-lg dark:bg-black">
             <iframe
               className="h-full w-full"
               src={`https://www.youtube.com/embed/${data.live.videoId}?autoplay=0`}
@@ -49,8 +49,8 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
             />
           </div>
         ) : (
-          <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-2xl bg-brand-950 p-8 text-center shadow-lg">
-            <p className="text-brand-100">{t.sermons.notLive}</p>
+          <div className="flex aspect-video w-full flex-col items-center justify-center gap-3 rounded-2xl bg-brand-950 p-8 text-center shadow-lg dark:bg-black">
+            <p className="text-brand-100 dark:text-night-300">{t.sermons.notLive}</p>
           </div>
         )}
         <div className="mt-3 flex items-center justify-center gap-2 text-sm">
@@ -60,7 +60,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
               {t.sermons.liveBadge}
             </span>
           )}
-          <p className="text-slate-500">{data.live ? data.live.title : t.sermons.liveDescription}</p>
+          <p className="text-slate-500 dark:text-night-400">{data.live ? data.live.title : t.sermons.liveDescription}</p>
         </div>
       </div>
 
@@ -68,7 +68,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
         <div className="flex flex-col gap-8">
           {data.playlists.map((playlist) => (
             <div key={playlist.id}>
-              <h3 className="mb-4 text-xl font-semibold text-brand-950">
+              <h3 className="mb-4 text-xl font-semibold text-brand-950 dark:text-white">
                 {playlist.kind === 'uploads' ? t.sermons.pastSermons : playlist.label}
               </h3>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -78,9 +78,9 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
                     href={`https://www.youtube.com/watch?v=${video.videoId}`}
                     target="_blank"
                     rel="noreferrer"
-                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 transition-shadow hover:shadow-md"
+                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900 dark:hover:shadow-night-800"
                   >
-                    <div className="aspect-video w-full overflow-hidden bg-slate-100">
+                    <div className="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-night-800">
                       <img
                         src={video.thumbnail}
                         alt={video.title}
@@ -89,8 +89,8 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
                       />
                     </div>
                     <div className="flex flex-1 flex-col gap-1 p-3">
-                      <p className="line-clamp-2 text-sm font-medium text-brand-950">{video.title}</p>
-                      <p className="mt-auto text-xs text-slate-500">
+                      <p className="line-clamp-2 text-sm font-medium text-brand-950 dark:text-white">{video.title}</p>
+                      <p className="mt-auto text-xs text-slate-500 dark:text-night-400">
                         {new Date(video.publishedAt).toLocaleDateString(lang === 'es' ? 'es-PE' : 'en-US', {
                           year: 'numeric',
                           month: 'short',
