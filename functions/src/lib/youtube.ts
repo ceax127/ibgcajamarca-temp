@@ -1,4 +1,4 @@
-import type { LiveInfo, SermonPlaylist, SermonVideo, SermonsData } from './types'
+import type { LiveInfo, SermonPlaylist, SermonVideo } from './types'
 
 const YOUTUBE_API_BASE = 'https://www.googleapis.com/youtube/v3'
 
@@ -104,13 +104,13 @@ export interface PollConfig {
 // is how we surface recent past live streams — once a broadcast ends,
 // YouTube files it there as a normal video — without the 100-unit cost of
 // search.list.
-function uploadsPlaylistId(channelId: string): string {
+export function uploadsPlaylistId(channelId: string): string {
   return `UU${channelId.slice(2)}`
 }
 
-export async function buildSermonsData(config: PollConfig): Promise<SermonsData> {
-  const [live, uploadsVideos, curatedPlaylists] = await Promise.all([
-    getLiveInfo(config.apiKey, config.channelId).catch(() => null),
+/** Fetches the auto "uploads" playlist plus every configured curated playlist. */
+export async function fetchAllPlaylists(config: PollConfig): Promise<SermonPlaylist[]> {
+  const [uploadsVideos, curatedPlaylists] = await Promise.all([
     getPlaylistVideos(config.apiKey, uploadsPlaylistId(config.channelId)).catch(() => []),
     Promise.all(
       config.playlists.map(
@@ -131,5 +131,5 @@ export async function buildSermonsData(config: PollConfig): Promise<SermonsData>
     videos: uploadsVideos,
   }
 
-  return { live, playlists: [uploadsPlaylist, ...curatedPlaylists], updatedAt: new Date().toISOString() }
+  return [uploadsPlaylist, ...curatedPlaylists]
 }

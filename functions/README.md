@@ -8,15 +8,35 @@ separate Function App like this one (works on the **Free**/Consumption
 tier) or linking a "bring your own backend" into Static Web Apps, which
 needs the paid Standard plan. This keeps the whole site on free tiers.
 
-Two functions:
+Three functions:
 
-- **`pollYouTube`** (Timer, every 5 minutes) — checks whether the channel is
-  currently live and fetches the latest videos from each configured
-  playlist, then writes the result to Blob Storage.
-- **`getSermons`** (HTTP `GET /api/sermons`) — serves that cached result.
-  The website's frontend calls this, polling it every 60s while the
+- **`pollLiveStatus`** (Timer, fires every 5 minutes, every day) — but only
+  actually calls YouTube during the church's Sunday service window
+  (~9am–1pm Lima time, hardcoded in `src/lib/schedule.ts` since Lima is
+  UTC-5 year-round). Every other invocation is a no-op. This matters
+  because the church only streams live on Sundays — polling YouTube every 5
+  minutes around the clock would mean ~98% of those calls check a status
+  that never changes.
+- **`pollPlaylists`** (Timer, every 6 hours, every day) — fetches the
+  channel's "uploads" playlist plus every curated playlist. New sermons go
+  up roughly once a week, so this only needs to be coarse; it doesn't need
+  the Sunday-only restriction since content can in principle be uploaded
+  any day.
+- **`getSermons`** (HTTP `GET /api/sermons`) — serves the cached result (a
+  merge of whatever `pollLiveStatus` and `pollPlaylists` last wrote). The
+  website's frontend calls this, polling it every 60s while the
   Sermones/Home page is open — it never calls YouTube directly, so there's
   no API key in the browser and no per-visitor YouTube quota usage.
+
+### Quota budget
+
+At 5 min/24-7 (the old single-timer design), worst case was ~1,152 units/day
+(12% of the 10,000/day default quota) — never actually at risk of running
+out, but wasteful relative to how the channel is actually used. The current
+split schedule cuts that dramatically: live checks only run during ~4 hours
+on Sundays (≈48 calls/week, 1 unit each when a candidate is found), and
+playlist checks run 4×/day every day (≈28 calls/week × ~3 playlists ≈ 84
+units/week). Total is well under 1,000 units/week instead of up to 8,000.
 
 ## 1. Get a YouTube Data API v3 key
 
@@ -62,12 +82,16 @@ npm start
 ```
 
 This starts the Function App at `http://localhost:7071`. Trigger a poll
-manually without waiting 5 minutes:
+manually instead of waiting for the schedule:
 
 ```bash
-curl -X POST http://localhost:7071/admin/functions/pollYouTube -H "Content-Type: application/json" -d "{}"
+curl -X POST http://localhost:7071/admin/functions/pollPlaylists -H "Content-Type: application/json" -d "{}"
+curl -X POST http://localhost:7071/admin/functions/pollLiveStatus -H "Content-Type: application/json" -d "{}"
 curl http://localhost:7071/api/sermons
 ```
+
+Note `pollLiveStatus` only does anything if it's actually Sunday
+9am–1pm Lima time when you run it — see `src/lib/schedule.ts`.
 
 ## 4. Deploy to Azure
 

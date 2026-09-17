@@ -1,5 +1,5 @@
 import { BlobServiceClient } from '@azure/storage-blob'
-import type { SermonsData } from './types'
+import { emptySermonsData, type SermonsData } from './types'
 
 const CONTAINER_NAME = 'sermons-cache'
 const BLOB_NAME = 'latest.json'
@@ -34,4 +34,14 @@ export async function readSermonsCache(): Promise<SermonsData | null> {
 
   const downloaded = await blockBlobClient.downloadToBuffer()
   return JSON.parse(downloaded.toString('utf-8')) as SermonsData
+}
+
+/**
+ * Reads the current cache, merges in the given fields, and writes it back —
+ * used because two separate timers (live status, playlists) update this
+ * same cache on different schedules and must not clobber each other's data.
+ */
+export async function updateSermonsCache(patch: Partial<SermonsData>): Promise<void> {
+  const current = (await readSermonsCache()) ?? emptySermonsData
+  await writeSermonsCache({ ...current, ...patch, updatedAt: new Date().toISOString() })
 }

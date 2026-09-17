@@ -27,3 +27,9 @@ export interface SermonsData {
   playlists: SermonPlaylist[]
   updatedAt: string | null
 }
+
+export const emptySermonsData: SermonsData = {
+  live: null,
+  playlists: [],
+  updatedAt: null,
+}
