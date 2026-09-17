@@ -1,0 +1,24 @@
+{
+  "name": "ibg-cajamarca-sermons-functions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone Azure Function App: polls YouTube for live status + playlists and serves a cached result to the church website.",
+  "main": "dist/src/functions/*.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "prestart": "npm run clean && npm run build",
+    "start": "func start"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.1",
+    "@azure/storage-blob": "^12.26.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.3"
+  }
+}

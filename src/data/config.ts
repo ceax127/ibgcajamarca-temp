@@ -13,13 +13,20 @@ export const churchInfo = {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.3789313228212!2d-78.49999798591!3d-7.165524801680548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b25bd5119e03a9%3A0xa2b8115eb4974e78!2sIglesia%20Gracia%20CAJAMARCA!5e1!3m2!1sen!2spe!4v1789600357134!5m2!1sen!2spe",
 } as const;
 
-// YouTube channel ID (starts with "UC..."). Find yours at
-// https://www.youtube.com/account_advanced while logged into the channel.
-// Leave as-is (empty) to hide the live/sermons video embeds until it's set.
-export const YOUTUBE_CHANNEL_ID: string = "";
+// The Sermones page no longer talks to YouTube directly from the browser.
+// Instead, a standalone Azure Function polls YouTube on a timer and caches
+// the result; the frontend just fetches that cache. See functions/README.md
+// for the channel ID / playlist / API key configuration (those live as
+// environment variables for the build script and the Function App, not
+// here, since this file only ships to the browser).
+//
+// VITE_SERMONS_API_URL should point at the deployed Function App, e.g.
+// "https://ibg-cajamarca-sermons.azurewebsites.net/api/sermons". Falls back
+// to a same-origin "/api/sermons" (useful if it's ever linked into Azure
+// Static Web Apps as a "bring your own backend" on the Standard plan).
+export const SERMONS_API_URL: string =
+  import.meta.env.VITE_SERMONS_API_URL || "/api/sermons";
 
-// Auto-derived "uploads" playlist ID (YouTube convention: replace the
-// leading "UC" of a channel ID with "UU" to get its uploads playlist).
-export const youtubeUploadsPlaylistId = YOUTUBE_CHANNEL_ID
-  ? `UU${YOUTUBE_CHANNEL_ID.slice(2)}`
-  : "";
+// How often the browser re-checks the sermons API for a live status change
+// while the Sermones/Home page is open, in milliseconds.
+export const SERMONS_POLL_INTERVAL_MS = 60_000;

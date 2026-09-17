@@ -61,12 +61,14 @@ export const translations = {
       title: 'Sermones',
       subtitle: 'Escucha las últimas enseñanzas de la Palabra de Dios.',
       liveNow: 'Transmisión en vivo',
+      liveBadge: 'EN VIVO',
       liveDescription:
         'Cuando estemos transmitiendo en vivo, el video aparecerá automáticamente aquí.',
       notLive:
         'No hay transmisión en vivo en este momento. Vuelve el domingo a las 10:00 a. m., o mira nuestras prédicas anteriores abajo.',
       pastSermons: 'Prédicas Anteriores',
       visitChannel: 'Visitar nuestro canal de YouTube',
+      watchOnYoutube: 'Ver en YouTube',
       notConfigured:
         'La transmisión en vivo se activará pronto. Mientras tanto, síguenos en nuestras redes sociales.',
     },
@@ -151,12 +153,14 @@ export const translations = {
       title: 'Sermons',
       subtitle: 'Listen to the latest teachings from God’s Word.',
       liveNow: 'Live now',
+      liveBadge: 'LIVE',
       liveDescription:
         'When we’re streaming live, the video will automatically appear here.',
       notLive:
         'We’re not live right now. Join us Sunday at 10:00 a.m., or watch past sermons below.',
       pastSermons: 'Past Sermons',
       visitChannel: 'Visit our YouTube channel',
+      watchOnYoutube: 'Watch on YouTube',
       notConfigured:
         'Live streaming will be enabled soon. In the meantime, follow us on social media.',
     },

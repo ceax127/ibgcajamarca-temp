@@ -1,0 +1,159 @@
+{
+  "live": null,
+  "playlists": [
+    {
+      "id": "UUivafvycOnRDo8y9B87u04A",
+      "label": "uploads",
+      "kind": "uploads",
+      "videos": [
+        {
+          "videoId": "17ZWIex8gLU",
+          "title": "Yahvé recuerda a Jerusalén P2",
+          "thumbnail": "https://i.ytimg.com/vi/17ZWIex8gLU/mqdefault.jpg",
+          "publishedAt": "2026-09-14T05:50:53Z"
+        },
+        {
+          "videoId": "2aPHAo7mpic",
+          "title": "YAHVÉ RECUERDA A JERUSALÉN",
+          "thumbnail": "https://i.ytimg.com/vi/2aPHAo7mpic/mqdefault.jpg",
+          "publishedAt": "2026-09-07T05:17:18Z"
+        },
+        {
+          "videoId": "fSFFkc5pduA",
+          "title": "YAHVÉ RECUERDA A JERUSALÉN",
+          "thumbnail": "https://i.ytimg.com/vi/fSFFkc5pduA/mqdefault_live.jpg",
+          "publishedAt": "2026-09-06T14:33:10Z"
+        },
+        {
+          "videoId": "hw5TbJC-Gb0",
+          "title": "Vuelve a mi Parte 2",
+          "thumbnail": "https://i.ytimg.com/vi/hw5TbJC-Gb0/mqdefault.jpg",
+          "publishedAt": "2026-08-31T05:16:17Z"
+        },
+        {
+          "videoId": "DUT5Z7JjtLM",
+          "title": "La Iglesia Generosa",
+          "thumbnail": "https://i.ytimg.com/vi/DUT5Z7JjtLM/mqdefault.jpg",
+          "publishedAt": "2026-08-27T01:54:31Z"
+        },
+        {
+          "videoId": "kPnT_87upS4",
+          "title": "Estar Firmes",
+          "thumbnail": "https://i.ytimg.com/vi/kPnT_87upS4/mqdefault.jpg",
+          "publishedAt": "2026-08-27T01:52:25Z"
+        },
+        {
+          "videoId": "qGrf9CDm86A",
+          "title": "Luces en un mundo de obscuridad.",
+          "thumbnail": "https://i.ytimg.com/vi/qGrf9CDm86A/mqdefault.jpg",
+          "publishedAt": "2026-08-27T01:33:28Z"
+        },
+        {
+          "videoId": "lKD2IE0KqQQ",
+          "title": "La Superioridad de conocer a Cristo",
+          "thumbnail": "https://i.ytimg.com/vi/lKD2IE0KqQQ/mqdefault.jpg",
+          "publishedAt": "2026-08-27T01:28:39Z"
+        }
+      ]
+    },
+    {
+      "id": "PLaUm7dJNSz2M",
+      "label": "1 Juan",
+      "kind": "curated",
+      "videos": [
+        {
+          "videoId": "6DGkBiYKxEQ",
+          "title": "DIOS ES VIDA PLENA",
+          "thumbnail": "https://i.ytimg.com/vi/6DGkBiYKxEQ/mqdefault.jpg",
+          "publishedAt": "2026-08-23T05:37:06Z"
+        },
+        {
+          "videoId": "QkSixbtkzr4",
+          "title": "Dios Es Amor",
+          "thumbnail": "https://i.ytimg.com/vi/QkSixbtkzr4/mqdefault.jpg",
+          "publishedAt": "2026-08-23T05:31:21Z"
+        },
+        {
+          "videoId": "L-dLHZKY-dI",
+          "title": "Hijos de Dios",
+          "thumbnail": "https://i.ytimg.com/vi/L-dLHZKY-dI/mqdefault.jpg",
+          "publishedAt": "2026-08-23T05:28:08Z"
+        },
+        {
+          "videoId": "iBJ7bhmHnpg",
+          "title": "Permaneciendo en la fe",
+          "thumbnail": "https://i.ytimg.com/vi/iBJ7bhmHnpg/mqdefault.jpg",
+          "publishedAt": "2026-08-23T05:19:45Z"
+        },
+        {
+          "videoId": "AtWzVvAwiyQ",
+          "title": "Dios es Luz, Dios es Amor, Dios es Vida",
+          "thumbnail": "https://i.ytimg.com/vi/AtWzVvAwiyQ/mqdefault.jpg",
+          "publishedAt": "2026-08-23T05:15:02Z"
+        },
+        {
+          "videoId": "fRdeUF2uDLE",
+          "title": "Dios es Luz, Dios es amor, Dios es vida.",
+          "thumbnail": "https://i.ytimg.com/vi/fRdeUF2uDLE/mqdefault.jpg",
+          "publishedAt": "2026-08-23T05:08:01Z"
+        }
+      ]
+    },
+    {
+      "id": "PLQ3NPIv9SrZs",
+      "label": "Filipenses",
+      "kind": "curated",
+      "videos": [
+        {
+          "videoId": "HazONQ7DDlM",
+          "title": "¡Esta única cosa !",
+          "thumbnail": "https://i.ytimg.com/vi/HazONQ7DDlM/mqdefault.jpg",
+          "publishedAt": "2026-08-27T00:40:30Z"
+        },
+        {
+          "videoId": "CkIghgF-oRc",
+          "title": "Compañeros De Yugo Verdadero",
+          "thumbnail": "https://i.ytimg.com/vi/CkIghgF-oRc/mqdefault.jpg",
+          "publishedAt": "2026-08-27T00:30:48Z"
+        },
+        {
+          "videoId": "qGrf9CDm86A",
+          "title": "Luces en un mundo de obscuridad.",
+          "thumbnail": "https://i.ytimg.com/vi/qGrf9CDm86A/mqdefault.jpg",
+          "publishedAt": "2026-08-27T00:28:24Z"
+        },
+        {
+          "videoId": "EqyXOuwa2Pk",
+          "title": "Jesús nuestro ejemplo",
+          "thumbnail": "https://i.ytimg.com/vi/EqyXOuwa2Pk/mqdefault.jpg",
+          "publishedAt": "2026-08-26T23:49:34Z"
+        },
+        {
+          "videoId": "FtcgZGj_gBA",
+          "title": "¿Cómo debemos vivir?",
+          "thumbnail": "https://i.ytimg.com/vi/FtcgZGj_gBA/mqdefault.jpg",
+          "publishedAt": "2026-08-24T02:57:05Z"
+        },
+        {
+          "videoId": "Lyn0zVB94kE",
+          "title": "¿Cómo debemos vivir?",
+          "thumbnail": "https://i.ytimg.com/vi/Lyn0zVB94kE/mqdefault.jpg",
+          "publishedAt": "2026-08-24T02:54:00Z"
+        },
+        {
+          "videoId": "UIn1sSRe7FA",
+          "title": "EL EVANGELIO GOZOSO",
+          "thumbnail": "https://i.ytimg.com/vi/UIn1sSRe7FA/mqdefault.jpg",
+          "publishedAt": "2026-08-24T02:03:16Z"
+        },
+        {
+          "videoId": "JDn3AFmqNt0",
+          "title": "Siervos, Santos y Salvación",
+          "thumbnail": "https://i.ytimg.com/vi/JDn3AFmqNt0/mqdefault.jpg",
+          "publishedAt": "2026-08-24T01:59:37Z"
+        }
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-17T07:34:33.739Z"
+}

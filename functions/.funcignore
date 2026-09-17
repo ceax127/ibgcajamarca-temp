@@ -1,0 +1,12 @@
+*.ts
+!dist/**/*.d.ts
+.vscode
+local.settings.json
+local.settings.json.example
+test
+.git*
+.github
+node_modules/.bin
+tsconfig.json
+*.tsbuildinfo
+README.md
