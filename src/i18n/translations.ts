@@ -51,6 +51,7 @@ export const translations = {
     ministries: {
       title: 'Ministerios',
       subtitle: 'Cada ministerio es una oportunidad para servir, crecer y conectar.',
+      leadBy: 'A cargo de',
     },
     events: {
       title: 'Eventos',
@@ -138,6 +139,7 @@ export const translations = {
     ministries: {
       title: 'Ministries',
       subtitle: 'Every ministry is a chance to serve, grow, and connect.',
+      leadBy: 'Led by',
     },
     events: {
       title: 'Events',

@@ -87,16 +87,14 @@ export function Home() {
       <section className="py-16 dark:bg-night-950">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <SectionHeading eyebrow={t.nav.ministries} title={t.home.ministriesTeaser} subtitle={t.home.ministriesTeaserSubtitle} />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {ministries.slice(0, 3).map((ministry) => (
-              <div
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {ministries.map((ministry) => (
+              <span
                 key={ministry.id}
-                className="rounded-2xl border border-slate-200 p-6 text-center shadow-sm dark:border-night-700 dark:bg-night-900"
+                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-brand-900 dark:border-night-700 dark:bg-night-900 dark:text-white"
               >
-                <div className="text-4xl">{ministry.icon}</div>
-                <h3 className="mt-3 text-lg font-semibold text-brand-950 dark:text-white">{ministry.name[lang]}</h3>
-                <p className="mt-2 text-sm text-slate-600 dark:text-night-300">{ministry.description[lang]}</p>
-              </div>
+                {ministry.name[lang]}
+              </span>
             ))}
           </div>
           <div className="mt-8 text-center">

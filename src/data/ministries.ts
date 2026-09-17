@@ -1,63 +1,70 @@
+export interface MinistryLeader {
+  name: string
+  email: string
+}
+
 export interface Ministry {
   id: string
-  icon: string
   name: { es: string; en: string }
-  description: { es: string; en: string }
+  leaders: MinistryLeader[]
 }
+
+// Email convention: first + last name(s) with no spaces, keeping the
+// capitalization of each name, at @ibgcajamarca.org — e.g. "Anthony B Good"
+// -> AnthonyBGood@ibgcajamarca.org.
+const anthonyBGood: MinistryLeader = { name: 'Anthony B Good', email: 'AnthonyBGood@ibgcajamarca.org' }
+const luisFlores: MinistryLeader = { name: 'Luis Flores', email: 'LuisFlores@ibgcajamarca.org' }
+const charlyAlarcon: MinistryLeader = { name: 'Charly Alarcon', email: 'CharlyAlarcon@ibgcajamarca.org' }
+const yamalyAlfaro: MinistryLeader = { name: 'Yamaly Alfaro', email: 'YamalyAlfaro@ibgcajamarca.org' }
+const silviaFlores: MinistryLeader = { name: 'Silvia Flores', email: 'SilviaFlores@ibgcajamarca.org' }
+const joseLuisGuerrero: MinistryLeader = { name: 'Jose Luis Guerrero', email: 'JoseLuisGuerrero@ibgcajamarca.org' }
+const eddyMantilla: MinistryLeader = { name: 'Eddy Mantilla', email: 'EddyMantilla@ibgcajamarca.org' }
+const erliMarin: MinistryLeader = { name: 'Erli Marin', email: 'ErliMarin@ibgcajamarca.org' }
 
 export const ministries: Ministry[] = [
   {
+    id: 'pastoral',
+    name: { es: 'Pastoral', en: 'Pastoral' },
+    leaders: [anthonyBGood, luisFlores],
+  },
+  {
+    id: 'maestros',
+    name: { es: 'Maestros', en: 'Teachers' },
+    leaders: [anthonyBGood, luisFlores, charlyAlarcon],
+  },
+  {
+    id: 'hombres',
+    name: { es: 'Hombres', en: 'Men' },
+    leaders: [luisFlores],
+  },
+  {
+    id: 'mujeres',
+    name: { es: 'Mujeres', en: 'Women' },
+    leaders: [yamalyAlfaro],
+  },
+  {
     id: 'ninos',
-    icon: '🧒',
-    name: { es: 'Ministerio Infantil', en: 'Children’s Ministry' },
-    description: {
-      es: 'Enseñamos la Palabra de Dios a los más pequeños de una forma divertida y memorable.',
-      en: 'We teach God’s Word to the youngest members of our church in a fun, memorable way.',
-    },
+    name: { es: 'Niños', en: 'Children' },
+    leaders: [silviaFlores],
   },
   {
-    id: 'jovenes',
-    icon: '🔥',
-    name: { es: 'Jóvenes', en: 'Youth' },
-    description: {
-      es: 'Un espacio para adolescentes y jóvenes que buscan crecer en su fe y en comunidad.',
-      en: 'A space for teens and young adults growing in faith and community together.',
-    },
+    id: 'adolescentes',
+    name: { es: 'Adolescentes', en: 'Teens' },
+    leaders: [joseLuisGuerrero],
   },
   {
-    id: 'adoracion',
-    icon: '🎵',
-    name: { es: 'Adoración', en: 'Worship' },
-    description: {
-      es: 'Nuestro equipo de alabanza guía a la congregación a adorar a Dios en cada servicio.',
-      en: 'Our worship team leads the congregation in praise during every service.',
-    },
+    id: 'eventos-especiales',
+    name: { es: 'Eventos Especiales', en: 'Special Events' },
+    leaders: [eddyMantilla],
   },
   {
-    id: 'matrimonios',
-    icon: '💍',
-    name: { es: 'Matrimonios y Familia', en: 'Marriage & Family' },
-    description: {
-      es: 'Fortaleciendo hogares con principios bíblicos sólidos para el matrimonio y la crianza.',
-      en: 'Strengthening homes with solid biblical principles for marriage and parenting.',
-    },
+    id: 'benevolencia',
+    name: { es: 'Benevolencia', en: 'Benevolence' },
+    leaders: [charlyAlarcon],
   },
   {
-    id: 'discipulado',
-    icon: '📖',
-    name: { es: 'Discipulado', en: 'Discipleship' },
-    description: {
-      es: 'Grupos pequeños de estudio bíblico para crecer en el conocimiento de la Palabra.',
-      en: 'Small group Bible studies to grow in the knowledge of the Word.',
-    },
-  },
-  {
-    id: 'mision',
-    icon: '🌍',
-    name: { es: 'Misiones', en: 'Missions' },
-    description: {
-      es: 'Llevando el evangelio más allá de nuestras fronteras a través de acción social y misiones.',
-      en: 'Taking the gospel beyond our walls through outreach and mission trips.',
-    },
+    id: 'administracion',
+    name: { es: 'Administración', en: 'Administration' },
+    leaders: [erliMarin],
   },
 ]
