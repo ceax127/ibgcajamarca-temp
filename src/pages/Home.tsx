@@ -3,8 +3,8 @@ import pastoresPhoto from '../assets/foto_pastores.jpg'
 import { LiveSermon } from '../components/LiveSermon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
-import { events } from '../data/events'
 import { ministries } from '../data/ministries'
+import { dayName, weeklySchedule } from '../data/schedule'
 
 export function Home() {
   const { t, lang } = useLanguage()
@@ -44,25 +44,23 @@ export function Home() {
           <h2 className="mb-6 text-center text-sm font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
             {t.home.serviceTimesTitle}
           </h2>
-          <div className="grid gap-6 sm:grid-cols-3">
-            <div className="rounded-xl bg-brand-50 p-6 text-center dark:bg-night-800">
-              <p className="text-lg font-semibold text-brand-900 dark:text-white">{t.home.sundayService}</p>
-              <p className="mt-1 text-slate-600 dark:text-night-300">
-                {lang === 'es' ? 'Domingos, 10:00 a. m.' : 'Sundays, 10:00 a.m.'}
-              </p>
-            </div>
-            <div className="rounded-xl bg-brand-50 p-6 text-center dark:bg-night-800">
-              <p className="text-lg font-semibold text-brand-900 dark:text-white">{t.home.bibleStudy}</p>
-              <p className="mt-1 text-slate-600 dark:text-night-300">
-                {lang === 'es' ? 'Miércoles, 7:00 p. m.' : 'Wednesdays, 7:00 p.m.'}
-              </p>
-            </div>
-            <div className="rounded-xl bg-brand-50 p-6 text-center dark:bg-night-800">
-              <p className="text-lg font-semibold text-brand-900 dark:text-white">{t.home.youthNight}</p>
-              <p className="mt-1 text-slate-600 dark:text-night-300">
-                {lang === 'es' ? 'Sábados, 6:00 p. m.' : 'Saturdays, 6:00 p.m.'}
-              </p>
-            </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {weeklySchedule.map((item) => (
+              <div key={item.id} className="rounded-xl bg-brand-50 p-6 text-center dark:bg-night-800">
+                <p className="text-lg font-semibold text-brand-900 dark:text-white">{item.title[lang]}</p>
+                <p className="mt-1 text-slate-600 dark:text-night-300">
+                  {dayName(item.dayOfWeek, lang)}, {item.time[lang]}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 text-center">
+            <NavLink
+              to="/eventos"
+              className="text-sm font-semibold text-brand-700 hover:underline dark:text-gold-400"
+            >
+              {t.home.seeAll} →
+            </NavLink>
           </div>
         </div>
       </section>
@@ -102,32 +100,6 @@ export function Home() {
               to="/ministerios"
               className="text-sm font-semibold text-brand-700 hover:underline dark:text-gold-400"
             >
-              {t.home.seeAll} →
-            </NavLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-brand-950 py-16 text-white dark:bg-black">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <SectionHeading eyebrow={t.nav.events} title={t.home.eventsTeaser} />
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            {events.slice(0, 3).map((event) => (
-              <div key={event.id} className="rounded-xl bg-brand-900 p-5 dark:bg-night-800">
-                <p className="text-sm font-semibold text-gold-300">
-                  {new Date(`${event.date}T00:00:00`).toLocaleDateString(lang === 'es' ? 'es-PE' : 'en-US', {
-                    weekday: 'long',
-                    day: 'numeric',
-                    month: 'long',
-                  })}
-                </p>
-                <h3 className="mt-2 text-lg font-semibold">{event.title[lang]}</h3>
-                <p className="mt-1 text-sm text-brand-200 dark:text-night-300">{event.time} · {event.location}</p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <NavLink to="/eventos" className="text-sm font-semibold text-gold-300 hover:underline">
               {t.home.seeAll} →
             </NavLink>
           </div>

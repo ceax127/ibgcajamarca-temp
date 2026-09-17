@@ -17,14 +17,10 @@ export const translations = {
       planVisit: 'Planea tu visita',
       watchLive: 'Ver en vivo',
       serviceTimesTitle: 'Horarios de Servicio',
-      sundayService: 'Culto Dominical',
-      bibleStudy: 'Estudio Bíblico',
-      youthNight: 'Noche de Jóvenes',
       verse: '"Porque por gracia habéis sido salvados por medio de la fe." — Efesios 2:8',
       ministriesTeaser: 'Nuestros Ministerios',
       ministriesTeaserSubtitle: 'Hay un lugar para ti en nuestra familia de la fe.',
       seeAll: 'Ver todos',
-      eventsTeaser: 'Próximos Eventos',
       sermonsTeaser: 'Últimas Prédicas',
     },
     about: {
@@ -55,8 +51,8 @@ export const translations = {
     },
     events: {
       title: 'Eventos',
-      subtitle: 'Estas son nuestras próximas actividades. ¡Te esperamos!',
-      empty: 'No hay eventos programados por el momento. Vuelve pronto.',
+      subtitle: 'Este es nuestro horario semanal de reuniones. ¡Te esperamos!',
+      empty: 'Aún no hay un horario publicado. Vuelve pronto.',
     },
     sermons: {
       title: 'Sermones',
@@ -105,14 +101,10 @@ export const translations = {
       planVisit: 'Plan your visit',
       watchLive: 'Watch live',
       serviceTimesTitle: 'Service Times',
-      sundayService: 'Sunday Service',
-      bibleStudy: 'Bible Study',
-      youthNight: 'Youth Night',
       verse: '"For by grace you have been saved through faith." — Ephesians 2:8',
       ministriesTeaser: 'Our Ministries',
       ministriesTeaserSubtitle: 'There’s a place for you in our family of faith.',
       seeAll: 'See all',
-      eventsTeaser: 'Upcoming Events',
       sermonsTeaser: 'Latest Sermons',
     },
     about: {
@@ -143,8 +135,8 @@ export const translations = {
     },
     events: {
       title: 'Events',
-      subtitle: 'Here’s what’s coming up. We hope to see you there!',
-      empty: 'No events are scheduled right now. Check back soon.',
+      subtitle: 'This is our weekly schedule of meetings. We hope to see you there!',
+      empty: 'No schedule has been published yet. Check back soon.',
     },
     sermons: {
       title: 'Sermons',
