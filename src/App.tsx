@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import { SplashScreen } from './components/SplashScreen'
 import { About } from './pages/About'
 import { Contact } from './pages/Contact'
 import { Events } from './pages/Events'
@@ -12,6 +13,7 @@ import { Sermons } from './pages/Sermons'
 function App() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-night-950 dark:text-night-100">
+      <SplashScreen />
       <Header />
       <main className="flex-1">
         <Routes>

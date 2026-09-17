@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import pastoresPhoto from '../assets/foto_pastores.jpg'
 import { LiveSermon } from '../components/LiveSermon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
@@ -10,8 +11,14 @@ export function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-900 to-brand-700 text-white dark:from-black dark:to-night-800">
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6">
+      <section className="relative overflow-hidden text-white">
+        <img
+          src={pastoresPhoto}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-brand-950/95 via-brand-900/90 to-brand-700/85 dark:from-black/95 dark:via-night-950/92 dark:to-night-800/85" />
+        <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6">
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl">{t.home.heroTitle}</h1>
           <p className="max-w-2xl text-lg text-brand-100 dark:text-night-200">{t.home.heroSubtitle}</p>
           <div className="flex flex-wrap justify-center gap-3">

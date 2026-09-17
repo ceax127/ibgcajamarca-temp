@@ -20,10 +20,17 @@ export function Header() {
   ]
 
   const linkClasses = ({ isActive }: { isActive: boolean }) =>
-    `rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+    `group relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
       isActive
         ? 'text-brand-700 dark:text-gold-300'
         : 'text-slate-600 hover:text-brand-700 dark:text-night-300 dark:hover:text-gold-300'
+    }`
+
+  // Animated underline that grows from the center on hover, and stays fully
+  // shown for the current page — brand navy in light mode, gold in dark.
+  const underlineClasses = (isActive: boolean) =>
+    `pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 origin-center rounded-full bg-brand-700 transition-transform duration-300 ease-out dark:bg-gold-400 ${
+      isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
     }`
 
   return (
@@ -43,7 +50,12 @@ export function Header() {
         <nav className="hidden items-center gap-1 lg:flex">
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} className={linkClasses} end={link.to === '/'}>
-              {link.label}
+              {({ isActive }) => (
+                <>
+                  {link.label}
+                  <span className={underlineClasses(isActive)} />
+                </>
+              )}
             </NavLink>
           ))}
         </nav>
@@ -84,7 +96,12 @@ export function Header() {
                 end={link.to === '/'}
                 onClick={() => setOpen(false)}
               >
-                {link.label}
+                {({ isActive }) => (
+                  <>
+                    {link.label}
+                    <span className={underlineClasses(isActive)} />
+                  </>
+                )}
               </NavLink>
             ))}
           </nav>
