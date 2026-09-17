@@ -23,31 +23,34 @@ export function Contact() {
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
         <div className="flex flex-col gap-8">
           <div className="grid gap-6 sm:grid-cols-2">
-            <div>
+            <div className="min-w-0">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600">
                 {t.contact.addressTitle}
               </h3>
-              <p className="mt-2 text-slate-700">{churchInfo.address}</p>
+              <p className="mt-2 break-words text-slate-700">{churchInfo.address}</p>
             </div>
-            <div>
+            <div className="min-w-0">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600">
                 {t.contact.phoneTitle}
               </h3>
-              <p className="mt-2 text-slate-700">{churchInfo.phone}</p>
+              <p className="mt-2 break-words text-slate-700">{churchInfo.phone}</p>
             </div>
-            <div>
+            <div className="min-w-0">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600">
                 {t.contact.emailTitle}
               </h3>
-              <a href={`mailto:${churchInfo.email}`} className="mt-2 block text-brand-700 hover:underline">
+              <a
+                href={`mailto:${churchInfo.email}`}
+                className="mt-2 block break-words text-brand-700 hover:underline"
+              >
                 {churchInfo.email}
               </a>
             </div>
-            <div>
+            <div className="min-w-0">
               <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600">
                 {t.contact.followUs}
               </h3>
-              <div className="mt-2 flex gap-3 text-sm">
+              <div className="mt-2 flex flex-wrap gap-3 text-sm">
                 <a href={churchInfo.facebookUrl} target="_blank" rel="noreferrer" className="text-brand-700 hover:underline">
                   Facebook
                 </a>
