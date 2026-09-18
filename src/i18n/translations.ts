@@ -27,7 +27,7 @@ export const translations = {
       title: 'Nosotros',
       missionTitle: 'Nuestra Misión',
       mission:
-        'Glorificar a Dios formando discípulos de Jesucristo que amen, estudien y vivan las Escrituras, y las compartan con su comunidad.',
+        'Glorificar a Dios proclamando la verdad sin concesiones de Su Palabra, edificando a los santos hasta alcanzar la madurez a la semejanza de Cristo, y haciendo discípulos en todas las naciones a través del evangelio de Jesucristo nuestro Señor.',
       visionTitle: 'Nuestra Visión',
       vision:
         'Ser una iglesia sana y en crecimiento, arraigada en la Palabra de Dios, que impacte a Cajamarca y más allá.',
@@ -188,7 +188,7 @@ export const translations = {
       title: 'About Us',
       missionTitle: 'Our Mission',
       mission:
-        'To glorify God by making disciples of Jesus Christ who love, study, and live out the Scriptures, and share them with their community.',
+        'To glorify God by proclaiming the uncompromised truth of His Word, edifying the saints unto mature Christlikeness, and making disciples of all nations through the gospel of Jesus Christ our Lord.',
       visionTitle: 'Our Vision',
       vision:
         'To be a healthy, growing church, rooted in God’s Word, impacting Cajamarca and beyond.',
