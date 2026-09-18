@@ -20,6 +20,8 @@ const silviaFlores: MinistryLeader = { name: 'Silvia Flores', email: 'SilviaFlor
 const joseLuisGuerrero: MinistryLeader = { name: 'Jose Luis Guerrero', email: 'JoseLuisGuerrero@ibgcajamarca.org' }
 const eddyMantilla: MinistryLeader = { name: 'Eddy Mantilla', email: 'EddyMantilla@ibgcajamarca.org' }
 const erliMarin: MinistryLeader = { name: 'Erli Marin', email: 'ErliMarin@ibgcajamarca.org' }
+const anthonyMoreno: MinistryLeader = { name: 'Anthony Moreno', email: 'AnthonyMoreno@ibgcajamarca.org' }
+const bryanDeLaTorre: MinistryLeader = { name: 'Bryan de la Torre', email: 'BryanDelaTorre@ibgcajamarca.org' }
 
 export const ministries: Ministry[] = [
   {
@@ -66,5 +68,15 @@ export const ministries: Ministry[] = [
     id: 'administracion',
     name: { es: 'Administración', en: 'Administration' },
     leaders: [erliMarin],
+  },
+  {
+    id: 'produccion',
+    name: { es: 'Producción', en: 'Production' },
+    leaders: [anthonyMoreno],
+  },
+  {
+    id: 'alabanza',
+    name: { es: 'Alabanza', en: 'Worship' },
+    leaders: [bryanDeLaTorre],
   },
 ]
