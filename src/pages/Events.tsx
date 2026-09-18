@@ -1,9 +1,12 @@
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
+import { churchInfo } from '../data/config'
 import { dayName, weeklySchedule } from '../data/schedule'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function Events() {
   const { t, lang } = useLanguage()
+  usePageMeta(`${t.events.title} — ${churchInfo.shortName}`, t.events.subtitle)
 
   const sorted = [...weeklySchedule].sort((a, b) => a.dayOfWeek - b.dayOfWeek)
 

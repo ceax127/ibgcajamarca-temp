@@ -1,9 +1,12 @@
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
+import { churchInfo } from '../data/config'
 import { ministries } from '../data/ministries'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function Ministries() {
   const { t, lang } = useLanguage()
+  usePageMeta(`${t.ministries.title} — ${churchInfo.shortName}`, t.ministries.subtitle)
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">

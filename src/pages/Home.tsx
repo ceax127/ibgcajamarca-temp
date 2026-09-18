@@ -3,11 +3,14 @@ import pastoresPhoto from '../assets/foto_pastores.jpg'
 import { LiveSermon } from '../components/LiveSermon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
+import { churchInfo } from '../data/config'
 import { ministries } from '../data/ministries'
 import { dayName, weeklySchedule } from '../data/schedule'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function Home() {
   const { t, lang } = useLanguage()
+  usePageMeta(churchInfo.name, t.home.heroSubtitle)
 
   return (
     <div className="flex flex-col">

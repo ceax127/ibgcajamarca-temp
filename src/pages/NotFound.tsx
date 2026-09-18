@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function NotFound() {
   const { t } = useLanguage()
+  usePageMeta('404', undefined, { noIndex: true })
 
   return (
     <div className="mx-auto flex max-w-lg flex-col items-center gap-4 px-4 py-24 text-center">

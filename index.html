@@ -4,10 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#13294d" />
     <meta
       name="description"
       content="Iglesia Bíblica Gracia Cajamarca: horarios de servicio, ministerios, eventos y prédicas en vivo."
     />
+    <link rel="canonical" href="https://www.ibgcajamarca.org/" />
+
+    <!-- Open Graph / social sharing previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Iglesia Bíblica Gracia Cajamarca" />
+    <meta property="og:title" content="Iglesia Bíblica Gracia Cajamarca" />
+    <meta
+      property="og:description"
+      content="Horarios de servicio, ministerios, eventos y prédicas en vivo de Iglesia Bíblica Gracia Cajamarca."
+    />
+    <meta property="og:url" content="https://www.ibgcajamarca.org/" />
+    <meta property="og:image" content="https://www.ibgcajamarca.org/og-image.png" />
+    <meta property="og:locale" content="es_PE" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Iglesia Bíblica Gracia Cajamarca" />
+    <meta
+      name="twitter:description"
+      content="Horarios de servicio, ministerios, eventos y prédicas en vivo de Iglesia Bíblica Gracia Cajamarca."
+    />
+    <meta name="twitter:image" content="https://www.ibgcajamarca.org/og-image.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,6 +37,31 @@
       rel="stylesheet"
     />
     <title>Iglesia Bíblica Gracia Cajamarca</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Church",
+        "name": "Iglesia Bíblica Gracia Cajamarca",
+        "alternateName": "IBG Cajamarca",
+        "url": "https://www.ibgcajamarca.org/",
+        "logo": "https://www.ibgcajamarca.org/og-image.png",
+        "image": "https://www.ibgcajamarca.org/og-image.png",
+        "telephone": "+51 940 007 521",
+        "email": "administracion@ibgcajamarca.org",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Atahualpa 931 (frente a la UNC)",
+          "addressLocality": "Cajamarca",
+          "addressCountry": "PE"
+        },
+        "sameAs": [
+          "https://www.facebook.com/IglesiaGraciaCajamarca",
+          "https://www.instagram.com/ibg_cajamarca",
+          "https://www.youtube.com/@Ibgcajamarca9670"
+        ]
+      }
+    </script>
     <script>
       // Applied before React mounts, so the page never flashes the wrong
       // theme on load. Kept in sync with src/context/ThemeContext.tsx.

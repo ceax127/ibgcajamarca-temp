@@ -2,9 +2,11 @@ import { type FormEvent, useState } from 'react'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 export function Contact() {
   const { t } = useLanguage()
+  usePageMeta(`${t.contact.title} — ${churchInfo.shortName}`, t.contact.subtitle)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
