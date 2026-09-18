@@ -73,6 +73,15 @@ Mientras no haya credenciales configuradas (ni localmente ni en la Function
 desplegada), la sección de Sermones muestra un mensaje y un enlace al canal,
 sin romperse.
 
+### Formulario de contacto
+
+El formulario de la página de Contacto envía el mensaje por correo real
+(vía Azure Communication Services), no un simple `mailto:`. Usa el mismo
+Azure Function App que Sermones (`GET /api/sermons` y `POST /api/contact`
+conviven en el mismo recurso). Ver la sección "Set up Azure Communication
+Services" en [`functions/README.md`](functions/README.md) para la
+configuración completa.
+
 ### Mapa de Google Maps
 
 `churchInfo.googleMapsEmbedSrc` en `src/data/config.ts` tiene un embed de
@@ -92,14 +101,19 @@ ejemplo. Reemplázalo por el real: en Google Maps, busca la dirección → Compa
 4. `staticwebapp.config.json` (incluido en este repo) configura el
    *fallback* de rutas para que la navegación de React Router funcione
    correctamente en Azure (recargar `/contacto`, por ejemplo, no debe dar 404).
-5. En **Configuration → Application settings** del recurso Static Web App,
-   agrega `VITE_SERMONS_API_URL` con la URL de la Azure Function desplegada
-   (ver [`functions/README.md`](functions/README.md)), por ejemplo
-   `https://ibg-cajamarca-sermons.azurewebsites.net/api/sermons` — y agrega
-   las mismas variables (`YOUTUBE_API_KEY`, etc.) como *build secrets* del
-   workflow de GitHub Actions si quieres que el paso `prebuild` también
-   traiga datos reales en cada build (opcional, ya que la Function los sirve
-   en tiempo real de todas formas).
+5. Agrega estos valores como **GitHub repo secrets** (Settings → Secrets
+   and variables → Actions) — el workflow (`.github/workflows/azure-static-web-apps-*.yml`)
+   ya los pasa al paso de build vía `env:`, así que solo hace falta crearlos:
+   - `VITE_SERMONS_API_URL` y `VITE_CONTACT_API_URL` con la URL de la Azure
+     Function desplegada (ver [`functions/README.md`](functions/README.md)),
+     por ejemplo `https://ibg-cajamarca-sermons.azurewebsites.net/api/sermons`
+     y `.../api/contact`.
+   - `YOUTUBE_API_KEY`, `YOUTUBE_CHANNEL_ID`, `YOUTUBE_PLAYLISTS_JSON` para
+     que el paso `prebuild` también traiga una foto inicial de datos reales
+     en cada build (opcional, ya que la Function los sirve en tiempo real
+     de todas formas).
+   Después de agregarlos, vuelve a correr el workflow (Actions → el run más
+   reciente → **Re-run all jobs**) para que el build los recoja.
 
 La Function de Sermones (`functions/`) es un recurso de Azure aparte —no se
 despliega junto con el sitio— porque las *Managed Functions* integradas de

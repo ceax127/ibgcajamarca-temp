@@ -152,8 +152,9 @@ export const translations = {
       formEmail: 'Correo electrónico',
       formMessage: 'Mensaje',
       formSend: 'Enviar mensaje',
-      formNote:
-        'Este formulario aún no envía mensajes automáticamente — escríbenos directamente a nuestro correo mientras lo activamos.',
+      formSending: 'Enviando…',
+      formSuccess: '¡Mensaje enviado! Te responderemos pronto.',
+      formError: 'No pudimos enviar tu mensaje. Intenta de nuevo, o escríbenos directamente por correo.',
     },
     footer: {
       tagline: 'Una comunidad que ama a Dios, estudia su Palabra y sirve a su prójimo.',
@@ -313,8 +314,9 @@ export const translations = {
       formEmail: 'Email',
       formMessage: 'Message',
       formSend: 'Send message',
-      formNote:
-        'This form doesn’t send messages automatically yet — please email us directly while we get it set up.',
+      formSending: 'Sending…',
+      formSuccess: 'Message sent! We’ll get back to you soon.',
+      formError: 'We couldn’t send your message. Please try again, or email us directly.',
     },
     footer: {
       tagline: 'A community that loves God, studies His Word, and serves its neighbors.',

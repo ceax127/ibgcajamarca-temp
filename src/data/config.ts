@@ -30,3 +30,8 @@ export const SERMONS_API_URL: string =
 // How often the browser re-checks the sermons API for a live status change
 // while the Sermones/Home page is open, in milliseconds.
 export const SERMONS_POLL_INTERVAL_MS = 60_000;
+
+// Contact form submissions go to this same Function App (functions/src/functions/sendContactMessage.ts),
+// which sends the email via Azure Communication Services — see functions/README.md.
+export const CONTACT_API_URL: string =
+  import.meta.env.VITE_CONTACT_API_URL || "/api/contact";

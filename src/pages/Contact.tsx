@@ -1,8 +1,10 @@
 import { type FormEvent, useState } from 'react'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
-import { churchInfo } from '../data/config'
+import { CONTACT_API_URL, churchInfo } from '../data/config'
 import { usePageMeta } from '../hooks/usePageMeta'
+
+type SubmitStatus = 'idle' | 'sending' | 'success' | 'error'
 
 export function Contact() {
   const { t } = useLanguage()
@@ -10,12 +12,26 @@ export function Contact() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
+  const [website, setWebsite] = useState('') // honeypot — real visitors never fill this in
+  const [status, setStatus] = useState<SubmitStatus>('idle')
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    const subject = encodeURIComponent(`Mensaje de ${name || 'sitio web'}`)
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`)
-    window.location.href = `mailto:${churchInfo.email}?subject=${subject}&body=${body}`
+    setStatus('sending')
+    try {
+      const res = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message, website }),
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      setStatus('success')
+      setName('')
+      setEmail('')
+      setMessage('')
+    } catch {
+      setStatus('error')
+    }
   }
 
   const inputClasses =
@@ -138,13 +154,35 @@ export function Contact() {
               className={inputClasses}
             />
           </div>
+
+          {/* Honeypot — hidden from real visitors via CSS, not "hidden" or
+              display:none (some bots skip those specifically). */}
+          <div className="absolute -left-[9999px]" aria-hidden="true">
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+            />
+          </div>
+
           <button
             type="submit"
-            className="mt-2 rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800 dark:bg-gold-500 dark:text-night-950 dark:hover:bg-gold-400"
+            disabled={status === 'sending'}
+            className="mt-2 rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-gold-500 dark:text-night-950 dark:hover:bg-gold-400"
           >
-            {t.contact.formSend}
+            {status === 'sending' ? t.contact.formSending : t.contact.formSend}
           </button>
-          <p className="text-xs text-slate-500 dark:text-night-400">{t.contact.formNote}</p>
+
+          {status === 'success' && (
+            <p className="text-sm font-medium text-green-700 dark:text-green-400">{t.contact.formSuccess}</p>
+          )}
+          {status === 'error' && (
+            <p className="text-sm font-medium text-red-700 dark:text-red-400">{t.contact.formError}</p>
+          )}
         </form>
       </div>
     </div>

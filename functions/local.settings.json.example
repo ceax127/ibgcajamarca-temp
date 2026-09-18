@@ -6,7 +6,10 @@
     "YOUTUBE_API_KEY": "paste-your-youtube-data-api-v3-key-here",
     "YOUTUBE_CHANNEL_ID": "UCxxxxxxxxxxxxxxxxxxxxxxxx",
     "YOUTUBE_PLAYLISTS_JSON": "[{\"id\":\"PLxxxxxxxxxxxxxxxxxxxxxxxxx\",\"label\":\"Serie Efesios\"},{\"id\":\"PLyyyyyyyyyyyyyyyyyyyyyyyyy\",\"label\":\"Prédicas 2026\"}]",
-    "ALLOWED_ORIGIN": "https://ibgcajamarca.org"
+    "ACS_CONNECTION_STRING": "endpoint=https://your-acs-resource.communication.azure.com/;accesskey=your-access-key",
+    "ACS_SENDER_ADDRESS": "DoNotReply@your-guid.azurecomm.net",
+    "CONTACT_RECIPIENT_EMAIL": "administracion@ibgcajamarca.org",
+    "ALLOWED_ORIGIN": "https://www.ibgcajamarca.org"
   },
   "Host": {
     "CORS": "*"
