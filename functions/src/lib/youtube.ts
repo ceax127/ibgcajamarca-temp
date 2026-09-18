@@ -56,11 +56,23 @@ export async function getLiveInfo(apiKey: string, channelId: string): Promise<Li
   }
 }
 
-/** Fetches the most recent videos in a playlist (1 quota unit per call). */
+/**
+ * Fetches videos in a playlist (1 quota unit per call).
+ *
+ * `order`:
+ * - "newest-first" (used for the channel's auto "uploads" playlist): most
+ *   recently published video first — that's what "past sermons" should
+ *   show.
+ * - "playlist-order" (used for curated series playlists, e.g. a Bible book
+ *   study): the order the channel owner actually arranged the playlist in
+ *   (YouTube's playlistItems.list already returns items in that order), so
+ *   a series plays chapter 1, 2, 3... instead of newest-uploaded-first.
+ */
 export async function getPlaylistVideos(
   apiKey: string,
   playlistId: string,
   maxResults = 8,
+  order: 'newest-first' | 'playlist-order' = 'newest-first',
 ): Promise<SermonVideo[]> {
   const url = new URL(`${YOUTUBE_API_BASE}/playlistItems`)
   url.searchParams.set('part', 'snippet')
@@ -81,7 +93,7 @@ export async function getPlaylistVideos(
     }[]
   }
 
-  return (json.items ?? [])
+  const videos = (json.items ?? [])
     .filter((item) => item.snippet.resourceId?.videoId)
     .filter((item) => item.snippet.title !== 'Private video' && item.snippet.title !== 'Deleted video')
     .map((item) => ({
@@ -90,7 +102,11 @@ export async function getPlaylistVideos(
       thumbnail: item.snippet.thumbnails?.medium?.url ?? item.snippet.thumbnails?.default?.url ?? '',
       publishedAt: item.snippet.publishedAt,
     }))
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+
+  if (order === 'newest-first') {
+    videos.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  }
+  return videos
 }
 
 export interface PollConfig {
@@ -111,14 +127,14 @@ export function uploadsPlaylistId(channelId: string): string {
 /** Fetches the auto "uploads" playlist plus every configured curated playlist. */
 export async function fetchAllPlaylists(config: PollConfig): Promise<SermonPlaylist[]> {
   const [uploadsVideos, curatedPlaylists] = await Promise.all([
-    getPlaylistVideos(config.apiKey, uploadsPlaylistId(config.channelId)).catch(() => []),
+    getPlaylistVideos(config.apiKey, uploadsPlaylistId(config.channelId), 8, 'newest-first').catch(() => []),
     Promise.all(
       config.playlists.map(
         async (playlist): Promise<SermonPlaylist> => ({
           id: playlist.id,
           label: playlist.label,
           kind: 'curated',
-          videos: await getPlaylistVideos(config.apiKey, playlist.id).catch(() => []),
+          videos: await getPlaylistVideos(config.apiKey, playlist.id, 8, 'playlist-order').catch(() => []),
         }),
       ),
     ),

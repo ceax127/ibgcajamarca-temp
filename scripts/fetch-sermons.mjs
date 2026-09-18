@@ -57,13 +57,13 @@ function uploadsPlaylistId(channelId) {
 async function buildSermonsData({ apiKey, channelId, playlists }) {
   const [live, uploadsVideos, curatedPlaylists] = await Promise.all([
     getLiveInfo(apiKey, channelId).catch(() => null),
-    getPlaylistVideos(apiKey, uploadsPlaylistId(channelId)).catch(() => []),
+    getPlaylistVideos(apiKey, uploadsPlaylistId(channelId), 8, 'newest-first').catch(() => []),
     Promise.all(
       playlists.map(async (p) => ({
         id: p.id,
         label: p.label,
         kind: 'curated',
-        videos: await getPlaylistVideos(apiKey, p.id).catch(() => []),
+        videos: await getPlaylistVideos(apiKey, p.id, 8, 'playlist-order').catch(() => []),
       })),
     ),
   ])
@@ -113,7 +113,7 @@ async function getLiveInfo(apiKey, channelId) {
   }
 }
 
-async function getPlaylistVideos(apiKey, playlistId, maxResults = 8) {
+async function getPlaylistVideos(apiKey, playlistId, maxResults = 8, order = 'newest-first') {
   const url = new URL('https://www.googleapis.com/youtube/v3/playlistItems')
   url.searchParams.set('part', 'snippet')
   url.searchParams.set('playlistId', playlistId)
@@ -123,7 +123,7 @@ async function getPlaylistVideos(apiKey, playlistId, maxResults = 8) {
   const res = await fetch(url)
   if (!res.ok) throw new Error(`YouTube playlistItems.list failed for ${playlistId}: ${res.status}`)
   const json = await res.json()
-  return (json.items ?? [])
+  const videos = (json.items ?? [])
     .filter((item) => item.snippet?.resourceId?.videoId)
     .filter((item) => item.snippet.title !== 'Private video' && item.snippet.title !== 'Deleted video')
     .map((item) => ({
@@ -132,7 +132,11 @@ async function getPlaylistVideos(apiKey, playlistId, maxResults = 8) {
       thumbnail: item.snippet.thumbnails?.medium?.url ?? item.snippet.thumbnails?.default?.url ?? '',
       publishedAt: item.snippet.publishedAt,
     }))
-    .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+
+  if (order === 'newest-first') {
+    videos.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  }
+  return videos
 }
 
 function loadDotEnvLocal() {
