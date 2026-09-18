@@ -23,9 +23,27 @@ export function About() {
         <h2 className="text-2xl font-semibold text-brand-950 dark:text-white">{t.about.beliefsTitle}</h2>
         <ul className="mt-6 space-y-4">
           {t.about.beliefs.map((belief) => (
-            <li key={belief} className="flex gap-3">
+            <li key={belief.title} className="flex gap-3">
               <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-gold-500" />
-              <span className="text-slate-700 dark:text-night-300">{belief}</span>
+              <span className="text-slate-700 dark:text-night-300">
+                <span className="font-semibold text-brand-900 dark:text-white">{belief.title}: </span>
+                {belief.body}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-12 border-t border-slate-200 pt-10 dark:border-night-700">
+        <h2 className="text-2xl font-semibold text-brand-950 dark:text-white">{t.about.distinctivesTitle}</h2>
+        <ul className="mt-6 space-y-4">
+          {t.about.distinctives.map((distinctive) => (
+            <li key={distinctive.title} className="flex gap-3">
+              <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-brand-700 dark:bg-gold-500" />
+              <span className="text-slate-700 dark:text-night-300">
+                <span className="font-semibold text-brand-900 dark:text-white">{distinctive.title}: </span>
+                {distinctive.body}
+              </span>
             </li>
           ))}
         </ul>

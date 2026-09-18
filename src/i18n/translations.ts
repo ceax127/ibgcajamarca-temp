@@ -33,12 +33,89 @@ export const translations = {
         'Ser una iglesia sana y en crecimiento, arraigada en la Palabra de Dios, que impacte a Cajamarca y más allá.',
       beliefsTitle: 'Lo que Creemos',
       beliefs: [
-        'Creemos en la inspiración y autoridad final de la Biblia como Palabra de Dios.',
-        'Creemos en un solo Dios que existe eternamente en tres personas: Padre, Hijo y Espíritu Santo.',
-        'Creemos en la deidad de Jesucristo, su nacimiento virginal, su vida sin pecado, su muerte sustitutoria y su resurrección corporal.',
-        'Creemos que la salvación es un don de Dios recibido por gracia, por medio de la fe en Jesucristo, y no por obras.',
-        'Creemos en la obra del Espíritu Santo, quien capacita al creyente para vivir una vida santa.',
-        'Creemos en el regreso personal y visible de Jesucristo.',
+        {
+          title: 'La Biblia',
+          body: 'Creo que la Biblia es la Palabra de Dios, inspirada por Él, completamente verdadera y suficiente, y que es la autoridad final para lo que creo y cómo vivo. (2 Timoteo 3:16)',
+        },
+        {
+          title: 'El Dios Triuno',
+          body: 'Creo que hay un solo Dios verdadero, eterno, santo y soberano, el Creador de todas las cosas, que existe eternamente en tres personas: Padre, Hijo y Espíritu Santo. (Génesis 1:1-2; Mateo 28:19)',
+        },
+        {
+          title: 'Dios el Padre',
+          body: 'Creo que Dios el Padre es el Soberano del universo que gobierna todas las cosas según Su propósito perfecto. Por Su inmensa gracia y amor, nos ha elegido y adoptado para ser Sus hijos a través de Jesucristo. (Efesios 1:3-5; 1 Juan 3:1)',
+        },
+        {
+          title: 'Jesucristo',
+          body: 'Creo que Jesucristo es verdaderamente Dios y verdaderamente hombre, quien vivió una vida sin pecado, murió en la cruz como un sacrificio perfecto para pagar por mis pecados, resucitó corporalmente y es el único Salvador y Redentor. (Juan 1:14; 1 Corintios 15:3–4)',
+        },
+        {
+          title: 'El Espíritu Santo',
+          body: 'Creo que el Espíritu Santo es Dios, quien da nueva vida al creyente. Creo que recibimos al Espíritu Santo plenamente en el momento de la salvación, quien mora en nosotros, nos empodera para vivir en obediencia a Dios y nos capacita para servir con Sus dones para el servicio a la iglesia. (1 Corintios 6:19; 1 Corintios 12:4-7)',
+        },
+        {
+          title: 'La Humanidad y el Pecado',
+          body: 'Creo que todos los seres humanos han pecado y están separados de Dios, y que por sí mismos no pueden salvarse. (Romanos 3:23)',
+        },
+        {
+          title: 'La Salvación',
+          body: 'Creo que la salvación es un regalo de la gracia de Dios y se recibe únicamente a través de la fe en Jesucristo, no por obras humanas. (Efesios 2:8–9)',
+        },
+        {
+          title: 'La Vida Cristiana',
+          body: 'Creo que Dios transforma al creyente y lo llama a una vida de arrepentimiento continuo, obediencia y crecimiento espiritual. (2 Corintios 5:17; Filipenses 1:6)',
+        },
+        {
+          title: 'La Iglesia',
+          body: 'Creo que la iglesia es el cuerpo de Cristo, que Él es su cabeza, y que cada creyente está llamado a vivir comprometido con una iglesia local bajo un liderazgo bíblico. (Colosenses 1:18; Hebreos 13:17)',
+        },
+        {
+          title: 'Liderazgo de la Iglesia',
+          body: 'Creo que hombres y mujeres son absolutamente iguales en valor, dignidad y salvación ante Dios. Sin embargo, creo que Dios, en Su sabiduría, ha establecido roles distintos y complementarios, reservando los oficios y funciones de evangelistas, pastores-maestros (quienes son también ancianos) y ancianos exclusivamente para hombres bíblicamente calificados. (1 Timoteo 2:12-13; Tito 1:5-6; Efesios 4:11)',
+        },
+        {
+          title: 'Las Ordenanzas (Bautismo y Cena del Señor)',
+          body: 'Creo que Jesucristo estableció dos ordenanzas para Su iglesia: el bautismo del creyente por inmersión y la Cena del Señor. Este bautismo es un acto público de obediencia donde el creyente demuestra su fe y simboliza su unión con Cristo en Su muerte, sepultura y resurrección. La Cena del Señor es un recordatorio constante del sacrificio de Cristo en la cruz, que los creyentes celebramos juntos hasta que Él venga. (Mateo 28:19; Romanos 6:4; 1 Corintios 11:23-26)',
+        },
+        {
+          title: 'Esperanza Futura',
+          body: 'Creo que Jesucristo regresará y que los creyentes vivirán eternamente con Él. (Juan 14:3)',
+        },
+      ],
+      distinctivesTitle: 'Nuestros Distintivos Centrales',
+      distinctives: [
+        {
+          title: '1. Calvinistas',
+          body: 'Nos sostenemos firmemente en las doctrinas de la gracia, afirmando la soberanía absoluta de Dios en todas las cosas, especialmente en la obra histórica y sobrenatural de la salvación. (Efesios 1:4-6, Romanos 9:15-16, Juan 6:44)',
+        },
+        {
+          title: '2. Dispensacionales',
+          body: 'Abordamos las Escrituras con un método de interpretación consistente, literal-gramatical-histórico, manteniendo una clara distinción bíblica entre el programa de Dios para Israel y Su programa para la Iglesia. (Efesios 3:1-6, Romanos 11:25-29, 1 Tesalonicenses 4:13-18)',
+        },
+        {
+          title: '3. Creacionistas',
+          body: 'Creemos que Dios creó el universo, la tierra y toda la vida de la nada en seis días literales de 24 horas, tal como se revela claramente en el libro de Génesis. (Génesis 1:1-31, Éxodo 20:11, Colosenses 1:16)',
+        },
+        {
+          title: '4. Cesacionistas',
+          body: 'Creemos que los dones de señales de la iglesia del Nuevo Testamento (tales como lenguas, profecía y sanidad apostólica) cumplieron su propósito durante la era fundacional de los Apóstoles y han cesado, mientras que Dios continúa obrando milagros de acuerdo con Su voluntad soberana. (1 Corintios 13:8-10, 2 Corintios 12:12, Hebreos 2:3-4)',
+        },
+        {
+          title: '5. Consejería Bíblica',
+          body: 'Rechazamos la psicología secular como cura para los problemas espirituales, creyendo en cambio que las Escrituras son completamente suficientes y autoritativas para aconsejar, sanar y restaurar el corazón humano. (2 Timoteo 3:16-17, 2 Pedro 1:3, Salmo 19:7-9)',
+        },
+        {
+          title: '6. Gobierno de Ancianos',
+          body: 'Nuestra iglesia es guiada por pastores en lugar de ser gobernada por la congregación. Somos dirigidos por una pluralidad de ancianos bíblicamente calificados que pastorean, protegen y guían al rebaño bajo la jefatura de Jesucristo. (1 Timoteo 3:1-7, Tito 1:5-9, Hebreos 13:17, 1 Pedro 5:1-3)',
+        },
+        {
+          title: '7. Enseñanza Expositiva',
+          body: 'El ministerio principal de nuestro púlpito es la predicación expositiva verso por verso. Predicamos el texto de las Escrituras en su contexto adecuado para desatar la verdadera voz y autoridad de Dios. (Nehemías 8:8, 2 Timoteo 4:1-2, Hechos 20:27)',
+        },
+        {
+          title: '8. Ofrenda Escritural',
+          body: '¡Aquí no se exige ofrendar, sino solo según Dios le guíe! ¡No queremos su dinero! ¡Queremos el nacimiento y crecimiento en Jesucristo, quien es el SEÑOR (YAHWEH)! (2 Corintios 9:7, Hechos 8:20, Filipenses 4:17)',
+        },
       ],
       historyTitle: 'Nuestra Historia',
       history:
@@ -117,12 +194,89 @@ export const translations = {
         'To be a healthy, growing church, rooted in God’s Word, impacting Cajamarca and beyond.',
       beliefsTitle: 'What We Believe',
       beliefs: [
-        'We believe in the inspiration and final authority of the Bible as the Word of God.',
-        'We believe in one God who exists eternally in three persons: Father, Son, and Holy Spirit.',
-        'We believe in the deity of Jesus Christ, His virgin birth, sinless life, substitutionary death, and bodily resurrection.',
-        'We believe salvation is a gift of God received by grace, through faith in Jesus Christ, not by works.',
-        'We believe in the work of the Holy Spirit, who enables believers to live a holy life.',
-        'We believe in the personal, visible return of Jesus Christ.',
+        {
+          title: 'The Bible',
+          body: 'I believe the Bible is the Word of God, inspired by Him, completely true and sufficient, and that it is the final authority for what I believe and how I live. (2 Timothy 3:16)',
+        },
+        {
+          title: 'The Triune God',
+          body: 'I believe there is one true God, eternal, holy, and sovereign, the Creator of all things, who exists eternally in three persons: Father, Son, and Holy Spirit. (Genesis 1:1-2; Matthew 28:19)',
+        },
+        {
+          title: 'God the Father',
+          body: 'I believe God the Father is the Sovereign of the universe who governs all things according to His perfect purpose. By His immense grace and love, He has chosen and adopted us to be His children through Jesus Christ. (Ephesians 1:3-5; 1 John 3:1)',
+        },
+        {
+          title: 'Jesus Christ',
+          body: 'I believe Jesus Christ is truly God and truly man, who lived a sinless life, died on the cross as a perfect sacrifice to pay for my sins, rose bodily, and is the only Savior and Redeemer. (John 1:14; 1 Corinthians 15:3–4)',
+        },
+        {
+          title: 'The Holy Spirit',
+          body: 'I believe the Holy Spirit is God, who gives new life to the believer. We receive the Holy Spirit fully at the moment of salvation; He indwells us, empowers us to live in obedience to God, and equips us to serve with His gifts for the service of the church. (1 Corinthians 6:19; 1 Corinthians 12:4-7)',
+        },
+        {
+          title: 'Humanity and Sin',
+          body: 'I believe all human beings have sinned and are separated from God, and that by themselves they cannot save themselves. (Romans 3:23)',
+        },
+        {
+          title: 'Salvation',
+          body: 'I believe salvation is a gift of God’s grace, received only through faith in Jesus Christ, not by human works. (Ephesians 2:8–9)',
+        },
+        {
+          title: 'The Christian Life',
+          body: 'I believe God transforms the believer and calls him to a life of continual repentance, obedience, and spiritual growth. (2 Corinthians 5:17; Philippians 1:6)',
+        },
+        {
+          title: 'The Church',
+          body: 'I believe the church is the body of Christ, that He is its head, and that every believer is called to live committed to a local church under biblical leadership. (Colossians 1:18; Hebrews 13:17)',
+        },
+        {
+          title: 'Church Leadership',
+          body: 'I believe men and women are absolutely equal in value, dignity, and salvation before God. However, God, in His wisdom, has established distinct and complementary roles, reserving the offices and functions of evangelists, pastor-teachers (who are also elders), and elders exclusively for biblically qualified men. (1 Timothy 2:12-13; Titus 1:5-6; Ephesians 4:11)',
+        },
+        {
+          title: 'The Ordinances (Baptism and the Lord’s Supper)',
+          body: 'I believe Jesus Christ established two ordinances for His church: believer’s baptism by immersion and the Lord’s Supper. This baptism is a public act of obedience in which the believer demonstrates his faith and symbolizes his union with Christ in His death, burial, and resurrection. The Lord’s Supper is a constant reminder of Christ’s sacrifice on the cross, which believers celebrate together until He comes. (Matthew 28:19; Romans 6:4; 1 Corinthians 11:23-26)',
+        },
+        {
+          title: 'Future Hope',
+          body: 'I believe Jesus Christ will return and that believers will live eternally with Him. (John 14:3)',
+        },
+      ],
+      distinctivesTitle: 'Our Core Distinctives',
+      distinctives: [
+        {
+          title: '1. Calvinist',
+          body: 'We hold firmly to the doctrines of grace, affirming the absolute sovereignty of God in all things, especially in the historic, supernatural work of salvation. (Ephesians 1:4-6, Romans 9:15-16, John 6:44)',
+        },
+        {
+          title: '2. Dispensational',
+          body: 'We approach the Scriptures with a consistent literal-grammatical-historical method of interpretation, maintaining a clear biblical distinction between God’s program for Israel and His program for the Church. (Ephesians 3:1-6, Romans 11:25-29, 1 Thessalonians 4:13-18)',
+        },
+        {
+          title: '3. Creationist',
+          body: 'We believe that God created the universe, the earth, and all life out of nothing in six literal, 24-hour days, as plainly revealed in the book of Genesis. (Genesis 1:1-31, Exodus 20:11, Colossians 1:16)',
+        },
+        {
+          title: '4. Cessationist',
+          body: 'We believe that the sign gifts of the New Testament church (such as tongues, prophecy, and apostolic healing) fulfilled their purpose during the foundational age of the Apostles and have ceased, while God continues to perform miracles according to His sovereign will. (1 Corinthians 13:8-10, 2 Corinthians 12:12, Hebrews 2:3-4)',
+        },
+        {
+          title: '5. Biblical Counseling',
+          body: 'We reject secular psychology as a cure for spiritual issues, believing instead that the Scriptures are entirely sufficient and authoritative to counsel, heal, and restore the human heart. (2 Timothy 3:16-17, 2 Peter 1:3, Psalm 19:7-9)',
+        },
+        {
+          title: '6. Elders Rule',
+          body: 'Our church is shepherd-led rather than congregation-ruled. We are governed by a plurality of biblically qualified elders who shepherd, protect, and guide the flock under the headship of Jesus Christ. (1 Timothy 3:1-7, Titus 1:5-9, Hebrews 13:17, 1 Peter 5:1-3)',
+        },
+        {
+          title: '7. Expository Teaching',
+          body: 'Our primary pulpit ministry is verse-by-verse expository preaching. We preach the text of Scripture in its proper context to unleash the true voice and authority of God. (Nehemiah 8:8, 2 Timothy 4:1-2, Acts 20:27)',
+        },
+        {
+          title: '8. Scriptural Giving',
+          body: 'Giving is not demanded here, but only as God leads you! We don’t want your money! We want birth and growth in Jesus Christ who is LORD (YAHWEH)! (2 Corinthians 9:7, Acts 8:20, Philippians 4:17)',
+        },
       ],
       historyTitle: 'Our History',
       history:
