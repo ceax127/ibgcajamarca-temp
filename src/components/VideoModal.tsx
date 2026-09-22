@@ -54,7 +54,7 @@ export function VideoModal({ video, onClose, closeLabel, openInYoutubeLabel }: V
         <div className="aspect-video w-full overflow-hidden rounded-xl bg-black shadow-2xl">
           <iframe
             className="h-full w-full"
-            src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1`}
+            src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1&origin=${encodeURIComponent(window.location.origin)}`}
             title={video.title}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
