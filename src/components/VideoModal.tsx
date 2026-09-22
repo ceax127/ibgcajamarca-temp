@@ -56,6 +56,7 @@ export function VideoModal({ video, onClose, closeLabel, openInYoutubeLabel }: V
             className="h-full w-full"
             src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1&origin=${encodeURIComponent(window.location.origin)}`}
             title={video.title}
+            referrerPolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
           />

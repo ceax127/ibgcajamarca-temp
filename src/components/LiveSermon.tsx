@@ -64,6 +64,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
               className="h-full w-full"
               src={`https://www.youtube.com/embed/${data.live.videoId}?autoplay=0&origin=${encodeURIComponent(window.location.origin)}`}
               title={data.live.title}
+              referrerPolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
