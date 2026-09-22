@@ -3,54 +3,41 @@ import type { LiveInfo, SermonPlaylist, SermonVideo } from './types'
 const YOUTUBE_API_BASE = 'https://www.googleapis.com/youtube/v3'
 
 /**
- * Finds the video ID YouTube's own "/channel/<id>/live" page currently
- * resolves to, without spending any YouTube Data API quota (it's a plain
- * HTML fetch, not an API call — the official `search.list` endpoint that
- * finds live broadcasts costs 100 quota units per call against a default
- * daily quota of 10,000, which a 5-minute poll would exhaust in under an
- * hour). This alone isn't proof the channel is live *right now* — YouTube's
- * "/live" page can also resolve to the most recent broadcast after it has
- * ended — so callers must verify with getLiveInfo() below.
- */
-async function findLiveCandidateVideoId(channelId: string): Promise<string | null> {
-  const res = await fetch(`https://www.youtube.com/channel/${channelId}/live`, {
-    redirect: 'follow',
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; IBGCajamarcaSermonsBot/1.0)' },
-  })
-
-  const fromRedirect = res.url.match(/[?&]v=([a-zA-Z0-9_-]{11})/)
-  if (fromRedirect) return fromRedirect[1]
-
-  const html = await res.text()
-  const fromCanonical = html.match(
-    /<link rel="canonical" href="https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})"/,
-  )
-  return fromCanonical ? fromCanonical[1] : null
-}
-
-/**
- * Confirms actual live status (1 quota unit) for the candidate video found
- * above. Returns null if the channel isn't live right now.
+ * Checks whether the channel is live right now via the official
+ * `search.list` endpoint (100 quota units/call).
+ *
+ * A previous version used a free HTML-scraping trick (fetching
+ * youtube.com/channel/<id>/live and parsing the redirect) specifically to
+ * avoid this cost, since the old polling schedule ran 24/7. That trick
+ * turned out to be unreliable when called from a cloud/datacenter IP (like
+ * Azure's) — YouTube frequently serves those a consent or bot-check page
+ * instead of the real redirect, so live streams went undetected. Now that
+ * this only runs within the Sunday service window (see schedule.ts), the
+ * official API's cost is trivial: at most ~48 calls in a 4-hour window
+ * (4,800 units), once a week, against a 10,000/day quota — so there's no
+ * reason to keep the fragile workaround.
  */
 export async function getLiveInfo(apiKey: string, channelId: string): Promise<LiveInfo | null> {
-  const candidateId = await findLiveCandidateVideoId(channelId)
-  if (!candidateId) return null
-
-  const url = new URL(`${YOUTUBE_API_BASE}/videos`)
+  const url = new URL(`${YOUTUBE_API_BASE}/search`)
   url.searchParams.set('part', 'snippet')
-  url.searchParams.set('id', candidateId)
+  url.searchParams.set('channelId', channelId)
+  url.searchParams.set('eventType', 'live')
+  url.searchParams.set('type', 'video')
   url.searchParams.set('key', apiKey)
 
   const res = await fetch(url)
-  if (!res.ok) throw new Error(`YouTube videos.list failed: ${res.status}`)
+  if (!res.ok) throw new Error(`YouTube search.list failed: ${res.status}`)
   const json = (await res.json()) as {
-    items?: { snippet: { title: string; liveBroadcastContent: string; thumbnails?: Record<string, { url: string }> } }[]
+    items?: {
+      id: { videoId?: string }
+      snippet: { title: string; thumbnails?: Record<string, { url: string }> }
+    }[]
   }
   const item = json.items?.[0]
-  if (!item || item.snippet.liveBroadcastContent !== 'live') return null
+  if (!item?.id.videoId) return null
 
   return {
-    videoId: candidateId,
+    videoId: item.id.videoId,
     title: item.snippet.title,
     thumbnail: item.snippet.thumbnails?.medium?.url ?? item.snippet.thumbnails?.default?.url ?? '',
   }

@@ -8,6 +8,7 @@ export const translations = {
       ministries: 'Ministerios',
       events: 'Eventos',
       sermons: 'Sermones',
+      seminario: 'Instituto Bíblico',
       contact: 'Contacto',
     },
     home: {
@@ -138,8 +139,103 @@ export const translations = {
       latestSermon: 'Última prédica',
       pastSermons: 'Prédicas Anteriores',
       visitChannel: 'Visitar nuestro canal de YouTube',
+      closeVideo: 'Cerrar video',
+      openInYoutube: 'Abrir en YouTube',
       notConfigured:
         'La transmisión en vivo se activará pronto. Mientras tanto, síguenos en nuestras redes sociales.',
+    },
+    seminario: {
+      eyebrow: 'Formación Bíblica y Teológica',
+      title: 'Instituto Bíblico Gracia',
+      subtitle:
+        'Formando siervos fieles que manejan con precisión la Palabra de verdad, con clases electivas abiertas a todos y un programa completo para quienes se preparan para el ministerio.',
+      ctaEnroll: 'Inscríbeme',
+      ctaCourses: 'Ver el plan de estudios',
+      statLevels: 'Niveles',
+      statCourses: 'Cursos',
+      statHours: 'Horas de clase',
+      statModality: 'Modalidades',
+      statModalityValue: 'Presencial y virtual',
+      pathsTitle: 'Dos formas de estudiar',
+      pathsSubtitle: 'Elige el camino que se ajuste a tu llamado y tu tiempo disponible.',
+      pathElectiveTitle: 'Cursos Electivos',
+      pathElectiveBadge: 'Abierto a todos',
+      pathElectiveDesc:
+        'Toma cualquier curso de forma individual, sin requisitos previos ni matrícula al programa completo. Ideal para creyentes que quieren crecer en un área específica.',
+      pathElectiveBullets: [
+        'Sin prerrequisitos ni examen de admisión',
+        'Avanza a tu propio ritmo, un curso a la vez',
+        'Acceso a las clases grabadas por 90 días',
+      ],
+      pathFullTitle: 'Programa Completo',
+      pathFullBadge: 'Diplomado · 2 años',
+      pathFullDesc:
+        'Los 4 niveles en secuencia, con evaluaciones, práctica ministerial y un certificado de finalización avalado por el liderazgo de la iglesia.',
+      pathFullBullets: [
+        'Carta de recomendación de tu pastor local',
+        'Evaluaciones y práctica ministerial supervisada',
+        'Certificado al completar el programa',
+      ],
+      curriculumEyebrow: 'Plan de Estudios',
+      curriculumTitle: 'Currícula Completa',
+      curriculumSubtitle:
+        '4 niveles progresivos que cubren la Biblia, la doctrina, la interpretación y el ministerio práctico.',
+      level: 'Nivel',
+      hours: 'h',
+      modalityEyebrow: 'Cómo Estudiar',
+      modalityTitle: 'Clases y Evaluaciones',
+      modalityInPersonTitle: 'Clases presenciales',
+      modalityInPersonDesc:
+        'Sábados en las instalaciones de la iglesia, con interacción directa con los maestros y compañeros de clase.',
+      modalityLiveTitle: 'Clases en vivo por Zoom',
+      modalityLiveDesc:
+        'Para quienes no pueden asistir presencialmente. Las sesiones se transmiten en vivo y quedan grabadas.',
+      modalityVideoTitle: 'Videoteca de clases',
+      modalityVideoDesc:
+        'Cada clase grabada y organizada por curso, disponible para repasar el contenido cuando lo necesites.',
+      modalityTestsTitle: 'Evaluaciones en línea',
+      modalityTestsDesc:
+        'Cuestionarios cortos por curso y un examen final en el programa completo, con retroalimentación del maestro.',
+      admissionEyebrow: 'Requisitos',
+      admissionTitle: 'Admisión',
+      admissionElectiveTitle: 'Para cursos electivos',
+      admissionElectiveBullets: [
+        'Ser mayor de 16 años',
+        'Deseo de aprender la Palabra de Dios',
+        'Completar el formulario de inscripción',
+      ],
+      admissionFullTitle: 'Para el programa completo',
+      admissionFullBullets: [
+        'Testimonio claro de fe en Jesucristo',
+        'Carta de recomendación de tu pastor o líder local',
+        'Compromiso de asistencia y participación activa',
+        'Entrevista breve con la dirección del instituto',
+      ],
+      offeringNote:
+        'Como iglesia, no exigimos una cuota fija: el instituto se sostiene por ofrenda voluntaria, según cada uno propone en su corazón (2 Corintios 9:7).',
+      faqEyebrow: 'Preguntas Frecuentes',
+      faqTitle: 'Preguntas Frecuentes',
+      faq: [
+        {
+          q: '¿Cuánto cuesta el instituto?',
+          a: 'No hay una matrícula obligatoria. Sostenemos el instituto por ofrenda voluntaria, tal como cada uno decide en su corazón, sin ninguna presión.',
+        },
+        {
+          q: '¿Necesito experiencia previa en teología?',
+          a: 'No. Los cursos electivos y el Nivel 1 del programa completo están diseñados para cualquier creyente, sin conocimiento previo requerido.',
+        },
+        {
+          q: '¿Puedo estudiar si no vivo en Cajamarca?',
+          a: 'Sí. Todas las clases se transmiten en vivo y quedan grabadas, así que puedes participar de forma remota desde cualquier lugar.',
+        },
+        {
+          q: '¿Recibiré un certificado?',
+          a: 'Quienes completen el programa completo (los 4 niveles, sus evaluaciones y la práctica ministerial) reciben un certificado de finalización avalado por el liderazgo de la iglesia.',
+        },
+      ],
+      ctaBannerTitle: '¿Listo para profundizar en la Palabra?',
+      ctaBannerSubtitle: 'Escríbenos y te ayudamos a elegir el camino correcto para ti.',
+      ctaBannerButton: 'Contáctanos',
     },
     contact: {
       title: 'Contacto',
@@ -170,6 +266,7 @@ export const translations = {
       ministries: 'Ministries',
       events: 'Events',
       sermons: 'Sermons',
+      seminario: 'Bible Institute',
       contact: 'Contact',
     },
     home: {
@@ -300,8 +397,103 @@ export const translations = {
       latestSermon: 'Latest sermon',
       pastSermons: 'Past Sermons',
       visitChannel: 'Visit our YouTube channel',
+      closeVideo: 'Close video',
+      openInYoutube: 'Open in YouTube',
       notConfigured:
         'Live streaming will be enabled soon. In the meantime, follow us on social media.',
+    },
+    seminario: {
+      eyebrow: 'Biblical & Theological Training',
+      title: 'Gracia Bible Institute',
+      subtitle:
+        'Forming faithful servants who rightly handle the word of truth, with elective classes open to all and a full program for those preparing for ministry.',
+      ctaEnroll: 'Enroll me',
+      ctaCourses: 'View the curriculum',
+      statLevels: 'Levels',
+      statCourses: 'Courses',
+      statHours: 'Class hours',
+      statModality: 'Modalities',
+      statModalityValue: 'In-person & online',
+      pathsTitle: 'Two ways to study',
+      pathsSubtitle: 'Choose the path that fits your calling and your available time.',
+      pathElectiveTitle: 'Elective Courses',
+      pathElectiveBadge: 'Open to all',
+      pathElectiveDesc:
+        'Take any course individually, with no prerequisites and no enrollment in the full program. Ideal for believers who want to grow in a specific area.',
+      pathElectiveBullets: [
+        'No prerequisites or admission exam',
+        'Go at your own pace, one course at a time',
+        'Access to recorded classes for 90 days',
+      ],
+      pathFullTitle: 'Full Program',
+      pathFullBadge: 'Diploma · 2 years',
+      pathFullDesc:
+        'All 4 levels in sequence, with evaluations, ministry practicum, and a completion certificate endorsed by the church leadership.',
+      pathFullBullets: [
+        'Recommendation letter from your local pastor',
+        'Evaluations and supervised ministry practicum',
+        'Certificate upon completing the program',
+      ],
+      curriculumEyebrow: 'Curriculum',
+      curriculumTitle: 'Full Curriculum',
+      curriculumSubtitle:
+        '4 progressive levels covering the Bible, doctrine, interpretation, and practical ministry.',
+      level: 'Level',
+      hours: 'h',
+      modalityEyebrow: 'How to Study',
+      modalityTitle: 'Classes & Evaluations',
+      modalityInPersonTitle: 'In-person classes',
+      modalityInPersonDesc:
+        'Saturdays at the church facilities, with direct interaction with teachers and classmates.',
+      modalityLiveTitle: 'Live classes on Zoom',
+      modalityLiveDesc:
+        'For those who cannot attend in person. Sessions are streamed live and recorded.',
+      modalityVideoTitle: 'Class video library',
+      modalityVideoDesc:
+        'Every recorded class organized by course, available to review the content whenever you need.',
+      modalityTestsTitle: 'Online evaluations',
+      modalityTestsDesc:
+        'Short quizzes per course and a final exam in the full program, with feedback from the teacher.',
+      admissionEyebrow: 'Requirements',
+      admissionTitle: 'Admission',
+      admissionElectiveTitle: 'For elective courses',
+      admissionElectiveBullets: [
+        'Be 16 years or older',
+        'A desire to learn God’s Word',
+        'Complete the enrollment form',
+      ],
+      admissionFullTitle: 'For the full program',
+      admissionFullBullets: [
+        'A clear testimony of faith in Jesus Christ',
+        'Recommendation letter from your local pastor or leader',
+        'Commitment to attendance and active participation',
+        'A brief interview with the institute’s leadership',
+      ],
+      offeringNote:
+        'As a church, we do not require a fixed fee: the institute is sustained by voluntary giving, as each one purposes in their heart (2 Corinthians 9:7).',
+      faqEyebrow: 'Frequently Asked Questions',
+      faqTitle: 'Frequently Asked Questions',
+      faq: [
+        {
+          q: 'How much does the institute cost?',
+          a: 'There is no mandatory tuition. We sustain the institute through voluntary giving, as each person decides in their heart, with no pressure.',
+        },
+        {
+          q: 'Do I need previous theology experience?',
+          a: 'No. The elective courses and Level 1 of the full program are designed for any believer, with no prior knowledge required.',
+        },
+        {
+          q: 'Can I study if I don’t live in Cajamarca?',
+          a: 'Yes. All classes are streamed live and recorded, so you can participate remotely from anywhere.',
+        },
+        {
+          q: 'Will I receive a certificate?',
+          a: 'Those who complete the full program (all 4 levels, evaluations, and the ministry practicum) receive a completion certificate endorsed by the church leadership.',
+        },
+      ],
+      ctaBannerTitle: 'Ready to go deeper in the Word?',
+      ctaBannerSubtitle: 'Reach out and we’ll help you choose the right path for you.',
+      ctaBannerButton: 'Contact Us',
     },
     contact: {
       title: 'Contact',

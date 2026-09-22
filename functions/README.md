@@ -35,13 +35,17 @@ Four functions:
 
 ### Quota budget
 
-At 5 min/24-7 (the old single-timer design), worst case was ~1,152 units/day
-(12% of the 10,000/day default quota) — never actually at risk of running
-out, but wasteful relative to how the channel is actually used. The current
-split schedule cuts that dramatically: live checks only run during ~4 hours
-on Sundays (≈48 calls/week, 1 unit each when a candidate is found), and
-playlist checks run 4×/day every day (≈28 calls/week × ~3 playlists ≈ 84
-units/week). Total is well under 1,000 units/week instead of up to 8,000.
+Live checks use the official `search.list` endpoint (100 units/call) rather
+than scraping youtube.com — an earlier version tried to avoid that cost with
+an HTML-scraping trick, but that's unreliable from cloud/datacenter IPs
+(YouTube often serves those a consent/bot-check page instead of the real
+content), which caused live status to silently not update. Since
+`pollLiveStatus` only runs within the ~4-hour Sunday window (see
+`src/lib/schedule.ts`), the cost is still trivial: at most ~48 calls in that
+window = 4,800 units, once a week, against a 10,000/day quota. Playlist
+checks (`pollPlaylists`, 1 unit/call) run 4×/day every day (≈28 calls/week ×
+~3 playlists ≈ 84 units/week). Total stays well under the daily quota even
+on the busiest day.
 
 ## 1. Get a YouTube Data API v3 key
 

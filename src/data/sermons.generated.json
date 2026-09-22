@@ -7,6 +7,12 @@
       "kind": "uploads",
       "videos": [
         {
+          "videoId": "hqSp5s_HWTY",
+          "title": "JUICIO",
+          "thumbnail": "https://i.ytimg.com/vi/hqSp5s_HWTY/mqdefault.jpg",
+          "publishedAt": "2026-09-20T17:30:21Z"
+        },
+        {
           "videoId": "17ZWIex8gLU",
           "title": "Yahvé recuerda a Jerusalén P2",
           "thumbnail": "https://i.ytimg.com/vi/17ZWIex8gLU/mqdefault.jpg",
@@ -47,12 +53,6 @@
           "title": "Luces en un mundo de obscuridad.",
           "thumbnail": "https://i.ytimg.com/vi/qGrf9CDm86A/mqdefault.jpg",
           "publishedAt": "2026-08-27T01:33:28Z"
-        },
-        {
-          "videoId": "lKD2IE0KqQQ",
-          "title": "La Superioridad de conocer a Cristo",
-          "thumbnail": "https://i.ytimg.com/vi/lKD2IE0KqQQ/mqdefault.jpg",
-          "publishedAt": "2026-08-27T01:28:39Z"
         }
       ]
     },
@@ -155,5 +155,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T21:22:08.106Z"
+  "updatedAt": "2026-09-22T22:11:17.965Z"
 }

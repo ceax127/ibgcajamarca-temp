@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 import { useSermonsData } from '../hooks/useSermonsData'
+import { type ModalVideo, VideoModal } from './VideoModal'
 
 /**
  * Shows the church's current YouTube live stream when (and only when)
@@ -9,6 +11,9 @@ import { useSermonsData } from '../hooks/useSermonsData'
  * that itself polls YouTube on a timer — see functions/README.md. This
  * component never calls YouTube directly, so there's no API key exposed to
  * the browser and no per-visitor YouTube quota usage.
+ *
+ * Every past-sermon thumbnail opens an on-site VideoModal rather than
+ * linking out to youtube.com — visitors watch without leaving the site.
  *
  * The church only streams live on Sundays, so the live video block is
  * omitted entirely the rest of the time rather than showing an empty
@@ -21,6 +26,7 @@ import { useSermonsData } from '../hooks/useSermonsData'
 export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' }) {
   const { t, lang } = useLanguage()
   const { data } = useSermonsData()
+  const [modalVideo, setModalVideo] = useState<ModalVideo | null>(null)
 
   const hasAnyContent = data.live || data.playlists.some((p) => p.videos.length > 0)
 
@@ -73,11 +79,10 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
       )}
 
       {!data.live && variant === 'compact' && latestVideo && (
-        <a
-          href={`https://www.youtube.com/watch?v=${latestVideo.videoId}`}
-          target="_blank"
-          rel="noreferrer"
-          className="group flex items-center gap-4 rounded-2xl border border-slate-200 p-3 transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900"
+        <button
+          type="button"
+          onClick={() => setModalVideo(latestVideo)}
+          className="group flex w-full items-center gap-4 rounded-2xl border border-slate-200 p-3 text-left transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900"
         >
           <div className="aspect-video w-32 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100 dark:bg-night-800">
             <img
@@ -96,7 +101,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
             </p>
             <p className="mt-1 text-xs text-slate-500 dark:text-night-400">{formatDate(latestVideo.publishedAt)}</p>
           </div>
-        </a>
+        </button>
       )}
 
       {variant === 'full' && data.playlists.length > 0 && (
@@ -108,12 +113,11 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
               </h3>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {playlist.videos.map((video) => (
-                  <a
+                  <button
                     key={video.videoId}
-                    href={`https://www.youtube.com/watch?v=${video.videoId}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900 dark:hover:shadow-night-800"
+                    type="button"
+                    onClick={() => setModalVideo(video)}
+                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 text-left transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900 dark:hover:shadow-night-800"
                   >
                     <div className="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-night-800">
                       <img
@@ -129,13 +133,20 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
                         {formatDate(video.publishedAt)}
                       </p>
                     </div>
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
           ))}
         </div>
       )}
+
+      <VideoModal
+        video={modalVideo}
+        onClose={() => setModalVideo(null)}
+        closeLabel={t.sermons.closeVideo}
+        openInYoutubeLabel={t.sermons.openInYoutube}
+      />
     </div>
   )
 }

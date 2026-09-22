@@ -76,38 +76,28 @@ async function buildSermonsData({ apiKey, channelId, playlists }) {
   return { live, playlists: [uploadsPlaylist, ...curatedPlaylists], updatedAt: new Date().toISOString() }
 }
 
-async function findLiveCandidateVideoId(channelId) {
-  const res = await fetch(`https://www.youtube.com/channel/${channelId}/live`, {
-    redirect: 'follow',
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; IBGCajamarcaSermonsBot/1.0)' },
-  })
-  const fromRedirect = res.url.match(/[?&]v=([a-zA-Z0-9_-]{11})/)
-  if (fromRedirect) return fromRedirect[1]
-
-  const html = await res.text()
-  const fromCanonical = html.match(
-    /<link rel="canonical" href="https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})"/,
-  )
-  return fromCanonical ? fromCanonical[1] : null
-}
-
+// Uses the official search.list endpoint (100 quota units/call) rather than
+// scraping youtube.com/channel/<id>/live — that trick is unreliable from
+// cloud/datacenter IPs (YouTube often serves those a consent/bot-check page
+// instead of the real redirect), which is why live status wasn't updating
+// in production. This script only runs once per build, so the quota cost
+// is a non-issue regardless.
 async function getLiveInfo(apiKey, channelId) {
-  const candidateId = await findLiveCandidateVideoId(channelId)
-  if (!candidateId) return null
-
-  const url = new URL('https://www.googleapis.com/youtube/v3/videos')
+  const url = new URL('https://www.googleapis.com/youtube/v3/search')
   url.searchParams.set('part', 'snippet')
-  url.searchParams.set('id', candidateId)
+  url.searchParams.set('channelId', channelId)
+  url.searchParams.set('eventType', 'live')
+  url.searchParams.set('type', 'video')
   url.searchParams.set('key', apiKey)
 
   const res = await fetch(url)
-  if (!res.ok) throw new Error(`YouTube videos.list failed: ${res.status}`)
+  if (!res.ok) throw new Error(`YouTube search.list failed: ${res.status}`)
   const json = await res.json()
   const item = json.items?.[0]
-  if (!item || item.snippet.liveBroadcastContent !== 'live') return null
+  if (!item?.id?.videoId) return null
 
   return {
-    videoId: candidateId,
+    videoId: item.id.videoId,
     title: item.snippet.title,
     thumbnail: item.snippet.thumbnails?.medium?.url ?? item.snippet.thumbnails?.default?.url ?? '',
   }
