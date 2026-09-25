@@ -18,21 +18,17 @@ export function Ministries() {
         {ministries.map((ministry) => (
           <div
             key={ministry.id}
-            className={`relative flex flex-col rounded-2xl border border-slate-200 p-6 shadow-sm dark:border-night-700 dark:bg-night-900 ${
-              ministry.hasPage ? 'transition-shadow hover:shadow-md' : ''
-            }`}
+            className="relative flex flex-col rounded-2xl border border-slate-200 p-6 shadow-sm transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900"
           >
             {/* "Stretched link" pattern: this invisible overlay makes the whole
                 card clickable, while real, later-in-DOM interactive elements
                 (the leader mailto links below) still receive clicks first —
                 nesting a real <a> inside this Link would be invalid HTML. */}
-            {ministry.hasPage && (
-              <Link
-                to={`/ministerios/${ministry.id}`}
-                className="absolute inset-0 rounded-2xl"
-                aria-label={ministry.name[lang]}
-              />
-            )}
+            <Link
+              to={`/ministerios/${ministry.id}`}
+              className="absolute inset-0 rounded-2xl"
+              aria-label={ministry.name[lang]}
+            />
 
             <div className="flex -space-x-3">
               {(ministry.leaders.length > 0 ? ministry.leaders : [{ name: ministry.name[lang], photo: undefined }]).map(
@@ -66,11 +62,9 @@ export function Ministries() {
                 </ul>
               </>
             )}
-            {ministry.hasPage && (
-              <span className="relative mt-auto pt-4 text-sm font-semibold text-brand-700 dark:text-gold-400">
-                {t.ministries.learnMore} →
-              </span>
-            )}
+            <span className="relative mt-auto pt-4 text-sm font-semibold text-brand-700 dark:text-gold-400">
+              {t.ministries.learnMore} →
+            </span>
           </div>
         ))}
       </div>

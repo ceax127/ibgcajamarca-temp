@@ -8,11 +8,11 @@ import { usePageMeta } from '../hooks/usePageMeta'
 export function MinistryDetail() {
   const { id } = useParams<{ id: string }>()
   const { t, lang } = useLanguage()
-  const ministry = ministries.find((m) => m.id === id && m.hasPage)
+  const ministry = ministries.find((m) => m.id === id)
 
   usePageMeta(
     ministry ? `${ministry.name[lang]} — ${churchInfo.shortName}` : t.ministries.notFound,
-    ministry?.vision?.[lang],
+    ministry?.mission[lang],
     { noIndex: !ministry },
   )
 
@@ -62,12 +62,15 @@ export function MinistryDetail() {
         </div>
       )}
 
-      {ministry.vision && (
-        <div className="mt-10">
-          <h2 className="text-xl font-semibold text-brand-950 dark:text-white">{t.ministries.visionTitle}</h2>
-          <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.vision[lang]}</p>
-        </div>
-      )}
+      <div className="mt-10">
+        <h2 className="text-xl font-semibold text-brand-950 dark:text-white">{t.ministries.missionTitle}</h2>
+        <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.mission[lang]}</p>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-xl font-semibold text-brand-950 dark:text-white">{t.ministries.visionTitle}</h2>
+        <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.vision[lang]}</p>
+      </div>
 
       {ministry.invitation && (
         <div className="mt-8 rounded-2xl bg-brand-50 p-6 dark:bg-night-800">
