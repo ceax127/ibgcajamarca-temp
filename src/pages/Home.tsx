@@ -87,7 +87,7 @@ export function Home() {
 
       <section className="py-16 dark:bg-night-950">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <SectionHeading eyebrow={t.nav.ministries} title={t.home.ministriesTeaser} subtitle={t.home.ministriesTeaserSubtitle} />
+          <SectionHeading eyebrow={t.ministries.eyebrow} title={t.home.ministriesTeaser} subtitle={t.home.ministriesTeaserSubtitle} />
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {ministries.map((ministry) => (
               <Link

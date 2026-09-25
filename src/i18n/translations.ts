@@ -123,7 +123,8 @@ export const translations = {
         'Iglesia Bíblica Gracia Cajamarca nació del deseo de predicar fielmente la Palabra de Dios y servir a la comunidad de Cajamarca. Desde nuestros inicios hemos crecido como familia de la fe, comprometidos con la enseñanza bíblica y el discipulado.',
     },
     ministries: {
-      title: 'Ministerios',
+      eyebrow: 'Comunidad y Servicio',
+      title: 'Nuestros Ministerios',
       subtitle: 'Cada ministerio es una oportunidad para servir, crecer y conectar.',
       leadBy: 'A cargo de',
       learnMore: 'Conocer más',
@@ -132,6 +133,10 @@ export const translations = {
       joinTitle: 'Únete a Nosotros',
       backToMinistries: 'Volver a Ministerios',
       notFound: 'No encontramos este ministerio.',
+      categoryAll: 'Todos',
+      categoryAges: 'Edades y Etapas',
+      categoryService: 'Servicio y Apoyo',
+      categoryLeadership: 'Liderazgo y Enseñanza',
     },
     events: {
       title: 'Eventos',
@@ -387,7 +392,8 @@ export const translations = {
         'Iglesia Bíblica Gracia Cajamarca was born from a desire to faithfully preach God’s Word and serve the Cajamarca community. Since our beginnings we have grown as a family of faith, committed to biblical teaching and discipleship.',
     },
     ministries: {
-      title: 'Ministries',
+      eyebrow: 'Community & Service',
+      title: 'Our Ministries',
       subtitle: 'Every ministry is a chance to serve, grow, and connect.',
       leadBy: 'Led by',
       learnMore: 'Learn more',
@@ -396,6 +402,10 @@ export const translations = {
       joinTitle: 'Join Us',
       backToMinistries: 'Back to Ministries',
       notFound: 'We couldn’t find this ministry.',
+      categoryAll: 'All',
+      categoryAges: 'Ages & Stages',
+      categoryService: 'Service & Support',
+      categoryLeadership: 'Leadership & Teaching',
     },
     events: {
       title: 'Events',

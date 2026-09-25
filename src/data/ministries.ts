@@ -6,9 +6,14 @@ export interface MinistryLeader {
   photo?: string
 }
 
+export type MinistryCategory = 'ages' | 'service' | 'leadership'
+
 export interface Ministry {
   id: string
   name: { es: string; en: string }
+  // One-line summary shown on the ministry card in the listing grid.
+  tagline: { es: string; en: string }
+  category: MinistryCategory
   leaders: MinistryLeader[]
   mission: { es: string; en: string }
   vision: { es: string; en: string }
@@ -37,6 +42,11 @@ export const ministries: Ministry[] = [
   {
     id: 'pastoral',
     name: { es: 'Pastoral', en: 'Pastoral' },
+    tagline: {
+      es: 'Enseñanza, cuidado y guía espiritual para la congregación.',
+      en: 'Teaching, care, and spiritual guidance for the congregation.',
+    },
+    category: 'leadership',
     leaders: [anthonyBGood, luisFlores],
     mission: {
       es: 'Pastorear a la congregación con la Palabra de Dios: predicar, aconsejar y velar por el cuidado espiritual de cada familia de la iglesia.',
@@ -50,6 +60,11 @@ export const ministries: Ministry[] = [
   {
     id: 'maestros',
     name: { es: 'Maestros', en: 'Teachers' },
+    tagline: {
+      es: 'Enseñanza bíblica sólida para todas las edades.',
+      en: 'Sound biblical teaching for every age group.',
+    },
+    category: 'leadership',
     leaders: [anthonyBGood, luisFlores, charlyAlarcon],
     mission: {
       es: 'Enseñar la Palabra de Dios con precisión y claridad en cada clase y estudio bíblico, para todas las edades de la congregación.',
@@ -63,6 +78,11 @@ export const ministries: Ministry[] = [
   {
     id: 'administracion',
     name: { es: 'Administración', en: 'Administration' },
+    tagline: {
+      es: 'Gestión responsable de los recursos de la iglesia.',
+      en: 'Responsible stewardship of the church’s resources.',
+    },
+    category: 'leadership',
     leaders: [erliMarin],
     mission: {
       es: 'Administrar con integridad y transparencia los recursos que Dios ha confiado a la iglesia, sirviendo de soporte a cada ministerio.',
@@ -76,6 +96,11 @@ export const ministries: Ministry[] = [
   {
     id: 'adolescentes',
     name: { es: 'Adolescentes', en: 'Teens' },
+    tagline: {
+      es: 'Un espacio semanal de fe y comunidad para los adolescentes.',
+      en: 'A weekly space of faith and community for teens.',
+    },
+    category: 'ages',
     leaders: [joseLuisGuerrero],
     mission: {
       es: 'Acompañar semana a semana a los adolescentes con enseñanza bíblica y comunión, en un espacio donde puedan hacer preguntas difíciles con libertad.',
@@ -93,6 +118,11 @@ export const ministries: Ministry[] = [
   {
     id: 'alabanza',
     name: { es: 'Alabanza', en: 'Worship' },
+    tagline: {
+      es: 'Adoración que prepara los corazones para la Palabra.',
+      en: 'Worship that prepares hearts for the Word.',
+    },
+    category: 'leadership',
     leaders: [bryanDeLaTorre],
     mission: {
       es: 'Dirigir la alabanza congregacional cada servicio, cuidando que la música señale siempre a Cristo y no a nosotros mismos.',
@@ -110,6 +140,11 @@ export const ministries: Ministry[] = [
   {
     id: 'benevolencia',
     name: { es: 'Benevolencia', en: 'Benevolence' },
+    tagline: {
+      es: 'Ayuda práctica para quienes atraviesan necesidad.',
+      en: 'Practical help for those in need.',
+    },
+    category: 'service',
     leaders: [charlyAlarcon],
     mission: {
       es: 'Identificar y atender con prontitud las necesidades materiales de los hermanos de la iglesia y de la comunidad a nuestro alrededor.',
@@ -127,6 +162,11 @@ export const ministries: Ministry[] = [
   {
     id: 'cafeteria',
     name: { es: 'Cafetería', en: 'Cafeteria' },
+    tagline: {
+      es: 'Café y comunión antes y después de cada servicio.',
+      en: 'Coffee and fellowship before and after every service.',
+    },
+    category: 'service',
     leaders: [],
     mission: {
       es: 'Preparar y servir café y refrigerio antes y después de cada servicio, cuidando cada detalle para que los visitantes se sientan bienvenidos.',
@@ -144,6 +184,11 @@ export const ministries: Ministry[] = [
   {
     id: 'eventos-especiales',
     name: { es: 'Eventos Especiales', en: 'Special Events' },
+    tagline: {
+      es: 'Actividades que fortalecen la comunión de la iglesia.',
+      en: 'Activities that strengthen the church’s fellowship.',
+    },
+    category: 'service',
     leaders: [eddyMantilla],
     mission: {
       es: 'Planificar y ejecutar actividades especiales de la iglesia a lo largo del año, cuidando cada detalle logístico de principio a fin.',
@@ -161,6 +206,11 @@ export const ministries: Ministry[] = [
   {
     id: 'hombres',
     name: { es: 'Hombres', en: 'Men' },
+    tagline: {
+      es: 'Comunión y estudio de la Palabra para varones.',
+      en: 'Fellowship and study of the Word for men.',
+    },
+    category: 'ages',
     leaders: [luisFlores],
     mission: {
       es: 'Reunir semanalmente a los hombres de la iglesia para el estudio de la Palabra, la oración y la rendición de cuentas mutua.',
@@ -178,6 +228,11 @@ export const ministries: Ministry[] = [
   {
     id: 'mujeres',
     name: { es: 'Mujeres', en: 'Women' },
+    tagline: {
+      es: 'Comunión y crecimiento espiritual para mujeres.',
+      en: 'Fellowship and spiritual growth for women.',
+    },
+    category: 'ages',
     leaders: [yamalyAlfaro],
     mission: {
       es: 'Reunir a las mujeres de la iglesia para el estudio bíblico, la oración y la comunión, apoyándose unas a otras en cada etapa de la vida.',
@@ -195,6 +250,11 @@ export const ministries: Ministry[] = [
   {
     id: 'ninos',
     name: { es: 'Niños', en: 'Children' },
+    tagline: {
+      es: 'La Palabra de Dios enseñada de forma clara y segura.',
+      en: 'God’s Word taught clearly and safely.',
+    },
+    category: 'ages',
     leaders: [silviaFlores],
     mission: {
       es: 'Enseñar la Palabra de Dios a los niños durante el culto, en un ambiente seguro, divertido y apropiado para cada edad.',
@@ -212,6 +272,11 @@ export const ministries: Ministry[] = [
   {
     id: 'produccion',
     name: { es: 'Producción', en: 'Production' },
+    tagline: {
+      es: 'Audio, video y transmisión en vivo de cada servicio.',
+      en: 'Audio, video, and live stream for every service.',
+    },
+    category: 'service',
     leaders: [anthonyMoreno],
     mission: {
       es: 'Operar el audio, video y transmisión en vivo de cada servicio, para que la Palabra llegue con claridad dentro y fuera del templo.',
@@ -229,6 +294,11 @@ export const ministries: Ministry[] = [
   {
     id: 'ujieres',
     name: { es: 'Ujieres', en: 'Ushers' },
+    tagline: {
+      es: 'La primera bienvenida cálida a cada visitante.',
+      en: 'The first warm welcome for every visitor.',
+    },
+    category: 'service',
     leaders: [],
     mission: {
       es: 'Recibir y acomodar a la congregación y a los visitantes en cada servicio, manteniendo el orden y resolviendo cualquier necesidad práctica.',
