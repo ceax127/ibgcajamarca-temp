@@ -1,30 +1,43 @@
 // Minimal line-style icons, one per ministry, hand-drawn to match the
 // stroke-icon style already used on the Seminario page — no icon library
-// dependency needed for just thirteen glyphs.
+// dependency needed for this many glyphs. Chosen to be semantically
+// distinct per ministry rather than a generic icon-pack drop (e.g. no two
+// ministries share a plain person silhouette).
 const paths: Record<string, string> = {
-  pastoral: 'M12 3v18M8 7h8M7 12h10M6 17h12',
-  maestros: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z',
-  administracion: 'M3 3v18h18M7 15l4-4 3 3 5-6',
-  adolescentes: 'M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8ZM5 21v-2a6 6 0 0 1 6-6h2a6 6 0 0 1 6 6v2',
+  // Open book — shepherding the congregation through the Word.
+  pastoral: 'M12 6c-1.7-1-4.3-1-6 0v12c1.7-1 4.3-1 6 0 1.7-1 4.3-1 6 0V6c-1.7-1-4.3-1-6 0Zm0 0v12',
+  // Graduation cap — formal biblical instruction.
+  maestros: 'M12 4 2 9l10 5 8-4.2V16M6 11v4c0 1.5 3 3 6 3s6-1.5 6-3v-4',
+  // Building — orderly stewardship of church operations.
+  administracion: 'M4 21V7l8-4 8 4v14M4 21h16M9 10h.5M9 14h.5M14 10h.5M14 14h.5',
+  // Shield — steadfastness and spiritual leadership.
+  hombres: 'M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z',
+  // Flower — warmth and community, not a restroom-sign gender glyph.
+  mujeres: 'M12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0a2 2 0 1 0-4 0 2 2 0 0 0 4 0Zm0 0a2 2 0 1 0 4 0 2 2 0 0 0-4 0ZM12 16v5',
+  // Flame — zeal and growth at this stage of life.
+  adolescentes: 'M12 2c1 3-3 4-3 8a3 3 0 0 0 6 0c0-1-.5-2-1-2.5.5 2-1 3-2 3-1.5 0-2-1.5-1-3 .8-1 1-2 1-3.5C13 6 12.5 3 12 2Z',
+  // Smiling face — friendly, clearly a child rather than a small adult.
+  ninos: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM9 10h.5M15 10h.5M8 14s1.5 2 4 2 4-2 4-2',
+  // Two eighth notes — the worship/music team.
   alabanza: 'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
-  benevolencia:
-    'M12 21s-7-4.35-9.5-8.5C1 9.5 2.5 6 6 6c2 0 3.5 1.2 4.5 2.5C11.5 7.2 13 6 15 6c3.5 0 5 3.5 3.5 6.5C19 16.65 12 21 12 21Z',
+  // Gift box — practical, active charity.
+  benevolencia: 'M4 8h16v13H4V8Zm0 0V6a2 2 0 0 1 2-2h1.5a2.5 2.5 0 0 1 0 5M20 8V6a2 2 0 0 0-2-2h-1.5a2.5 2.5 0 0 0 0 5M12 8v13',
+  // Coffee cup with steam — hospitality and fellowship.
   cafeteria: 'M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8Zm13 2h1.5a2.5 2.5 0 0 1 0 5H17M6 3c0 1-1 1-1 2M10 3c0 1-1 1-1 2',
-  'eventos-especiales': 'M8 2v3M16 2v3M3 9h18M4 6h16v14H4Zm8 6 1.5 3H16l-2.5 2 1 3-2.5-2-2.5 2 1-3-2.5-2h2.5Z',
-  hombres:
-    'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-6 9a6 6 0 0 1 12 0',
-  mujeres:
-    'M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 8v10m-3-4h6',
-  ninos: 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM7 21c0-3 2-6 5-6s5 3 5 6M9 21v-3m6 3v-3',
-  produccion: 'M15 10 20 7v10l-5-3M4 6h11v12H4Z',
-  ujieres: 'M9 3v18M15 3v18M4 8h5m6 0h5M4 16h5m6 0h5',
+  // Sparkles — churchwide gatherings and standout occasions.
+  'eventos-especiales': 'M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3ZM19 13l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2Z',
+  // Mixing-board sliders — audio/video production.
+  produccion: 'M4 6h6m4 0h6M4 12h10m4 0h2M4 18h2m4 0h10M8 4v4M16 10v4M10 16v4',
+  // Open door with handle — the first welcome for every visitor.
+  ujieres: 'M3 21V4l11-2v19M14 21h7M14 4v17M9 12h.5',
 
   // Broader homepage "pillar" groupings — not tied to a single ministry id.
-  'pillar-teaching': 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z',
+  'pillar-teaching': 'M12 6c-1.7-1-4.3-1-6 0v12c1.7-1 4.3-1 6 0 1.7-1 4.3-1 6 0V6c-1.7-1-4.3-1-6 0Zm0 0v12',
   'pillar-adults': 'M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20a5 5 0 0 1 9-3m1-1a5 5 0 0 1 10 4',
-  'pillar-youth': 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM7 21c0-3 2-6 5-6s5 3 5 6M9 21v-3m6 3v-3',
+  // Sprout — the next generation taking root and growing.
+  'pillar-youth': 'M12 22v-7m0 0c-4 0-7-3-7-7 4 0 7 2 7 5m0-5c0-4 3-7 7-7 0 4-2 7-5 7',
   'pillar-service':
-    'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
+    'M12 20.5c-4-2.5-8-5.5-8-9.5a4 4 0 0 1 8-1.5A4 4 0 0 1 20 11c0 4-4 7-8 9.5Z',
 }
 
 export function MinistryIcon({ id, className }: { id: string; className?: string }) {

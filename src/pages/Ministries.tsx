@@ -69,7 +69,7 @@ export function Ministries() {
               aria-label={ministry.name[lang]}
             />
 
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-white/5 dark:text-gold-300">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/20 bg-gold-500/10 text-gold-700 transition-all duration-300 group-hover:scale-105 group-hover:bg-gold-500/20 dark:border-gold-400/25 dark:bg-gold-400/10 dark:text-gold-400">
               <MinistryIcon id={ministry.id} className="h-5 w-5" />
             </div>
             <h3 className="mt-4 text-lg font-semibold text-brand-950 dark:text-white">{ministry.name[lang]}</h3>

@@ -158,10 +158,10 @@ export function Home() {
               <NavLink
                 key={pillar.title}
                 to="/ministerios"
-                className="flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-300 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none dark:hover:border-gold-500/40"
+                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-300 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none dark:hover:border-gold-500/40"
               >
                 <div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-50 text-brand-700 dark:bg-white/5 dark:text-gold-300">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/20 bg-gold-500/10 text-gold-700 transition-all duration-300 group-hover:scale-105 group-hover:bg-gold-500/20 dark:border-gold-400/25 dark:bg-gold-400/10 dark:text-gold-400">
                     <MinistryIcon id={ministryPillarIcons[i]} className="h-5 w-5" />
                   </div>
                   <h3 className="mt-4 text-base font-semibold text-brand-950 dark:text-white">{pillar.title}</h3>
