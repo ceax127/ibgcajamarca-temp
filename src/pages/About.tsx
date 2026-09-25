@@ -1,3 +1,4 @@
+import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
@@ -11,15 +12,23 @@ export function About() {
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
       <SectionHeading title={t.about.title} />
 
-      <div className="mt-12 grid gap-8 sm:grid-cols-2">
-        <div className="rounded-2xl bg-brand-50 p-6 dark:bg-night-800">
-          <h2 className="text-xl font-semibold text-brand-900 dark:text-white">{t.about.missionTitle}</h2>
-          <p className="mt-3 text-slate-700 dark:text-night-300">{t.about.mission}</p>
-        </div>
-        <div className="rounded-2xl bg-brand-50 p-6 dark:bg-night-800">
-          <h2 className="text-xl font-semibold text-brand-900 dark:text-white">{t.about.visionTitle}</h2>
-          <p className="mt-3 text-slate-700 dark:text-night-300">{t.about.vision}</p>
-        </div>
+      <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        {[
+          { icon: 'mission', title: t.about.missionTitle, body: t.about.mission },
+          { icon: 'vision', title: t.about.visionTitle, body: t.about.vision },
+        ].map((card) => (
+          <div
+            key={card.icon}
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:shadow-none dark:hover:border-gold-500/40"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
+            <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+              <MinistryIcon id={card.icon} className="h-6 w-6" />
+            </div>
+            <h2 className="mt-4 text-xl font-semibold tracking-tight text-brand-950 dark:text-white">{card.title}</h2>
+            <p className="mt-3 text-slate-700 dark:text-night-300">{card.body}</p>
+          </div>
+        ))}
       </div>
 
       <div className="mt-12">

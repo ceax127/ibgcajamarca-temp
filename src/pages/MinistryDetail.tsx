@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import logoMark from '../assets/Marca_IBG_placa.png'
+import { MinistryIcon } from '../components/MinistryIcon'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 import { ministries } from '../data/ministries'
@@ -62,19 +63,34 @@ export function MinistryDetail() {
         </div>
       )}
 
-      <div className="mt-10">
-        <h2 className="text-xl font-semibold text-brand-950 dark:text-white">{t.ministries.missionTitle}</h2>
-        <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.mission[lang]}</p>
-      </div>
-
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold text-brand-950 dark:text-white">{t.ministries.visionTitle}</h2>
-        <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.vision[lang]}</p>
+      <div className="mt-10 grid gap-6 sm:grid-cols-2">
+        {[
+          { icon: 'mission', title: t.ministries.missionTitle, body: ministry.mission[lang] },
+          { icon: 'vision', title: t.ministries.visionTitle, body: ministry.vision[lang] },
+        ].map((card) => (
+          <div
+            key={card.icon}
+            className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:shadow-none dark:hover:border-gold-500/40"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
+            <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+              <MinistryIcon id={card.icon} className="h-6 w-6" />
+            </div>
+            <h2 className="mt-4 text-lg font-semibold tracking-tight text-brand-950 dark:text-white">{card.title}</h2>
+            <p className="mt-3 text-slate-700 dark:text-night-300">{card.body}</p>
+          </div>
+        ))}
       </div>
 
       {ministry.invitation && (
-        <div className="mt-8 rounded-2xl bg-brand-50 p-6 dark:bg-night-800">
-          <h2 className="text-lg font-semibold text-brand-900 dark:text-white">{t.ministries.joinTitle}</h2>
+        <div className="group relative mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:shadow-none dark:hover:border-gold-500/40">
+          <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
+          <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+            <MinistryIcon id="invite" className="h-6 w-6" />
+          </div>
+          <h2 className="mt-4 text-lg font-semibold tracking-tight text-brand-950 dark:text-white">
+            {t.ministries.joinTitle}
+          </h2>
           <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.invitation[lang]}</p>
         </div>
       )}

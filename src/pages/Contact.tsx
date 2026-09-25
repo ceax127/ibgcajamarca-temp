@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from 'react'
+import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
 import { CONTACT_API_URL, churchInfo } from '../data/config'
@@ -45,21 +46,24 @@ export function Contact() {
         <div className="flex flex-col gap-8">
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="min-w-0">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
-                {t.contact.addressTitle}
-              </h3>
+              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
+                <MinistryIcon id="contact-address" className="h-4 w-4" />
+                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.addressTitle}</h3>
+              </div>
               <p className="mt-2 break-words text-slate-700 dark:text-night-300">{churchInfo.address}</p>
             </div>
             <div className="min-w-0">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
-                {t.contact.phoneTitle}
-              </h3>
+              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
+                <MinistryIcon id="contact-phone" className="h-4 w-4" />
+                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.phoneTitle}</h3>
+              </div>
               <p className="mt-2 break-words text-slate-700 dark:text-night-300">{churchInfo.phone}</p>
             </div>
             <div className="min-w-0">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
-                {t.contact.emailTitle}
-              </h3>
+              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
+                <MinistryIcon id="contact-email" className="h-4 w-4" />
+                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.emailTitle}</h3>
+              </div>
               <a
                 href={`mailto:${churchInfo.email}`}
                 className="mt-2 block break-words text-brand-700 hover:underline dark:text-gold-300"
@@ -68,9 +72,10 @@ export function Contact() {
               </a>
             </div>
             <div className="min-w-0">
-              <h3 className="text-sm font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
-                {t.contact.followUs}
-              </h3>
+              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
+                <MinistryIcon id="contact-social" className="h-4 w-4" />
+                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.followUs}</h3>
+              </div>
               <div className="mt-2 flex flex-wrap gap-3 text-sm">
                 <a
                   href={churchInfo.facebookUrl}
@@ -100,7 +105,7 @@ export function Contact() {
             </div>
           </div>
 
-          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-night-700">
+          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-night-800">
             <iframe
               className="h-full w-full"
               src={churchInfo.googleMapsEmbedSrc}
@@ -113,8 +118,9 @@ export function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 rounded-2xl border border-slate-200 p-6 dark:border-night-700 dark:bg-night-900"
+          className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-slate-200 p-6 dark:border-night-800 dark:bg-night-900"
         >
+          <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
           <div>
             <label htmlFor="name" className="text-sm font-medium text-slate-700 dark:text-night-300">
               {t.contact.formName}

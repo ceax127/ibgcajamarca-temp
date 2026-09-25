@@ -1,8 +1,10 @@
-// Minimal line-style icons, one per ministry, hand-drawn to match the
-// stroke-icon style already used on the Seminario page — no icon library
-// dependency needed for this many glyphs. Chosen to be semantically
-// distinct per ministry rather than a generic icon-pack drop (e.g. no two
-// ministries share a plain person silhouette).
+// Minimal line-style icons, hand-drawn to match the stroke-icon style
+// already used on the Seminario page — no icon library dependency needed
+// for this many glyphs. Originally one per ministry (chosen to be
+// semantically distinct rather than a generic icon-pack drop — e.g. no two
+// ministries share a plain person silhouette), now also reused for a
+// handful of non-ministry concepts (mission/vision, contact info) so the
+// same unboxed-icon-with-glow card language stays consistent site-wide.
 const paths: Record<string, string> = {
   // Open book — shepherding the congregation through the Word.
   pastoral: 'M12 6c-1.7-1-4.3-1-6 0v12c1.7-1 4.3-1 6 0 1.7-1 4.3-1 6 0V6c-1.7-1-4.3-1-6 0Zm0 0v12',
@@ -38,6 +40,21 @@ const paths: Record<string, string> = {
   'pillar-youth': 'M12 22v-7m0 0c-4 0-7-3-7-7 4 0 7 2 7 5m0-5c0-4 3-7 7-7 0 4-2 7-5 7',
   'pillar-service':
     'M12 20.5c-4-2.5-8-5.5-8-9.5a4 4 0 0 1 8-1.5A4 4 0 0 1 20 11c0 4-4 7-8 9.5Z',
+
+  // Non-ministry concepts, reusing the same visual language.
+  // Target — a clear, aimed purpose.
+  mission: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-4a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z',
+  // Eye — a far-off, aspirational view.
+  vision:
+    'M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0ZM9 12a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z',
+  // Circle with a plus — an open invitation to join in.
+  invite: 'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18ZM12 8v8M8 12h8',
+  'contact-address': 'M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21Zm0-8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z',
+  'contact-phone':
+    'M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8Z',
+  'contact-email': 'M4 6h16v12H4V6Zm0 0 8 7 8-7',
+  'contact-social':
+    'M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.6 13.5l6.8 3.9M15.4 6.5l-6.8 4',
 }
 
 export function MinistryIcon({ id, className }: { id: string; className?: string }) {

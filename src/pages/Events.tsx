@@ -21,8 +21,9 @@ export function Events() {
           {sorted.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col gap-4 rounded-2xl border border-slate-200 p-6 sm:flex-row sm:items-center dark:border-night-700 dark:bg-night-900"
+              className="group relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-slate-200 p-6 transition-all duration-300 hover:border-brand-300 hover:shadow-md sm:flex-row sm:items-center dark:border-night-800 dark:bg-night-900 dark:hover:border-gold-500/40"
             >
+              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
               <div className="flex w-24 flex-shrink-0 flex-col items-center justify-center rounded-xl bg-brand-700 py-3 text-white dark:bg-gold-600 dark:text-night-950">
                 <span className="text-lg font-bold uppercase">{dayName(item.dayOfWeek, lang).slice(0, 3)}</span>
               </div>

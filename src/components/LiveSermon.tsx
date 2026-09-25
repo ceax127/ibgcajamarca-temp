@@ -83,7 +83,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
         <button
           type="button"
           onClick={() => setModalVideo(latestVideo)}
-          className="group flex w-full items-center gap-4 rounded-2xl border border-slate-200 p-3 text-left transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900"
+          className="group flex w-full items-center gap-4 rounded-2xl border border-slate-200 p-3 text-left transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:hover:border-gold-500/40"
         >
           <div className="aspect-video w-32 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100 dark:bg-night-800">
             <img
@@ -118,7 +118,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
                     key={video.videoId}
                     type="button"
                     onClick={() => setModalVideo(video)}
-                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 text-left transition-shadow hover:shadow-md dark:border-night-700 dark:bg-night-900 dark:hover:shadow-night-800"
+                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 text-left transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:hover:border-gold-500/40"
                   >
                     <div className="aspect-video w-full overflow-hidden bg-slate-100 dark:bg-night-800">
                       <img
