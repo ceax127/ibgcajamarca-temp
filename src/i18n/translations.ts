@@ -174,14 +174,15 @@ export const translations = {
       liveBadge: 'EN VIVO',
       latestSermon: 'Última prédica',
       watchSermon: 'Ver sermón completo',
+      pastSermons: 'Prédicas Anteriores',
       visitChannel: 'Visitar nuestro canal de YouTube',
       closeVideo: 'Cerrar video',
       openInYoutube: 'Abrir en YouTube',
       notConfigured:
         'La transmisión en vivo se activará pronto. Mientras tanto, síguenos en nuestras redes sociales.',
-      pastSermonsNote:
-        'Por restricciones de derechos de autor de YouTube, la mayoría de nuestras prédicas anteriores no se pueden reproducir aquí. Puedes verlas directamente en nuestro canal.',
-      watchPastSermons: 'Ver prédicas anteriores en YouTube',
+      searchPlaceholder: 'Buscar sermones…',
+      filterAll: 'Todas',
+      noResults: 'No se encontraron sermones con esa búsqueda.',
     },
     seminario: {
       eyebrow: 'Formación Bíblica y Teológica',
@@ -471,14 +472,15 @@ export const translations = {
       liveBadge: 'LIVE',
       latestSermon: 'Latest sermon',
       watchSermon: 'Watch full sermon',
+      pastSermons: 'Past Sermons',
       visitChannel: 'Visit our YouTube channel',
       closeVideo: 'Close video',
       openInYoutube: 'Open in YouTube',
       notConfigured:
         'Live streaming will be enabled soon. In the meantime, follow us on social media.',
-      pastSermonsNote:
-        'Due to YouTube copyright restrictions, most of our past sermons can’t be played here. You can watch them directly on our channel.',
-      watchPastSermons: 'Watch past sermons on YouTube',
+      searchPlaceholder: 'Search sermons…',
+      filterAll: 'All',
+      noResults: 'No sermons matched that search.',
     },
     seminario: {
       eyebrow: 'Biblical & Theological Training',
