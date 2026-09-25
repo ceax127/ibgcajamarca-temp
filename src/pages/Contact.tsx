@@ -36,78 +36,67 @@ export function Contact() {
   }
 
   const inputClasses =
-    'mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-night-600 dark:bg-night-800 dark:text-white dark:focus:border-gold-400 dark:focus:ring-gold-400'
+    'mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-night-700 dark:bg-night-950/60 dark:text-white dark:focus:border-gold-500/60 dark:focus:ring-gold-500/40'
+
+  const infoItems = [
+    { icon: 'contact-address', title: t.contact.addressTitle, content: <span>{churchInfo.address}</span> },
+    { icon: 'contact-phone', title: t.contact.phoneTitle, content: <span>{churchInfo.phone}</span> },
+    {
+      icon: 'contact-email',
+      title: t.contact.emailTitle,
+      content: (
+        <a href={`mailto:${churchInfo.email}`} className="hover:underline">
+          {churchInfo.email}
+        </a>
+      ),
+    },
+    {
+      icon: 'contact-social',
+      title: t.contact.followUs,
+      content: (
+        <div className="flex flex-wrap gap-x-4 gap-y-1">
+          <a href={churchInfo.facebookUrl} target="_blank" rel="noreferrer" className="hover:underline">
+            Facebook
+          </a>
+          <a href={churchInfo.instagramUrl} target="_blank" rel="noreferrer" className="hover:underline">
+            Instagram
+          </a>
+          <a href={churchInfo.youtubeUrl} target="_blank" rel="noreferrer" className="hover:underline">
+            YouTube
+          </a>
+        </div>
+      ),
+    },
+  ]
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
       <SectionHeading title={t.contact.title} subtitle={t.contact.subtitle} />
 
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
-        <div className="flex flex-col gap-8">
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div className="min-w-0">
-              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
-                <MinistryIcon id="contact-address" className="h-4 w-4" />
-                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.addressTitle}</h3>
+        <div className="flex flex-col gap-4">
+          {infoItems.map((item) => (
+            <div
+              key={item.icon}
+              className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-500/10 text-gold-700 dark:border dark:border-gold-400/20 dark:text-gold-400">
+                <MinistryIcon id={item.icon} className="h-5 w-5" />
               </div>
-              <p className="mt-2 break-words text-slate-700 dark:text-night-300">{churchInfo.address}</p>
-            </div>
-            <div className="min-w-0">
-              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
-                <MinistryIcon id="contact-phone" className="h-4 w-4" />
-                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.phoneTitle}</h3>
-              </div>
-              <p className="mt-2 break-words text-slate-700 dark:text-night-300">{churchInfo.phone}</p>
-            </div>
-            <div className="min-w-0">
-              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
-                <MinistryIcon id="contact-email" className="h-4 w-4" />
-                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.emailTitle}</h3>
-              </div>
-              <a
-                href={`mailto:${churchInfo.email}`}
-                className="mt-2 block break-words text-brand-700 hover:underline dark:text-gold-300"
-              >
-                {churchInfo.email}
-              </a>
-            </div>
-            <div className="min-w-0">
-              <div className="mb-1 flex items-center gap-2 text-gold-600 dark:text-gold-400">
-                <MinistryIcon id="contact-social" className="h-4 w-4" />
-                <h3 className="text-sm font-semibold uppercase tracking-wide">{t.contact.followUs}</h3>
-              </div>
-              <div className="mt-2 flex flex-wrap gap-3 text-sm">
-                <a
-                  href={churchInfo.facebookUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-brand-700 hover:underline dark:text-gold-300"
-                >
-                  Facebook
-                </a>
-                <a
-                  href={churchInfo.instagramUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-brand-700 hover:underline dark:text-gold-300"
-                >
-                  Instagram
-                </a>
-                <a
-                  href={churchInfo.youtubeUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-brand-700 hover:underline dark:text-gold-300"
-                >
-                  YouTube
-                </a>
+              <div className="min-w-0">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
+                  {item.title}
+                </h3>
+                <div className="mt-1 break-words text-brand-900 dark:text-white [&_a]:text-brand-700 dark:[&_a]:text-gold-300">
+                  {item.content}
+                </div>
               </div>
             </div>
-          </div>
+          ))}
 
           <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-night-800">
             <iframe
-              className="h-full w-full"
+              className="h-full w-full dark:[filter:invert(90%)_hue-rotate(180deg)_brightness(85%)_contrast(90%)]"
               src={churchInfo.googleMapsEmbedSrc}
               title="Google Maps"
               loading="lazy"
@@ -118,7 +107,7 @@ export function Contact() {
 
         <form
           onSubmit={handleSubmit}
-          className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-slate-200 p-6 dark:border-night-800 dark:bg-night-900"
+          className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-night-800 dark:bg-night-900/60 dark:shadow-none"
         >
           <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
           <div>
@@ -178,7 +167,7 @@ export function Contact() {
           <button
             type="submit"
             disabled={status === 'sending'}
-            className="mt-2 rounded-full bg-brand-700 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-gold-500 dark:text-night-950 dark:hover:bg-gold-400"
+            className="mt-2 flex h-11 items-center justify-center rounded-xl bg-gold-400 px-6 text-sm font-semibold text-brand-950 shadow-[0_0_16px_rgba(214,184,108,0.3)] transition-all hover:scale-[1.02] hover:bg-gold-300 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
           >
             {status === 'sending' ? t.contact.formSending : t.contact.formSend}
           </button>
