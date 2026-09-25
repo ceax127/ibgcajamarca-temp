@@ -38,8 +38,7 @@ export function Contact() {
   const inputClasses =
     'mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-night-700 dark:bg-night-950/60 dark:text-white dark:focus:border-gold-500/60 dark:focus:ring-gold-500/40'
 
-  const infoItems = [
-    { icon: 'contact-address', title: t.contact.addressTitle, content: <span>{churchInfo.address[lang]}</span> },
+  const contactRows = [
     { icon: 'contact-phone', title: t.contact.phoneTitle, content: <span>{churchInfo.phone}</span> },
     {
       icon: 'contact-email',
@@ -73,35 +72,50 @@ export function Contact() {
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
       <SectionHeading title={t.contact.title} subtitle={t.contact.subtitle} />
 
-      <div className="mt-12 grid gap-10 lg:grid-cols-2">
-        <div className="flex flex-col gap-4">
-          {infoItems.map((item) => (
-            <div
-              key={item.icon}
-              className="flex items-start gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none"
-            >
+      <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="flex flex-col gap-8">
+          {/* Location — address + map together in one card instead of a
+              separate small card floating above an unrelated map block. */}
+          <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none">
+            <div className="flex items-start gap-4 p-5">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-500/10 text-gold-700 dark:border dark:border-gold-400/20 dark:text-gold-400">
-                <MinistryIcon id={item.icon} className="h-5 w-5" />
+                <MinistryIcon id="contact-address" className="h-5 w-5" />
               </div>
               <div className="min-w-0">
                 <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
-                  {item.title}
+                  {t.contact.addressTitle}
                 </h3>
-                <div className="mt-1 break-words text-brand-900 dark:text-white [&_a]:text-brand-700 dark:[&_a]:text-gold-300">
-                  {item.content}
-                </div>
+                <p className="mt-1 break-words text-brand-900 dark:text-white">{churchInfo.address[lang]}</p>
               </div>
             </div>
-          ))}
+            <div className="aspect-video w-full border-t border-slate-200 dark:border-night-800">
+              <iframe
+                className="h-full w-full dark:[filter:invert(90%)_hue-rotate(180deg)_brightness(85%)_contrast(90%)]"
+                src={churchInfo.googleMapsEmbedSrc}
+                title="Google Maps"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
 
-          <div className="aspect-video w-full overflow-hidden rounded-2xl border border-slate-200 dark:border-night-800">
-            <iframe
-              className="h-full w-full dark:[filter:invert(90%)_hue-rotate(180deg)_brightness(85%)_contrast(90%)]"
-              src={churchInfo.googleMapsEmbedSrc}
-              title="Google Maps"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          {/* Phone/email/social together in one card instead of three. */}
+          <div className="flex flex-1 flex-col justify-around gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none">
+            {contactRows.map((item) => (
+              <div key={item.icon} className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gold-500/10 text-gold-700 dark:border dark:border-gold-400/20 dark:text-gold-400">
+                  <MinistryIcon id={item.icon} className="h-5 w-5" />
+                </div>
+                <div className="min-w-0">
+                  <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
+                    {item.title}
+                  </h3>
+                  <div className="mt-1 break-words text-brand-900 dark:text-white [&_a]:text-brand-700 dark:[&_a]:text-gold-300">
+                    {item.content}
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

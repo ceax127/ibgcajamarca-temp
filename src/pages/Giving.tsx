@@ -35,7 +35,7 @@ export function Giving() {
         <p className="mt-2 text-xs font-medium text-gold-700 dark:text-gold-400">{t.giving.verseRef}</p>
       </div>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2 lg:items-start">
+      <div className="mt-10 grid gap-6 lg:grid-cols-2">
         {/* Yape */}
         <div className="relative flex flex-col items-center overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none sm:p-8">
           <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
@@ -64,45 +64,43 @@ export function Giving() {
           </div>
         </div>
 
-        {/* Bank transfer */}
-        <div className="flex flex-col gap-5">
-          <div className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none">
-            <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
-            <div className="text-gold-600 dark:text-gold-400">
-              <MinistryIcon id="bank" className="h-6 w-6" />
-            </div>
-            <h2 className="mt-4 text-xl font-semibold tracking-tight text-brand-950 dark:text-white">
-              {t.giving.bankTransferTitle}
-            </h2>
-            <p className="mt-2 text-sm text-slate-700 dark:text-night-300">{t.giving.bankTransferDesc}</p>
+        {/* Bank transfer — one card matching the Yape card's weight, instead
+            of an intro card plus a separate card per account. */}
+        <div className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none sm:p-8">
+          <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
+          <div className="text-gold-600 dark:text-gold-400">
+            <MinistryIcon id="bank" className="h-6 w-6" />
           </div>
+          <h2 className="mt-4 text-xl font-semibold tracking-tight text-brand-950 dark:text-white">
+            {t.giving.bankTransferTitle}
+          </h2>
+          <p className="mt-2 text-sm text-slate-700 dark:text-night-300">{t.giving.bankTransferDesc}</p>
 
-          {accounts.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-night-800 dark:bg-night-900 dark:shadow-none"
-            >
-              <h3 className="text-base font-semibold text-brand-950 dark:text-white">{item.title}</h3>
-              <div className="mt-3 space-y-3">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
-                    {t.giving.accountNumberLabel}
-                  </p>
-                  <p className="mt-1 select-all font-mono text-sm text-brand-900 dark:text-gold-300">
-                    {item.account.accountNumber}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
-                    {t.giving.interbankNumberLabel}
-                  </p>
-                  <p className="mt-1 select-all font-mono text-sm text-brand-900 dark:text-gold-300">
-                    {item.account.interbank}
-                  </p>
+          <div className="mt-6 flex flex-1 flex-col justify-around divide-y divide-slate-200 dark:divide-night-800">
+            {accounts.map((item) => (
+              <div key={item.title} className="py-5 first:pt-0 last:pb-0">
+                <h3 className="text-base font-semibold text-brand-950 dark:text-white">{item.title}</h3>
+                <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
+                      {t.giving.accountNumberLabel}
+                    </p>
+                    <p className="mt-1 select-all font-mono text-sm text-brand-900 dark:text-gold-300">
+                      {item.account.accountNumber}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
+                      {t.giving.interbankNumberLabel}
+                    </p>
+                    <p className="mt-1 select-all font-mono text-sm text-brand-900 dark:text-gold-300">
+                      {item.account.interbank}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
