@@ -74,7 +74,7 @@ export function Ministries() {
             </div>
             <h3 className="mt-4 text-lg font-semibold text-brand-950 dark:text-white">{ministry.name[lang]}</h3>
             <p className="mt-2 text-sm text-slate-600 dark:text-night-400">{ministry.tagline[lang]}</p>
-            <span className="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 dark:text-gold-400">
+            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 dark:text-gold-400">
               {t.ministries.learnMore}
               <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
                 →
