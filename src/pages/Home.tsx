@@ -158,18 +158,26 @@ export function Home() {
               <NavLink
                 key={pillar.title}
                 to="/ministerios"
-                className="group flex flex-col justify-between rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-brand-300 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none dark:hover:border-gold-500/40"
+                className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:shadow-none dark:hover:border-gold-500/40"
               >
+                {/* Ambient hover glow, not a hard-edged box around the icon. */}
+                <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
+
                 <div>
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/20 bg-gold-500/10 text-gold-700 transition-all duration-300 group-hover:scale-105 group-hover:bg-gold-500/20 dark:border-gold-400/25 dark:bg-gold-400/10 dark:text-gold-400">
-                    <MinistryIcon id={ministryPillarIcons[i]} className="h-5 w-5" />
+                  <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+                    <MinistryIcon id={ministryPillarIcons[i]} className="h-6 w-6" />
                   </div>
-                  <h3 className="mt-4 text-base font-semibold text-brand-950 dark:text-white">{pillar.title}</h3>
+                  <h3 className="mt-4 text-base font-semibold tracking-tight text-brand-950 transition-colors group-hover:text-brand-800 dark:text-white dark:group-hover:text-gold-300">
+                    {pillar.title}
+                  </h3>
                   <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-night-400">{pillar.desc}</p>
                 </div>
-                <span className="mt-6 block text-xs font-semibold text-brand-700 dark:text-gold-400">
-                  {t.ministries.learnMore} →
-                </span>
+                <div className="mt-6 flex items-center gap-1.5 border-t border-slate-200 pt-4 text-xs font-semibold text-slate-500 transition-colors group-hover:text-brand-700 dark:border-night-800 dark:text-night-400 dark:group-hover:text-gold-400">
+                  <span>{t.ministries.learnMore}</span>
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </div>
               </NavLink>
             ))}
           </div>
