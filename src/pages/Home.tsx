@@ -23,9 +23,9 @@ export function Home() {
         <img
           src={pastoresPhoto}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[center_35%] brightness-[0.35]"
+          className="absolute inset-0 h-full w-full object-cover object-[center_35%] brightness-75 dark:brightness-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-night-950/80 to-black/85" />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-950/90 via-brand-900/55 to-brand-800/35 dark:from-night-950/95 dark:via-night-950/70 dark:to-black/55" />
         <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6">
           <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-gold-400 backdrop-blur-sm">
             <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
