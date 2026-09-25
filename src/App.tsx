@@ -7,7 +7,9 @@ import { Contact } from './pages/Contact'
 import { Events } from './pages/Events'
 import { Home } from './pages/Home'
 import { Ministries } from './pages/Ministries'
+import { MinistryDetail } from './pages/MinistryDetail'
 import { NotFound } from './pages/NotFound'
+import { Seminario } from './pages/Seminario'
 import { Sermons } from './pages/Sermons'
 
 function App() {
@@ -20,8 +22,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/nosotros" element={<About />} />
           <Route path="/ministerios" element={<Ministries />} />
+          <Route path="/ministerios/:id" element={<MinistryDetail />} />
           <Route path="/eventos" element={<Events />} />
           <Route path="/sermones" element={<Sermons />} />
+          <Route path="/seminario" element={<Seminario />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

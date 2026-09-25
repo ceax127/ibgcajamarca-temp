@@ -126,6 +126,11 @@ export const translations = {
       title: 'Ministerios',
       subtitle: 'Cada ministerio es una oportunidad para servir, crecer y conectar.',
       leadBy: 'A cargo de',
+      learnMore: 'Conocer más',
+      visionTitle: 'Nuestra Visión',
+      joinTitle: 'Únete a Nosotros',
+      backToMinistries: 'Volver a Ministerios',
+      notFound: 'No encontramos este ministerio.',
     },
     events: {
       title: 'Eventos',
@@ -384,6 +389,11 @@ export const translations = {
       title: 'Ministries',
       subtitle: 'Every ministry is a chance to serve, grow, and connect.',
       leadBy: 'Led by',
+      learnMore: 'Learn more',
+      visionTitle: 'Our Vision',
+      joinTitle: 'Join Us',
+      backToMinistries: 'Back to Ministries',
+      notFound: 'We couldn’t find this ministry.',
     },
     events: {
       title: 'Events',
