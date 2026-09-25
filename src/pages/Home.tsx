@@ -19,31 +19,47 @@ export function Home() {
 
   return (
     <div className="flex flex-col">
-      <section className="relative overflow-hidden text-white">
+      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden px-4 py-24 text-center text-white sm:px-6">
         <img
           src={pastoresPhoto}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
+          className="absolute inset-0 h-full w-full object-cover object-[center_35%] brightness-[0.35]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-950/95 via-brand-900/90 to-brand-700/85 dark:from-black/95 dark:via-night-950/92 dark:to-night-800/85" />
-        <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6 px-4 py-24 text-center sm:px-6">
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl">{t.home.heroTitle}</h1>
-          <p className="max-w-2xl text-lg text-brand-100 dark:text-night-200">{t.home.heroSubtitle}</p>
-          <div className="flex flex-wrap justify-center gap-3">
+        <div className="absolute inset-0 bg-gradient-to-t from-night-950 via-night-950/80 to-black/85" />
+        <div className="relative mx-auto flex max-w-4xl flex-col items-center gap-6">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-gold-400 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-gold-400" />
+            {t.home.heroBadge}
+          </span>
+
+          <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl">
+            Iglesia Bíblica
+            <br />
+            <span className="text-gold-400">Gracia Cajamarca</span>
+          </h1>
+
+          <p className="max-w-xl text-base text-night-200 sm:text-lg">{t.home.heroSubtitle}</p>
+
+          <div className="mt-2 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
             <NavLink
               to="/contacto"
-              className="rounded-full bg-gold-400 px-6 py-3 text-sm font-semibold text-brand-950 hover:bg-gold-300"
+              className="w-full rounded-xl bg-gold-400 px-7 py-3.5 text-sm font-semibold text-brand-950 shadow-[0_0_25px_rgba(214,184,108,0.25)] transition-all hover:scale-[1.02] hover:bg-gold-300 sm:w-auto"
             >
               {t.home.planVisit}
             </NavLink>
             <NavLink
               to="/sermones"
-              className="rounded-full border border-white/40 px-6 py-3 text-sm font-semibold text-white hover:bg-white/10"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10 sm:w-auto"
             >
+              <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
               {t.home.watchLive}
             </NavLink>
           </div>
-          <p className="mt-2 max-w-xl text-sm italic text-brand-200 dark:text-night-300">{t.home.verse}</p>
+
+          <div className="mt-4 max-w-md border-t border-white/10 pt-6">
+            <p className="text-xs italic text-night-300 sm:text-sm">{t.home.verseQuote}</p>
+            <span className="mt-1 block text-xs font-medium text-gold-400/90">{t.home.verseRef}</span>
+          </div>
         </div>
       </section>
 
