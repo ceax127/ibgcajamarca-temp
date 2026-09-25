@@ -110,7 +110,7 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
             <button
               type="button"
               onClick={() => setModalVideo(latestVideo)}
-              className="mt-2 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-brand-700 dark:text-gold-400"
+              className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full bg-brand-700 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-800 dark:bg-gold-500 dark:text-night-950 dark:hover:bg-gold-400"
             >
               {t.sermons.watchSermon} →
             </button>

@@ -94,7 +94,7 @@ export function Home() {
                 </div>
                 <NavLink
                   to="/contacto"
-                  className="rounded-xl bg-brand-700 px-4 py-2.5 text-xs font-semibold text-white hover:bg-brand-800 dark:bg-white/10 dark:hover:bg-white/15"
+                  className="rounded-xl bg-gold-400 px-4 py-2.5 text-xs font-semibold text-brand-950 shadow-[0_0_16px_rgba(214,184,108,0.3)] transition-all hover:scale-[1.03] hover:bg-gold-300"
                 >
                   {t.home.planVisit}
                 </NavLink>
