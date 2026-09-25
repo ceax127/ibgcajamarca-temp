@@ -23,6 +23,29 @@ export const translations = {
       ministriesTeaserSubtitle: 'Hay un lugar para ti en nuestra familia de la fe.',
       seeAll: 'Ver todos',
       sermonsTeaser: 'Últimas Prédicas',
+      mainGathering: 'Reunión Principal',
+      everyWeek: 'Cada Semana',
+      sundayServiceDesc:
+        'Únete a nosotros mientras adoramos a través del canto congregacional, la oración y la predicación expositiva de la Palabra de Dios.',
+      midweekGatherings: 'Reuniones Entre Semana',
+      ministryPillars: [
+        {
+          title: 'Liderazgo y Enseñanza',
+          desc: 'Predicación expositiva e instrucción doctrinal.',
+        },
+        {
+          title: 'Hombres y Mujeres',
+          desc: 'Comunión y discipulado intencional para adultos.',
+        },
+        {
+          title: 'Niños y Adolescentes',
+          desc: 'Arraigando a la próxima generación en la verdad bíblica.',
+        },
+        {
+          title: 'Adoración y Servicio',
+          desc: 'Sirviendo al cuerpo local con reverencia y cuidado.',
+        },
+      ],
     },
     about: {
       title: 'Nosotros',
@@ -292,6 +315,29 @@ export const translations = {
       ministriesTeaserSubtitle: 'There’s a place for you in our family of faith.',
       seeAll: 'See all',
       sermonsTeaser: 'Latest Sermons',
+      mainGathering: 'Main Gathering',
+      everyWeek: 'Every Week',
+      sundayServiceDesc:
+        'Join us as we worship through congregational singing, prayer, and the expository preaching of God’s Word.',
+      midweekGatherings: 'Midweek Gatherings',
+      ministryPillars: [
+        {
+          title: 'Leadership & Teaching',
+          desc: 'Expository preaching and doctrinal instruction.',
+        },
+        {
+          title: 'Men & Women',
+          desc: 'Intentional fellowship and discipleship for adults.',
+        },
+        {
+          title: 'Children & Youth',
+          desc: 'Grounding the next generation in biblical truth.',
+        },
+        {
+          title: 'Worship & Service',
+          desc: 'Serving the local body with reverence and care.',
+        },
+      ],
     },
     about: {
       title: 'About Us',

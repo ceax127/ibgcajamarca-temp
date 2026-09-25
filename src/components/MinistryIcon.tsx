@@ -18,6 +18,13 @@ const paths: Record<string, string> = {
   ninos: 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM7 21c0-3 2-6 5-6s5 3 5 6M9 21v-3m6 3v-3',
   produccion: 'M15 10 20 7v10l-5-3M4 6h11v12H4Z',
   ujieres: 'M9 3v18M15 3v18M4 8h5m6 0h5M4 16h5m6 0h5',
+
+  // Broader homepage "pillar" groupings — not tied to a single ministry id.
+  'pillar-teaching': 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15Z',
+  'pillar-adults': 'M8 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20a5 5 0 0 1 9-3m1-1a5 5 0 0 1 10 4',
+  'pillar-youth': 'M12 3a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM7 21c0-3 2-6 5-6s5 3 5 6M9 21v-3m6 3v-3',
+  'pillar-service':
+    'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm11-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z',
 }
 
 export function MinistryIcon({ id, className }: { id: string; className?: string }) {
