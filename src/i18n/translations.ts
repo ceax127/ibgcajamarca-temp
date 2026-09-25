@@ -180,6 +180,9 @@ export const translations = {
       openInYoutube: 'Abrir en YouTube',
       notConfigured:
         'La transmisión en vivo se activará pronto. Mientras tanto, síguenos en nuestras redes sociales.',
+      searchPlaceholder: 'Buscar sermones…',
+      filterAll: 'Todas',
+      noResults: 'No se encontraron sermones con esa búsqueda.',
     },
     seminario: {
       eyebrow: 'Formación Bíblica y Teológica',
@@ -475,6 +478,9 @@ export const translations = {
       openInYoutube: 'Open in YouTube',
       notConfigured:
         'Live streaming will be enabled soon. In the meantime, follow us on social media.',
+      searchPlaceholder: 'Search sermons…',
+      filterAll: 'All',
+      noResults: 'No sermons matched that search.',
     },
     seminario: {
       eyebrow: 'Biblical & Theological Training',
