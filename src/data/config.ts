@@ -3,7 +3,10 @@
 export const churchInfo = {
   name: "Iglesia Bíblica Gracia Cajamarca",
   shortName: "IBG Cajamarca",
-  address: "Av. Atahualpa 931 (frente a la UNC), Cajamarca, Perú",
+  address: {
+    es: "Av. Atahualpa 931 (frente a la UNC), Cajamarca, Perú",
+    en: "Av. Atahualpa 931 (across from UNC), Cajamarca, Peru",
+  },
   phone: "+51 940 007 521",
   email: "administracion@ibgcajamarca.org",
   facebookUrl: "https://www.facebook.com/IglesiaGraciaCajamarca",

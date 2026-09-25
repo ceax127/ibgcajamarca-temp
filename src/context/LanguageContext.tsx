@@ -20,6 +20,16 @@ function detectInitialLang(): Lang {
   return navigator.language?.toLowerCase().startsWith('en') ? 'en' : 'es'
 }
 
+// Whether the visitor has ever explicitly picked (or previously been
+// auto-detected into) a language — used by SplashScreen to only prompt
+// first-time visitors, not returning ones. Must be read before
+// LanguageProvider's own effect below writes a default value.
+export function hasStoredLanguagePreference(): boolean {
+  if (typeof window === 'undefined') return true
+  const stored = window.localStorage.getItem(STORAGE_KEY)
+  return stored === 'es' || stored === 'en'
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(detectInitialLang)
 

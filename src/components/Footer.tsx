@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 
 export function Footer() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
 
   return (
     <footer className="border-t border-slate-200 bg-brand-950 text-brand-100 dark:border-white/10 dark:bg-black">
@@ -69,7 +69,7 @@ export function Footer() {
             {t.footer.contact}
           </h3>
           <ul className="mt-3 space-y-2 text-sm text-brand-200">
-            <li>{churchInfo.address}</li>
+            <li>{churchInfo.address[lang]}</li>
             <li>{churchInfo.phone}</li>
             <li>
               <a href={`mailto:${churchInfo.email}`} className="hover:text-white">

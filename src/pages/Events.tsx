@@ -37,7 +37,7 @@ export function Events() {
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <MinistryIcon id="contact-address" className="h-4 w-4" />
-                  {churchInfo.address}
+                  {churchInfo.address[lang]}
                 </span>
               </div>
               <NavLink
@@ -65,7 +65,7 @@ export function Events() {
                 <h3 className="text-lg font-semibold text-brand-950 dark:text-white">{item.title[lang]}</h3>
                 <span className="mt-1 inline-flex items-center gap-1.5 text-sm text-slate-500 dark:text-night-400">
                   <MinistryIcon id="contact-address" className="h-4 w-4 shrink-0" />
-                  {churchInfo.address}
+                  {churchInfo.address[lang]}
                 </span>
               </div>
 

@@ -33,9 +33,9 @@ export function Home() {
           </span>
 
           <h1 className="text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl md:text-7xl">
-            Iglesia Bíblica
+            {t.home.heroNameLine1}
             <br />
-            <span className="text-gold-400">Gracia Cajamarca</span>
+            <span className="text-gold-400">{t.home.heroNameLine2}</span>
           </h1>
 
           <p className="max-w-xl text-base text-night-200 sm:text-lg">{t.home.heroSubtitle}</p>

@@ -12,7 +12,9 @@ export const translations = {
       contact: 'Contacto',
     },
     home: {
-      heroBadge: 'Bienvenido a Nuestra Congregación',
+      heroBadge: 'Bienvenido a Nuestra Iglesia',
+      heroNameLine1: 'Iglesia Bíblica',
+      heroNameLine2: 'Gracia Cajamarca',
       heroSubtitle:
         'Una comunidad comprometida con la exposición fiel de las Escrituras, la adoración reverente y el discipulado centrado en Cristo.',
       planVisit: 'Planea tu visita',
@@ -313,7 +315,9 @@ export const translations = {
       contact: 'Contact',
     },
     home: {
-      heroBadge: 'Welcome to Our Congregation',
+      heroBadge: 'Welcome to Our Church',
+      heroNameLine1: 'Bible Church',
+      heroNameLine2: 'Grace Cajamarca',
       heroSubtitle:
         'A community committed to the faithful exposition of Scripture, reverent worship, and Christ-centered discipleship.',
       planVisit: 'Plan your visit',

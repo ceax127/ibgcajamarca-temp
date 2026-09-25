@@ -8,7 +8,7 @@ import { usePageMeta } from '../hooks/usePageMeta'
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error'
 
 export function Contact() {
-  const { t } = useLanguage()
+  const { t, lang } = useLanguage()
   usePageMeta(`${t.contact.title} — ${churchInfo.shortName}`, t.contact.subtitle)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -39,7 +39,7 @@ export function Contact() {
     'mt-1 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500 dark:border-night-700 dark:bg-night-950/60 dark:text-white dark:focus:border-gold-500/60 dark:focus:ring-gold-500/40'
 
   const infoItems = [
-    { icon: 'contact-address', title: t.contact.addressTitle, content: <span>{churchInfo.address}</span> },
+    { icon: 'contact-address', title: t.contact.addressTitle, content: <span>{churchInfo.address[lang]}</span> },
     { icon: 'contact-phone', title: t.contact.phoneTitle, content: <span>{churchInfo.phone}</span> },
     {
       icon: 'contact-email',

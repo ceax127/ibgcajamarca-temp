@@ -35,7 +35,7 @@ const eddyMantilla: MinistryLeader = { name: 'Eddy Mantilla', email: 'EddyMantil
 const erliMarin: MinistryLeader = { name: 'Erli Marin', email: 'ErliMarin@ibgcajamarca.org' }
 const anthonyMoreno: MinistryLeader = { name: 'Anthony Moreno', email: 'AnthonyMoreno@ibgcajamarca.org' }
 const bryanDeLaTorre: MinistryLeader = { name: 'Bryan de la Torre', email: 'BryanDelaTorre@ibgcajamarca.org' }
-const aliciaAlfaro: MinistryLeader = { name: 'Alicia Alfaro', email: 'AliciaAlfaro@ibgcajamarca.org' }
+const aliciaAlegria: MinistryLeader = { name: 'Alicia Alegria', email: 'AliciaAlegria@ibgcajamarca.org' }
 const gerardoTerrones: MinistryLeader = { name: 'Gerardo Terrones', email: 'GerardoTerrones@ibgcajamarca.org' }
 
 // Order: Pastoral, Maestros, Administración always first (in that order),
@@ -169,7 +169,7 @@ export const ministries: Ministry[] = [
       en: 'Coffee and fellowship before and after every service.',
     },
     category: 'service',
-    leaders: [aliciaAlfaro],
+    leaders: [aliciaAlegria],
     mission: {
       es: 'Preparar y servir café y refrigerio antes y después de cada servicio, cuidando cada detalle para que los visitantes se sientan bienvenidos.',
       en: 'To prepare and serve coffee and refreshments before and after each service, taking care of every detail so visitors feel welcome.',
