@@ -6,7 +6,7 @@ export interface MinistryLeader {
   photo?: string
 }
 
-export type MinistryCategory = 'ages' | 'service' | 'leadership'
+export type MinistryCategory = 'teaching' | 'community' | 'service'
 
 export interface Ministry {
   id: string
@@ -46,7 +46,7 @@ export const ministries: Ministry[] = [
       es: 'Enseñanza, cuidado y guía espiritual para la congregación.',
       en: 'Teaching, care, and spiritual guidance for the congregation.',
     },
-    category: 'leadership',
+    category: 'teaching',
     leaders: [anthonyBGood, luisFlores],
     mission: {
       es: 'Pastorear a la congregación con la Palabra de Dios: predicar, aconsejar y velar por el cuidado espiritual de cada familia de la iglesia.',
@@ -64,7 +64,7 @@ export const ministries: Ministry[] = [
       es: 'Enseñanza bíblica sólida para todas las edades.',
       en: 'Sound biblical teaching for every age group.',
     },
-    category: 'leadership',
+    category: 'teaching',
     leaders: [anthonyBGood, luisFlores, charlyAlarcon],
     mission: {
       es: 'Enseñar la Palabra de Dios con precisión y claridad en cada clase y estudio bíblico, para todas las edades de la congregación.',
@@ -82,7 +82,7 @@ export const ministries: Ministry[] = [
       es: 'Gestión responsable de los recursos de la iglesia.',
       en: 'Responsible stewardship of the church’s resources.',
     },
-    category: 'leadership',
+    category: 'teaching',
     leaders: [erliMarin],
     mission: {
       es: 'Administrar con integridad y transparencia los recursos que Dios ha confiado a la iglesia, sirviendo de soporte a cada ministerio.',
@@ -100,7 +100,7 @@ export const ministries: Ministry[] = [
       es: 'Un espacio semanal de fe y comunidad para los adolescentes.',
       en: 'A weekly space of faith and community for teens.',
     },
-    category: 'ages',
+    category: 'community',
     leaders: [joseLuisGuerrero],
     mission: {
       es: 'Acompañar semana a semana a los adolescentes con enseñanza bíblica y comunión, en un espacio donde puedan hacer preguntas difíciles con libertad.',
@@ -122,7 +122,7 @@ export const ministries: Ministry[] = [
       es: 'Adoración que prepara los corazones para la Palabra.',
       en: 'Worship that prepares hearts for the Word.',
     },
-    category: 'leadership',
+    category: 'service',
     leaders: [bryanDeLaTorre],
     mission: {
       es: 'Dirigir la alabanza congregacional cada servicio, cuidando que la música señale siempre a Cristo y no a nosotros mismos.',
@@ -210,7 +210,7 @@ export const ministries: Ministry[] = [
       es: 'Comunión y estudio de la Palabra para varones.',
       en: 'Fellowship and study of the Word for men.',
     },
-    category: 'ages',
+    category: 'community',
     leaders: [luisFlores],
     mission: {
       es: 'Reunir semanalmente a los hombres de la iglesia para el estudio de la Palabra, la oración y la rendición de cuentas mutua.',
@@ -232,7 +232,7 @@ export const ministries: Ministry[] = [
       es: 'Comunión y crecimiento espiritual para mujeres.',
       en: 'Fellowship and spiritual growth for women.',
     },
-    category: 'ages',
+    category: 'community',
     leaders: [yamalyAlfaro],
     mission: {
       es: 'Reunir a las mujeres de la iglesia para el estudio bíblico, la oración y la comunión, apoyándose unas a otras en cada etapa de la vida.',
@@ -254,7 +254,7 @@ export const ministries: Ministry[] = [
       es: 'La Palabra de Dios enseñada de forma clara y segura.',
       en: 'God’s Word taught clearly and safely.',
     },
-    category: 'ages',
+    category: 'community',
     leaders: [silviaFlores],
     mission: {
       es: 'Enseñar la Palabra de Dios a los niños durante el culto, en un ambiente seguro, divertido y apropiado para cada edad.',

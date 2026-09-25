@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { useLanguage } from '../context/LanguageContext'
@@ -6,22 +5,18 @@ import { churchInfo } from '../data/config'
 import { ministries, type MinistryCategory } from '../data/ministries'
 import { usePageMeta } from '../hooks/usePageMeta'
 
-type CategoryFilter = 'all' | MinistryCategory
-
 export function Ministries() {
   const { t, lang } = useLanguage()
   usePageMeta(`${t.ministries.title} — ${churchInfo.shortName}`, t.ministries.subtitle)
 
-  const [active, setActive] = useState<CategoryFilter>('all')
-
-  const categories: { key: CategoryFilter; label: string }[] = [
-    { key: 'all', label: t.ministries.categoryAll },
-    { key: 'leadership', label: t.ministries.categoryLeadership },
-    { key: 'ages', label: t.ministries.categoryAges },
-    { key: 'service', label: t.ministries.categoryService },
+  // Column counts chosen per section so a section's card count never
+  // leaves a single card stranded alone in the last row at the lg
+  // breakpoint (3 teaching / 4 community / 6 service — see ministries.ts).
+  const sections: { key: MinistryCategory; label: string; gridCols: string }[] = [
+    { key: 'teaching', label: t.ministries.sectionTeaching, gridCols: 'lg:grid-cols-3' },
+    { key: 'community', label: t.ministries.sectionCommunity, gridCols: 'lg:grid-cols-4' },
+    { key: 'service', label: t.ministries.sectionService, gridCols: 'lg:grid-cols-3' },
   ]
-
-  const visible = active === 'all' ? ministries : ministries.filter((m) => m.category === active)
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
@@ -35,54 +30,55 @@ export function Ministries() {
         <p className="max-w-2xl text-slate-600 dark:text-night-300">{t.ministries.subtitle}</p>
       </div>
 
-      <div className="mt-8 flex flex-wrap justify-center gap-2">
-        {categories.map((c) => (
-          <button
-            key={c.key}
-            type="button"
-            onClick={() => setActive(c.key)}
-            aria-pressed={active === c.key}
-            className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-              active === c.key
-                ? 'border-brand-700 bg-brand-700 text-white dark:border-gold-500 dark:bg-gold-500 dark:text-night-950'
-                : 'border-slate-200 text-slate-700 hover:border-brand-300 hover:bg-brand-50 dark:border-night-700 dark:text-night-300 dark:hover:border-gold-500/50 dark:hover:bg-white/5'
-            }`}
-          >
-            {c.label}
-          </button>
-        ))}
-      </div>
+      {sections.map((section) => (
+        <div key={section.key} className="mt-14 first:mt-12">
+          <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-gold-600 dark:text-gold-400">
+            {section.label}
+          </h2>
+          <div className={`grid gap-5 sm:grid-cols-2 ${section.gridCols}`}>
+            {ministries
+              .filter((m) => m.category === section.key)
+              .map((ministry) => (
+                <div
+                  key={ministry.id}
+                  className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:shadow-none dark:hover:border-gold-500/40"
+                >
+                  {/* Ambient hover glow, not a hard-edged box around the icon. */}
+                  <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
 
-      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {visible.map((ministry) => (
-          <div
-            key={ministry.id}
-            className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-brand-300 hover:shadow-md dark:border-white/10 dark:bg-white/[0.03] dark:shadow-none dark:hover:border-gold-500/50 dark:hover:bg-white/[0.05] dark:hover:shadow-[0_0_24px_-8px_rgba(207,172,82,0.4)]"
-          >
-            {/* "Stretched link" pattern: this invisible overlay makes the whole
-                card clickable, while real, later-in-DOM interactive elements
-                would still receive clicks first — nesting a real <a> inside
-                this Link would be invalid HTML. */}
-            <Link
-              to={`/ministerios/${ministry.id}`}
-              className="absolute inset-0 rounded-2xl"
-              aria-label={ministry.name[lang]}
-            />
+                  {/* "Stretched link" pattern: this invisible overlay makes the
+                      whole card clickable, while real, later-in-DOM interactive
+                      elements would still receive clicks first — nesting a real
+                      <a> inside this Link would be invalid HTML. */}
+                  <Link
+                    to={`/ministerios/${ministry.id}`}
+                    className="absolute inset-0 rounded-2xl"
+                    aria-label={ministry.name[lang]}
+                  />
 
-            <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-gold-500/20 bg-gold-500/10 text-gold-700 transition-all duration-300 group-hover:scale-105 group-hover:bg-gold-500/20 dark:border-gold-400/25 dark:bg-gold-400/10 dark:text-gold-400">
-              <MinistryIcon id={ministry.id} className="h-5 w-5" />
-            </div>
-            <h3 className="mt-4 text-lg font-semibold text-brand-950 dark:text-white">{ministry.name[lang]}</h3>
-            <p className="mt-2 text-sm text-slate-600 dark:text-night-400">{ministry.tagline[lang]}</p>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 dark:text-gold-400">
-              {t.ministries.learnMore}
-              <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
-                →
-              </span>
-            </span>
+                  <div>
+                    <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+                      <MinistryIcon id={ministry.id} className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-4 text-lg font-semibold tracking-tight text-brand-950 transition-colors group-hover:text-brand-800 dark:text-white dark:group-hover:text-gold-300">
+                      {ministry.name[lang]}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-night-400">
+                      {ministry.tagline[lang]}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex items-center gap-1.5 border-t border-slate-200 pt-4 text-xs font-semibold text-slate-500 transition-colors group-hover:text-brand-700 dark:border-night-800 dark:text-night-400 dark:group-hover:text-gold-400">
+                    <span>{t.ministries.learnMore}</span>
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
+                  </div>
+                </div>
+              ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   )
 }
