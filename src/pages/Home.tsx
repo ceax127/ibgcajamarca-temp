@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import pastoresPhoto from '../assets/foto_pastores.jpg'
 import { LiveSermon } from '../components/LiveSermon'
 import { SectionHeading } from '../components/SectionHeading'
@@ -90,12 +90,13 @@ export function Home() {
           <SectionHeading eyebrow={t.nav.ministries} title={t.home.ministriesTeaser} subtitle={t.home.ministriesTeaserSubtitle} />
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             {ministries.map((ministry) => (
-              <span
+              <Link
                 key={ministry.id}
-                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-brand-900 dark:border-night-700 dark:bg-night-900 dark:text-white"
+                to={`/ministerios/${ministry.id}`}
+                className="rounded-full border border-slate-200 px-4 py-2 text-sm font-medium text-brand-900 transition-colors hover:border-brand-300 hover:bg-brand-50 dark:border-night-700 dark:bg-night-900 dark:text-white dark:hover:border-gold-400 dark:hover:bg-night-800"
               >
                 {ministry.name[lang]}
-              </span>
+              </Link>
             ))}
           </div>
           <div className="mt-8 text-center">

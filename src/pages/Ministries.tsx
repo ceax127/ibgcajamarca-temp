@@ -30,22 +30,17 @@ export function Ministries() {
               aria-label={ministry.name[lang]}
             />
 
-            <div className="flex -space-x-3">
-              {(ministry.leaders.length > 0 ? ministry.leaders : [{ name: ministry.name[lang], photo: undefined }]).map(
-                (leader, i) => (
-                  <img
-                    key={leader.name + i}
-                    src={leader.photo ?? logoMark}
-                    alt=""
-                    className="h-12 w-12 rounded-full border-2 border-white object-cover dark:border-night-900"
-                  />
-                ),
-              )}
+            <div className="flex items-center gap-3">
+              <img
+                src={ministry.leaders[0]?.photo ?? logoMark}
+                alt=""
+                className="h-12 w-12 shrink-0 rounded-full border border-slate-200 object-cover dark:border-night-700"
+              />
+              <h3 className="text-lg font-semibold text-brand-950 dark:text-white">{ministry.name[lang]}</h3>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-brand-950 dark:text-white">{ministry.name[lang]}</h3>
             {ministry.leaders.length > 0 && (
               <>
-                <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
+                <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
                   {t.ministries.leadBy}
                 </p>
                 <ul className="relative mt-1 space-y-1">
@@ -62,7 +57,7 @@ export function Ministries() {
                 </ul>
               </>
             )}
-            <span className="relative mt-auto pt-4 text-sm font-semibold text-brand-700 dark:text-gold-400">
+            <span className="relative mt-4 text-sm font-semibold text-brand-700 dark:text-gold-400">
               {t.ministries.learnMore} →
             </span>
           </div>
