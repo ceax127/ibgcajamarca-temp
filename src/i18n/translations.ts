@@ -183,6 +183,9 @@ export const translations = {
       searchPlaceholder: 'Buscar sermones…',
       filterAll: 'Todas',
       noResults: 'No se encontraron sermones con esa búsqueda.',
+      pastLivesNote:
+        'Por restricciones de derechos de autor de YouTube, las prédicas de transmisiones en vivo anteriores no se pueden reproducir aquí. Puedes verlas directamente en nuestro canal.',
+      watchPastLives: 'Ver transmisiones anteriores en YouTube',
     },
     seminario: {
       eyebrow: 'Formación Bíblica y Teológica',
@@ -481,6 +484,9 @@ export const translations = {
       searchPlaceholder: 'Search sermons…',
       filterAll: 'All',
       noResults: 'No sermons matched that search.',
+      pastLivesNote:
+        'Due to YouTube copyright restrictions, past live-stream sermons can’t be played here. You can watch them directly on our channel.',
+      watchPastLives: 'Watch past streams on YouTube',
     },
     seminario: {
       eyebrow: 'Biblical & Theological Training',
