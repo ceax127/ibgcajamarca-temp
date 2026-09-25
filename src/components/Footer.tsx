@@ -7,8 +7,8 @@ export function Footer() {
   const { t } = useLanguage()
 
   return (
-    <footer className="border-t border-slate-200 bg-brand-950 text-brand-100 dark:border-night-800 dark:bg-black">
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
+    <footer className="border-t border-slate-200 bg-brand-950 text-brand-100 dark:border-white/10 dark:bg-black">
+      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3 lg:gap-16">
         <div>
           <div className="flex items-center gap-2 text-white">
             <img src={logoWhite} alt="" className="h-10 w-10" />

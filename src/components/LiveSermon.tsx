@@ -80,29 +80,42 @@ export function LiveSermon({ variant = 'full' }: { variant?: 'compact' | 'full' 
       )}
 
       {!data.live && variant === 'compact' && latestVideo && (
-        <button
-          type="button"
-          onClick={() => setModalVideo(latestVideo)}
-          className="group flex w-full items-center gap-4 rounded-2xl border border-slate-200 p-3 text-left transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:hover:border-gold-500/40"
-        >
-          <div className="aspect-video w-32 flex-shrink-0 overflow-hidden rounded-lg bg-slate-100 dark:bg-night-800">
+        <div className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:hover:border-gold-500/40 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => setModalVideo(latestVideo)}
+            aria-label={t.sermons.watchSermon}
+            className="relative aspect-video w-full flex-shrink-0 overflow-hidden bg-slate-100 dark:bg-night-800 sm:w-5/12"
+          >
             <img
               src={latestVideo.thumbnail}
               alt={latestVideo.title}
               loading="lazy"
               className="h-full w-full object-cover transition-transform group-hover:scale-105"
             />
-          </div>
-          <div className="min-w-0">
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors group-hover:bg-black/30">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-brand-950 shadow-lg transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 24 24" className="ml-1 h-6 w-6" fill="currentColor">
+                  <path d="M8 5v14l11-7Z" />
+                </svg>
+              </span>
+            </div>
+          </button>
+          <div className="flex flex-1 flex-col justify-center gap-2 p-6">
             <p className="text-xs font-semibold uppercase tracking-wide text-gold-600 dark:text-gold-400">
               {t.sermons.latestSermon}
             </p>
-            <p className="mt-1 line-clamp-2 text-sm font-medium text-brand-950 dark:text-white">
-              {latestVideo.title}
-            </p>
-            <p className="mt-1 text-xs text-slate-500 dark:text-night-400">{formatDate(latestVideo.publishedAt)}</p>
+            <p className="line-clamp-2 text-lg font-semibold text-brand-950 dark:text-white">{latestVideo.title}</p>
+            <p className="text-sm text-slate-500 dark:text-night-400">{formatDate(latestVideo.publishedAt)}</p>
+            <button
+              type="button"
+              onClick={() => setModalVideo(latestVideo)}
+              className="mt-2 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-brand-700 dark:text-gold-400"
+            >
+              {t.sermons.watchSermon} →
+            </button>
           </div>
-        </button>
+        </div>
       )}
 
       {variant === 'full' && data.playlists.length > 0 && (

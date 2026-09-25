@@ -43,13 +43,13 @@ export function Home() {
           <div className="mt-2 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
             <NavLink
               to="/contacto"
-              className="w-full rounded-xl bg-gold-400 px-7 py-3.5 text-sm font-semibold text-brand-950 shadow-[0_0_25px_rgba(214,184,108,0.25)] transition-all hover:scale-[1.02] hover:bg-gold-300 sm:w-auto"
+              className="flex h-11 w-full items-center justify-center rounded-xl bg-gold-400 px-6 text-sm font-semibold text-brand-950 shadow-[0_0_20px_rgba(214,184,108,0.25)] transition-all hover:scale-[1.02] hover:bg-gold-300 sm:w-auto"
             >
               {t.home.planVisit}
             </NavLink>
             <NavLink
               to="/sermones"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/5 px-7 py-3.5 text-sm font-medium text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10 sm:w-auto"
+              className="flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 text-sm font-medium text-white backdrop-blur-md transition-all hover:bg-white/10 sm:w-auto"
             >
               <span className="h-2 w-2 animate-pulse rounded-full bg-red-500" />
               {t.home.watchLive}
@@ -57,10 +57,12 @@ export function Home() {
           </div>
 
           <div className="mt-4 max-w-md border-t border-white/10 pt-6">
-            <p className="text-xs italic text-night-300 sm:text-sm">{t.home.verseQuote}</p>
+            <p className="text-xs italic text-neutral-400 sm:text-sm">{t.home.verseQuote}</p>
             <span className="mt-1 block text-xs font-medium text-gold-400/90">{t.home.verseRef}</span>
           </div>
         </div>
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent dark:from-night-950" />
       </section>
 
       <section className="border-b border-slate-200 bg-white dark:border-night-700 dark:bg-night-950">
@@ -138,7 +140,7 @@ export function Home() {
       <section className="bg-slate-50 py-16 dark:bg-night-900">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <SectionHeading eyebrow={t.home.sermonsTeaser} title={t.nav.sermons} />
-          <div className="mx-auto mt-8 max-w-3xl">
+          <div className="mx-auto mt-8 max-w-4xl">
             <LiveSermon variant="compact" />
           </div>
           <div className="mt-6 text-center">
