@@ -99,6 +99,31 @@ export function About() {
         </div>
       </div>
 
+      {/* "Sobre la Ofrenda" — stands alone as its own message rather than
+          being buried as the 8th item in the distinctives grid. */}
+      <div className="mt-16 border-t border-slate-200 pt-12 dark:border-night-800">
+        {(() => {
+          const { text, refs } = splitScripture(t.about.giving)
+          return (
+            <div className="relative overflow-hidden rounded-2xl border border-gold-400/30 bg-brand-50 p-6 shadow-sm dark:border-gold-500/30 dark:bg-night-900 dark:shadow-none sm:p-8">
+              <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
+              <div className="text-gold-600 dark:text-gold-400">
+                <MinistryIcon id="benevolencia" className="h-6 w-6" />
+              </div>
+              <h2 className="mt-4 text-xl font-semibold tracking-tight text-brand-950 dark:text-white">
+                {t.about.givingTitle}
+              </h2>
+              <p className="mt-3 text-slate-700 dark:text-night-300">{text}</p>
+              {refs && (
+                <p className="mt-4 border-t border-brand-100 pt-3 text-xs text-slate-500 dark:border-night-700 dark:text-night-400">
+                  {refs}
+                </p>
+              )}
+            </div>
+          )
+        })()}
+      </div>
+
       {/* "Nuestra Historia" — a 50/50 split instead of an orphan paragraph
           trailing off after the heavy doctrinal sections above. */}
       <div className="mt-16 grid gap-8 border-t border-slate-200 pt-12 dark:border-night-800 lg:grid-cols-2 lg:items-center">

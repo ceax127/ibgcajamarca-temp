@@ -112,7 +112,7 @@ export const translations = {
       distinctivesTitle: 'Nuestros Distintivos Centrales',
       distinctives: [
         {
-          title: '1. Calvinistas',
+          title: '1. Gracia Soberana',
           body: 'Nos sostenemos firmemente en las doctrinas de la gracia, afirmando la soberanía absoluta de Dios en todas las cosas, especialmente en la obra histórica y sobrenatural de la salvación. (Efesios 1:4-6, Romanos 9:15-16, Juan 6:44)',
         },
         {
@@ -139,11 +139,10 @@ export const translations = {
           title: '7. Enseñanza Expositiva',
           body: 'El ministerio principal de nuestro púlpito es la predicación expositiva verso por verso. Predicamos el texto de las Escrituras en su contexto adecuado para desatar la verdadera voz y autoridad de Dios. (Nehemías 8:8, 2 Timoteo 4:1-2, Hechos 20:27)',
         },
-        {
-          title: '8. Ofrenda Escritural',
-          body: '¡Aquí no se exige ofrendar, sino solo según Dios le guíe! ¡No queremos su dinero! ¡Queremos el nacimiento y crecimiento en Jesucristo, quien es el SEÑOR (YAHWEH)! (2 Corintios 9:7, Hechos 8:20, Filipenses 4:17)',
-        },
       ],
+      givingTitle: 'Sobre la Ofrenda',
+      giving:
+        '¡Aquí no se exige ofrendar, sino solo según Dios le guíe! ¡No queremos su dinero! ¡Queremos el nacimiento y crecimiento en Jesucristo, quien es el SEÑOR (YAHWEH)! (2 Corintios 9:7, Hechos 8:20, Filipenses 4:17)',
       historyTitle: 'Nuestra Historia',
       history:
         'Iglesia Bíblica Gracia Cajamarca nació del deseo de predicar fielmente la Palabra de Dios y servir a la comunidad de Cajamarca. Desde nuestros inicios hemos crecido como familia de la fe, comprometidos con la enseñanza bíblica y el discipulado.',
@@ -415,7 +414,7 @@ export const translations = {
       distinctivesTitle: 'Our Core Distinctives',
       distinctives: [
         {
-          title: '1. Calvinist',
+          title: '1. Sovereign Grace',
           body: 'We hold firmly to the doctrines of grace, affirming the absolute sovereignty of God in all things, especially in the historic, supernatural work of salvation. (Ephesians 1:4-6, Romans 9:15-16, John 6:44)',
         },
         {
@@ -442,11 +441,10 @@ export const translations = {
           title: '7. Expository Teaching',
           body: 'Our primary pulpit ministry is verse-by-verse expository preaching. We preach the text of Scripture in its proper context to unleash the true voice and authority of God. (Nehemiah 8:8, 2 Timothy 4:1-2, Acts 20:27)',
         },
-        {
-          title: '8. Scriptural Giving',
-          body: 'Giving is not demanded here, but only as God leads you! We don’t want your money! We want birth and growth in Jesus Christ who is LORD (YAHWEH)! (2 Corinthians 9:7, Acts 8:20, Philippians 4:17)',
-        },
       ],
+      givingTitle: 'On Giving',
+      giving:
+        'Giving is not demanded here, but only as God leads you! We don’t want your money! We want birth and growth in Jesus Christ who is LORD (YAHWEH)! (2 Corinthians 9:7, Acts 8:20, Philippians 4:17)',
       historyTitle: 'Our History',
       history:
         'Iglesia Bíblica Gracia Cajamarca was born from a desire to faithfully preach God’s Word and serve the Cajamarca community. Since our beginnings we have grown as a family of faith, committed to biblical teaching and discipleship.',
