@@ -31,8 +31,8 @@ export function Ministries() {
       </div>
 
       {sections.map((section) => (
-        <div key={section.key} className="mt-16 first:mt-12">
-          <h2 className="mb-6 flex items-center gap-4 text-xs font-semibold uppercase tracking-widest text-gold-600 after:h-px after:flex-1 after:bg-slate-200 dark:text-gold-400 dark:after:bg-night-800">
+        <div key={section.key} className="mt-14 first:mt-12">
+          <h2 className="mb-5 text-xs font-semibold uppercase tracking-widest text-gold-600 dark:text-gold-400">
             {section.label}
           </h2>
           <div className={`grid gap-5 sm:grid-cols-2 ${section.gridCols}`}>
@@ -57,13 +57,13 @@ export function Ministries() {
                   />
 
                   <div>
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gold-500/10 text-gold-700 transition-transform duration-300 group-hover:scale-105 dark:text-gold-300">
-                      <MinistryIcon id={ministry.id} className="h-6 w-6" strokeWidth={2} />
+                    <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+                      <MinistryIcon id={ministry.id} className="h-6 w-6" />
                     </div>
-                    <h3 className="mt-4 text-lg font-semibold tracking-tight text-brand-950 transition-colors group-hover:text-brand-800 dark:text-white">
+                    <h3 className="mt-4 text-lg font-semibold tracking-tight text-brand-950 transition-colors group-hover:text-brand-800 dark:text-white dark:group-hover:text-gold-300">
                       {ministry.name[lang]}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-night-300">
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-night-400">
                       {ministry.tagline[lang]}
                     </p>
                   </div>

@@ -57,19 +57,11 @@ const paths: Record<string, string> = {
     'M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.6 13.5l6.8 3.9M15.4 6.5l-6.8 4',
 }
 
-export function MinistryIcon({
-  id,
-  className,
-  strokeWidth = 1.75,
-}: {
-  id: string
-  className?: string
-  strokeWidth?: number
-}) {
+export function MinistryIcon({ id, className }: { id: string; className?: string }) {
   const d = paths[id]
   if (!d) return null
   return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={strokeWidth}>
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth={1.75}>
       <path strokeLinecap="round" strokeLinejoin="round" d={d} />
     </svg>
   )
