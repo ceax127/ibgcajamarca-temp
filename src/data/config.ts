@@ -20,6 +20,19 @@ export const churchInfo = {
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.3789313228212!2d-78.49999798591!3d-7.165524801680548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b25bd5119e03a9%3A0xa2b8115eb4974e78!2sIglesia%20Gracia%20CAJAMARCA!5e1!3m2!1sen!2spe!4v1789600357134!5m2!1sen!2spe",
 } as const;
 
+// Bank details for online giving (Ofrendas/Giving page). Yape uses the
+// church's own phone number above.
+export const givingInfo = {
+  bcpSoles: {
+    accountNumber: "2452048594014",
+    interbank: "00224500204859401490",
+  },
+  bcpDollars: {
+    accountNumber: "2452048607155",
+    interbank: "00224500204860715596",
+  },
+} as const;
+
 // The Sermones page no longer talks to YouTube directly from the browser.
 // Instead, a standalone Azure Function polls YouTube on a timer and caches
 // the result; the frontend just fetches that cache. See functions/README.md

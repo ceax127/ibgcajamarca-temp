@@ -16,6 +16,7 @@ export function Header() {
     { to: '/ministerios', label: t.nav.ministries },
     { to: '/eventos', label: t.nav.events },
     { to: '/sermones', label: t.nav.sermons },
+    { to: '/ofrendas', label: t.nav.giving },
     { to: '/contacto', label: t.nav.contact },
   ]
 

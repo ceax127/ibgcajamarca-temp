@@ -61,6 +61,7 @@ export function Footer() {
             <li><NavLink to="/ministerios" className="hover:text-white">{t.nav.ministries}</NavLink></li>
             <li><NavLink to="/eventos" className="hover:text-white">{t.nav.events}</NavLink></li>
             <li><NavLink to="/sermones" className="hover:text-white">{t.nav.sermons}</NavLink></li>
+            <li><NavLink to="/ofrendas" className="hover:text-white">{t.nav.giving}</NavLink></li>
           </ul>
         </div>
 
