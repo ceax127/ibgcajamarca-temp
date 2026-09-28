@@ -21,18 +21,20 @@ export function isWithinSundayLiveWindow(date: Date = new Date()): boolean {
 }
 
 /**
- * True once per hour, on the hour, Monday–Friday 10am–10pm Lima — a coarser
- * safety net in case a weekday event (e.g. a special service or seminar)
- * goes live, without the Sunday window's every-5-minutes cost. The timer
- * itself still fires every 5 minutes (see pollLiveStatus.ts); the `minute
- * === 0` check is what limits actual YouTube calls to once/hour here.
+ * True once per hour, on the hour, every day of the week, 10am–10pm Lima —
+ * a baseline safety net in case an off-schedule event (a special weekday
+ * service, a seminar, an early/late Sunday stream outside its own window)
+ * goes live. The timer itself still fires every 5 minutes (see
+ * pollLiveStatus.ts); the `minute === 0` check is what limits actual
+ * YouTube calls to once/hour here. Sunday gets this same hourly baseline
+ * plus the tighter every-5-minutes window below during the service itself.
  */
-export function isWeekdayHourlyCheck(date: Date = new Date()): boolean {
-  const { day, hour, minute } = toLimaTime(date)
-  return day >= 1 && day <= 5 && hour >= 10 && hour <= 22 && minute === 0
+export function isHourlyCheck(date: Date = new Date()): boolean {
+  const { hour, minute } = toLimaTime(date)
+  return hour >= 10 && hour <= 22 && minute === 0
 }
 
 /** Whether pollLiveStatus should call YouTube on this invocation. */
 export function shouldCheckLiveStatus(date: Date = new Date()): boolean {
-  return isWithinSundayLiveWindow(date) || isWeekdayHourlyCheck(date)
+  return isWithinSundayLiveWindow(date) || isHourlyCheck(date)
 }

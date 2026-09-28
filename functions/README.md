@@ -10,13 +10,15 @@ one is required for that, and works fine on the **Free**/Consumption tier.
 Four functions:
 
 - **`pollLiveStatus`** (Timer, fires every 5 minutes, every day) — but only
-  actually calls YouTube during the church's Sunday service window
-  (~9am–1pm Lima time, every 5 minutes) or, Monday–Friday 10am–10pm Lima,
-  once per hour on the hour — both hardcoded in `src/lib/schedule.ts` since
-  Lima is UTC-5 year-round. Every other invocation is a no-op. The weekday
-  check is a coarse safety net for the rare special weekday event; it stays
-  hourly rather than every-5-minutes since there's no regular weekday
-  service to justify the extra calls.
+  actually calls YouTube on an hourly baseline (every day, 10am–10pm Lima,
+  once per hour on the hour) plus, on Sundays specifically, an additional
+  tighter every-5-minutes window (~9am–1pm Lima) covering the service
+  itself — both hardcoded in `src/lib/schedule.ts` since Lima is UTC-5
+  year-round. Every other invocation is a no-op. The daily hourly baseline
+  is a coarse safety net for an off-schedule stream (a special weekday
+  service, a seminar, an early/late Sunday); it stays hourly rather than
+  every-5-minutes everywhere since only Sunday has a real service to
+  justify the tighter cadence.
 - **`pollPlaylists`** (Timer, every 6 hours, every day) — fetches the
   channel's "uploads" playlist plus every curated playlist. New sermons go
   up roughly once a week, so this only needs to be coarse; it doesn't need
@@ -46,9 +48,12 @@ The 10,000 units/day quota resets **daily** (it's a Google-enforced ceiling,
 not a bill — YouTube Data API calls aren't charged), so each day's usage is
 checked independently:
 
-- **Sunday**: `pollLiveStatus` runs every 5 minutes within the ~4-hour
-  window (see `src/lib/schedule.ts`) — at most ~48 calls = 4,800 units.
-- **Monday–Friday**: once/hour, 10am–10pm Lima = 13 calls/day = 1,300 units.
+- **Every day**: the hourly baseline, 10am–10pm Lima = 13 calls/day = 1,300
+  units.
+- **Sunday additionally**: the tighter ~4-hour, every-5-minutes window (see
+  `src/lib/schedule.ts`) adds ~44 more calls beyond what the hourly
+  baseline already covers = ~4,400 more units, for ~5,700 units total that
+  day.
 - **Every day**: `pollPlaylists` (1 unit/call) runs 4×/day × ~3 playlists ≈
   12 units/day.
 
