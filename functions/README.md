@@ -11,11 +11,12 @@ Four functions:
 
 - **`pollLiveStatus`** (Timer, fires every 5 minutes, every day) — but only
   actually calls YouTube during the church's Sunday service window
-  (~9am–1pm Lima time, hardcoded in `src/lib/schedule.ts` since Lima is
-  UTC-5 year-round). Every other invocation is a no-op. This matters
-  because the church only streams live on Sundays — polling YouTube every 5
-  minutes around the clock would mean ~98% of those calls check a status
-  that never changes.
+  (~9am–1pm Lima time, every 5 minutes) or, Monday–Friday 10am–10pm Lima,
+  once per hour on the hour — both hardcoded in `src/lib/schedule.ts` since
+  Lima is UTC-5 year-round. Every other invocation is a no-op. The weekday
+  check is a coarse safety net for the rare special weekday event; it stays
+  hourly rather than every-5-minutes since there's no regular weekday
+  service to justify the extra calls.
 - **`pollPlaylists`** (Timer, every 6 hours, every day) — fetches the
   channel's "uploads" playlist plus every curated playlist. New sermons go
   up roughly once a week, so this only needs to be coarse; it doesn't need
@@ -39,13 +40,21 @@ Live checks use the official `search.list` endpoint (100 units/call) rather
 than scraping youtube.com — an earlier version tried to avoid that cost with
 an HTML-scraping trick, but that's unreliable from cloud/datacenter IPs
 (YouTube often serves those a consent/bot-check page instead of the real
-content), which caused live status to silently not update. Since
-`pollLiveStatus` only runs within the ~4-hour Sunday window (see
-`src/lib/schedule.ts`), the cost is still trivial: at most ~48 calls in that
-window = 4,800 units, once a week, against a 10,000/day quota. Playlist
-checks (`pollPlaylists`, 1 unit/call) run 4×/day every day (≈28 calls/week ×
-~3 playlists ≈ 84 units/week). Total stays well under the daily quota even
-on the busiest day.
+content), which caused live status to silently not update.
+
+The 10,000 units/day quota resets **daily** (it's a Google-enforced ceiling,
+not a bill — YouTube Data API calls aren't charged), so each day's usage is
+checked independently:
+
+- **Sunday**: `pollLiveStatus` runs every 5 minutes within the ~4-hour
+  window (see `src/lib/schedule.ts`) — at most ~48 calls = 4,800 units.
+- **Monday–Friday**: once/hour, 10am–10pm Lima = 13 calls/day = 1,300 units.
+- **Every day**: `pollPlaylists` (1 unit/call) runs 4×/day × ~3 playlists ≈
+  12 units/day.
+
+Every individual day stays well under the 10,000/day quota, with plenty of
+headroom left for manual testing via the admin endpoints in "Run locally"
+below.
 
 ## 1. Get a YouTube Data API v3 key
 
