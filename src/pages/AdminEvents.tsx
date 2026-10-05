@@ -101,6 +101,7 @@ export function AdminEvents() {
 function Login({ onLogin }: { onLogin: (auth: string) => void }) {
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
@@ -142,15 +143,25 @@ function Login({ onLogin }: { onLogin: (auth: string) => void }) {
         <label htmlFor="admin-password" className={labelClasses}>
           Contraseña
         </label>
-        <input
-          id="admin-password"
-          type="password"
-          required
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className={inputClasses}
-        />
+        <div className="relative">
+          <input
+            id="admin-password"
+            type={showPassword ? 'text' : 'password'}
+            required
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={`${inputClasses} pr-20`}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((v) => !v)}
+            aria-pressed={showPassword}
+            className="absolute inset-y-0 right-0 mt-1 flex items-center px-4 text-sm font-medium text-brand-700 hover:underline dark:text-gold-300"
+          >
+            {showPassword ? 'Ocultar' : 'Mostrar'}
+          </button>
+        </div>
       </div>
       <button type="submit" disabled={busy} className={primaryButton}>
         {busy ? 'Ingresando…' : 'Ingresar'}
