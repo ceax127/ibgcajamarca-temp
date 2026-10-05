@@ -14,6 +14,25 @@ const ministryPillarIcons = ['pillar-teaching', 'pillar-adults', 'pillar-youth',
 
 const SLIDE_INTERVAL_MS = 7000
 
+// Fills the available width/height while keeping the picture's own
+// proportions (works for landscape and portrait flyers alike), instead of
+// sitting at its natural pixel size inside a much larger slide.
+function FlyerImage({ src, alt }: { src: string; alt: string }) {
+  const [ratio, setRatio] = useState(16 / 9)
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onLoad={(e) => {
+        const { naturalWidth, naturalHeight } = e.currentTarget
+        if (naturalHeight) setRatio(naturalWidth / naturalHeight)
+      }}
+      style={{ aspectRatio: ratio, maxWidth: `min(100%, calc((85vh - 7rem) * ${ratio}))` }}
+      className="mx-auto block w-full rounded-xl object-cover shadow-2xl"
+    />
+  )
+}
+
 export function Home() {
   const { t, lang } = useLanguage()
   usePageMeta(churchInfo.name, t.home.heroSubtitle)
@@ -99,18 +118,12 @@ export function Home() {
           const active = current === i + 1
           const imageUrl = flyerImageUrl(flyer.id, flyer.version)
           const hasText = Boolean(flyer.details || flyer.link)
-          const image = (
-            <img
-              src={imageUrl}
-              alt={flyer.title}
-              className="max-h-[55vh] w-auto max-w-full rounded-xl shadow-2xl lg:max-h-[65vh]"
-            />
-          )
+          const image = <FlyerImage src={imageUrl} alt={flyer.title} />
           return (
             <div
               key={flyer.id}
               inert={!active}
-              className={`relative col-start-1 row-start-1 flex min-h-[85vh] items-center justify-center px-4 pb-28 pt-12 transition-opacity duration-700 sm:px-20 ${
+              className={`relative col-start-1 row-start-1 flex min-h-[85vh] items-center justify-center px-4 pb-16 pt-10 transition-opacity duration-700 sm:px-16 ${
                 active ? 'opacity-100' : 'opacity-0'
               }`}
             >
@@ -124,9 +137,9 @@ export function Home() {
                   hasText ? 'lg:grid-cols-[3fr_2fr]' : ''
                 }`}
               >
-                <div className="flex justify-center">
+                <div className="w-full">
                   {flyer.link ? (
-                    <a href={flyer.link} target="_blank" rel="noreferrer" className="flex max-w-full">
+                    <a href={flyer.link} target="_blank" rel="noreferrer" className="block w-full">
                       {image}
                     </a>
                   ) : (
