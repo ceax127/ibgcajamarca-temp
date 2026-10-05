@@ -51,6 +51,10 @@ export const SERMONS_API_URL: string =
 // while the Sermones/Home page is open, in milliseconds.
 export const SERMONS_POLL_INTERVAL_MS = 60_000;
 
+// Base URL of the same Function App (no trailing slash), derived from the
+// sermons URL so the monthly-event flyer endpoints need no extra build secret.
+export const API_BASE_URL: string = SERMONS_API_URL.replace(/\/sermons\/?$/, "");
+
 // Contact form submissions go to this same Function App (functions/src/functions/sendContactMessage.ts),
 // which sends the email via Azure Communication Services — see functions/README.md.
 export const CONTACT_API_URL: string =

@@ -9,6 +9,8 @@
     "ACS_CONNECTION_STRING": "endpoint=https://your-acs-resource.communication.azure.com/;accesskey=your-access-key",
     "ACS_SENDER_ADDRESS": "DoNotReply@your-guid.azurecomm.net",
     "CONTACT_RECIPIENT_EMAIL": "administracion@ibgcajamarca.org",
+    "ADMIN_USER": "choose-a-username",
+    "ADMIN_PASSWORD": "choose-a-strong-password",
     "ALLOWED_ORIGIN": "https://www.ibgcajamarca.org"
   },
   "Host": {

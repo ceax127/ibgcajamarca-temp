@@ -36,6 +36,28 @@ Four functions:
   Includes a honeypot field (`website`) for basic spam filtering with no
   external CAPTCHA dependency.
 
+### Monthly event flyers (homepage carousel)
+
+A single person manages these from the hidden page `/admin/eventos` on the
+website: log in, upload an image with a title, a "show from / until" date
+range and an optional link. Active flyers (today, Lima time, falls inside
+the range) rotate with the main hero on the homepage and disappear on their
+own after the end date. Endpoints:
+
+- `GET /api/events` (public) — active flyers' metadata.
+- `GET /api/events/{id}/image` (public) — the flyer image.
+- `GET|POST /api/manage/events`, `DELETE /api/manage/events/{id}` — login
+  check / create / delete, protected by HTTP Basic auth against the
+  **`ADMIN_USER`** and **`ADMIN_PASSWORD`** app settings. The check runs in
+  the Function (never in the website's JavaScript, which is public), fails
+  closed if either setting is missing, and slows down wrong guesses. (The
+  route is `manage/`, not `admin/` — Azure reserves `admin/`.)
+
+Images and metadata live in the Function App's own storage account (the
+`event-flyers` container). The admin page shrinks uploads to 1600px JPEG
+before sending. To change the login, edit the two app settings in the
+Azure Portal — never put the password in the repo.
+
 ### Quota budget
 
 Live checks use the official `search.list` endpoint (100 units/call) rather

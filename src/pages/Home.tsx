@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import pastoresPhoto from '../assets/foto_pastores.jpg'
 import { LiveSermon } from '../components/LiveSermon'
@@ -6,20 +7,48 @@ import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 import { dayName, weeklySchedule } from '../data/schedule'
+import { flyerImageUrl, useEventFlyers } from '../hooks/useEventFlyers'
 import { usePageMeta } from '../hooks/usePageMeta'
 
 const ministryPillarIcons = ['pillar-teaching', 'pillar-adults', 'pillar-youth', 'pillar-service'] as const
 
+const SLIDE_INTERVAL_MS = 7000
+
 export function Home() {
   const { t, lang } = useLanguage()
   usePageMeta(churchInfo.name, t.home.heroSubtitle)
+
+  // Slide 0 is the permanent church hero; slides 1..n are the currently
+  // active monthly-event flyers. With no flyers the hero is shown as-is.
+  const flyers = useEventFlyers()
+  const slideCount = flyers.length + 1
+  const [slide, setSlide] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const current = slide % slideCount
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (slideCount < 2 || paused || reducedMotion) return
+    const timer = setTimeout(() => setSlide((s) => (s + 1) % slideCount), SLIDE_INTERVAL_MS)
+    return () => clearTimeout(timer)
+  }, [slide, slideCount, paused])
 
   const sundayService = weeklySchedule.find((s) => s.dayOfWeek === 0) ?? weeklySchedule[0]
   const midweek = weeklySchedule.filter((s) => s.id !== sundayService.id).sort((a, b) => a.dayOfWeek - b.dayOfWeek)
 
   return (
     <div className="flex flex-col">
-      <section className="relative flex min-h-[85vh] items-center justify-center overflow-hidden px-4 py-24 text-center text-white sm:px-6">
+      <section
+        className="relative overflow-hidden text-white"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div
+          inert={current !== 0}
+          className={`relative flex min-h-[85vh] items-center justify-center px-4 py-24 text-center transition-opacity duration-700 sm:px-6 ${
+            current === 0 ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
         <img
           src={pastoresPhoto}
           alt=""
@@ -61,8 +90,77 @@ export function Home() {
             <span className="mt-1 block text-xs font-medium text-gold-400/90">{t.home.verseRef}</span>
           </div>
         </div>
+        </div>
+
+        {flyers.map((flyer, i) => {
+          const active = current === i + 1
+          const image = (
+            <img
+              src={flyerImageUrl(flyer.id)}
+              alt={flyer.title}
+              className="max-h-full max-w-full rounded-xl object-contain shadow-2xl"
+            />
+          )
+          return (
+            <div
+              key={flyer.id}
+              inert={!active}
+              className={`absolute inset-0 transition-opacity duration-700 ${active ? 'opacity-100' : 'opacity-0'}`}
+            >
+              <img
+                src={flyerImageUrl(flyer.id)}
+                alt=""
+                className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl brightness-50"
+              />
+              <div className="relative flex h-full items-center justify-center px-4 pb-24 pt-8 sm:px-16">
+                {flyer.link ? (
+                  <a href={flyer.link} target="_blank" rel="noreferrer" className="flex max-h-full max-w-full">
+                    {image}
+                  </a>
+                ) : (
+                  image
+                )}
+              </div>
+            </div>
+          )
+        })}
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white to-transparent dark:from-night-950" />
+
+        {slideCount > 1 && (
+          <>
+            <button
+              type="button"
+              aria-label="Anterior"
+              onClick={() => setSlide((current - 1 + slideCount) % slideCount)}
+              className="absolute left-3 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50 sm:flex"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              aria-label="Siguiente"
+              onClick={() => setSlide((current + 1) % slideCount)}
+              className="absolute right-3 top-1/2 z-10 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/50 sm:flex"
+            >
+              ›
+            </button>
+            <div className="absolute inset-x-0 bottom-6 z-10 flex justify-center gap-2">
+              {Array.from({ length: slideCount }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Ir a la diapositiva ${i + 1}`}
+                  aria-current={current === i}
+                  onClick={() => setSlide(i)}
+                  className={`h-2.5 rounded-full transition-all ${
+                    current === i ? 'w-6 bg-gold-400' : 'w-2.5 bg-white/60 hover:bg-white'
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
       </section>
 
       <section className="border-b border-slate-200 bg-white dark:border-night-700 dark:bg-night-950">

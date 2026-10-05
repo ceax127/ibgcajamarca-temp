@@ -4,6 +4,7 @@ import { Header } from './components/Header'
 import { ScrollToTop } from './components/ScrollToTop'
 import { SplashScreen } from './components/SplashScreen'
 import { About } from './pages/About'
+import { AdminEvents } from './pages/AdminEvents'
 import { Contact } from './pages/Contact'
 import { Events } from './pages/Events'
 import { Giving } from './pages/Giving'
@@ -29,6 +30,7 @@ function App() {
           <Route path="/sermones" element={<Sermons />} />
           <Route path="/ofrendas" element={<Giving />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/admin/eventos" element={<AdminEvents />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
