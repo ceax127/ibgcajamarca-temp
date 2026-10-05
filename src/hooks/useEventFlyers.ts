@@ -25,7 +25,10 @@ export function useEventFlyers() {
 
   useEffect(() => {
     let cancelled = false
-    fetch(`${API_BASE_URL}/events`, { signal: AbortSignal.timeout(8000) })
+    // 'no-cache' makes the browser re-check with the server every time, so an
+    // edit or removal in /admin/eventos shows on the next page load instead of
+    // after the server's 60s max-age. The payload is tiny.
+    fetch(`${API_BASE_URL}/events`, { cache: 'no-cache', signal: AbortSignal.timeout(8000) })
       .then((res) => (res.ok ? res.json() : { events: [] }))
       .then((json: { events?: EventFlyer[] }) => {
         if (!cancelled) setFlyers(json.events ?? [])
