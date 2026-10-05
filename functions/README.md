@@ -40,14 +40,16 @@ Four functions:
 
 A single person manages these from the hidden page `/admin/eventos` on the
 website: log in, upload an image with a title, a "show from / until" date
-range and an optional link. Active flyers (today, Lima time, falls inside
+range, an optional link and optional free-text details (shown next to the
+image on the homepage). Published events can be edited later (text fields,
+and optionally the image). Active flyers (today, Lima time, falls inside
 the range) rotate with the main hero on the homepage and disappear on their
 own after the end date. Endpoints:
 
 - `GET /api/events` (public) — active flyers' metadata.
 - `GET /api/events/{id}/image` (public) — the flyer image.
-- `GET|POST /api/manage/events`, `DELETE /api/manage/events/{id}` — login
-  check / create / delete, protected by HTTP Basic auth against the
+- `GET|POST /api/manage/events`, `PUT|DELETE /api/manage/events/{id}` —
+  login check / create / edit / delete, protected by HTTP Basic auth against the
   **`ADMIN_USER`** and **`ADMIN_PASSWORD`** app settings. The check runs in
   the Function (never in the website's JavaScript, which is public), fails
   closed if either setting is missing, and slows down wrong guesses. (The

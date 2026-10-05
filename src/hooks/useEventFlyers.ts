@@ -5,11 +5,15 @@ export interface EventFlyer {
   id: string
   title: string
   link: string
+  details: string
   startDate: string
   endDate: string
+  // Changes when the flyer is edited, so a replaced image isn't served from cache.
+  version: string
 }
 
-export const flyerImageUrl = (id: string) => `${API_BASE_URL}/events/${id}/image`
+export const flyerImageUrl = (id: string, version = '') =>
+  `${API_BASE_URL}/events/${id}/image${version ? `?v=${encodeURIComponent(version)}` : ''}`
 
 /**
  * Currently-active monthly event flyers (managed from /admin/eventos). A

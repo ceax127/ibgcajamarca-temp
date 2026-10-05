@@ -8,6 +8,7 @@ import {
   readFlyerImage,
   readFlyers,
   removeFlyer,
+  updateFlyer,
 } from '../lib/flyers'
 
 const MAX_IMAGE_BYTES = 3 * 1024 * 1024
@@ -16,14 +17,55 @@ const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 function corsHeaders(): Record<string, string> {
   return {
     'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGIN || '*',
-    'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
   }
 }
 
 function toPublic(flyer: EventFlyer) {
   const { id, title, link, startDate, endDate } = flyer
-  return { id, title, link, startDate, endDate }
+  return {
+    id,
+    title,
+    link,
+    details: flyer.details ?? '',
+    startDate,
+    endDate,
+    version: flyer.updatedAt ?? flyer.createdAt,
+  }
+}
+
+interface FlyerPayload {
+  title?: string
+  link?: string
+  details?: string
+  startDate?: string
+  endDate?: string
+  image?: string // base64-encoded JPEG (the admin page resizes + re-encodes before upload)
+}
+
+type ParsedFields = Pick<EventFlyer, 'title' | 'link' | 'details' | 'startDate' | 'endDate'>
+
+/** Validates the text fields shared by create and edit; returns an error code or the clean values. */
+function parseFields(payload: FlyerPayload): { error: string } | { fields: ParsedFields } {
+  const title = (payload.title ?? '').trim().slice(0, 120)
+  const link = (payload.link ?? '').trim().slice(0, 500)
+  const details = (payload.details ?? '').trim().slice(0, 1500)
+  const startDate = payload.startDate ?? ''
+  const endDate = payload.endDate ?? ''
+
+  if (!title || !DATE_PATTERN.test(startDate) || !DATE_PATTERN.test(endDate) || endDate < startDate) {
+    return { error: 'invalid_input' }
+  }
+  if (link && !/^https?:\/\//i.test(link)) return { error: 'invalid_link' }
+  return { fields: { title, link, details, startDate, endDate } }
+}
+
+/** Decodes and validates an uploaded image; returns null if it isn't a JPEG within the size limit. */
+function parseImage(base64: string): Buffer | null {
+  const image = Buffer.from(base64, 'base64')
+  const isJpeg = image.length > 3 && image[0] === 0xff && image[1] === 0xd8 && image[2] === 0xff
+  return isJpeg && image.length <= MAX_IMAGE_BYTES ? image : null
 }
 
 export async function listActiveFlyers(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
@@ -72,56 +114,63 @@ export async function adminListFlyers(request: HttpRequest, context: InvocationC
   }
 }
 
-interface CreatePayload {
-  title?: string
-  link?: string
-  startDate?: string
-  endDate?: string
-  image?: string // base64-encoded JPEG (the admin page resizes + re-encodes before upload)
+async function readPayload(request: HttpRequest): Promise<FlyerPayload | null> {
+  try {
+    return (await request.json()) as FlyerPayload
+  } catch {
+    return null
+  }
 }
 
 export async function adminCreateFlyer(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   if (request.method === 'OPTIONS') return { status: 204, headers: corsHeaders() }
   if (!(await isAuthorized(request))) return { status: 401, jsonBody: { error: 'unauthorized' }, headers: corsHeaders() }
 
-  let payload: CreatePayload
-  try {
-    payload = (await request.json()) as CreatePayload
-  } catch {
-    return { status: 400, jsonBody: { error: 'invalid_json' }, headers: corsHeaders() }
-  }
+  const payload = await readPayload(request)
+  if (!payload) return { status: 400, jsonBody: { error: 'invalid_json' }, headers: corsHeaders() }
 
-  const title = (payload.title ?? '').trim().slice(0, 120)
-  const link = (payload.link ?? '').trim().slice(0, 500)
-  const startDate = payload.startDate ?? ''
-  const endDate = payload.endDate ?? ''
-  const image = Buffer.from(payload.image ?? '', 'base64')
+  const parsed = parseFields(payload)
+  if ('error' in parsed) return { status: 400, jsonBody: { error: parsed.error }, headers: corsHeaders() }
+  const image = parseImage(payload.image ?? '')
+  if (!image) return { status: 400, jsonBody: { error: 'invalid_image' }, headers: corsHeaders() }
 
-  if (!title || !DATE_PATTERN.test(startDate) || !DATE_PATTERN.test(endDate) || endDate < startDate) {
-    return { status: 400, jsonBody: { error: 'invalid_input' }, headers: corsHeaders() }
-  }
-  if (link && !/^https?:\/\//i.test(link)) {
-    return { status: 400, jsonBody: { error: 'invalid_link' }, headers: corsHeaders() }
-  }
-  const isJpeg = image.length > 3 && image[0] === 0xff && image[1] === 0xd8 && image[2] === 0xff
-  if (!isJpeg || image.length > MAX_IMAGE_BYTES) {
-    return { status: 400, jsonBody: { error: 'invalid_image' }, headers: corsHeaders() }
-  }
-
-  const flyer: EventFlyer = {
-    id: randomUUID(),
-    title,
-    link,
-    startDate,
-    endDate,
-    createdAt: new Date().toISOString(),
-  }
+  const flyer: EventFlyer = { id: randomUUID(), ...parsed.fields, createdAt: new Date().toISOString() }
 
   try {
     await addFlyer(flyer, image)
     return { status: 201, jsonBody: { event: toPublic(flyer) }, headers: corsHeaders() }
   } catch (err) {
     context.error('adminCreateFlyer failed', err)
+    return { status: 500, jsonBody: { error: 'storage_failed' }, headers: corsHeaders() }
+  }
+}
+
+export async function adminUpdateFlyer(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
+  if (!(await isAuthorized(request))) return { status: 401, jsonBody: { error: 'unauthorized' }, headers: corsHeaders() }
+
+  const id = request.params.id ?? ''
+  if (!/^[a-f0-9-]{36}$/.test(id)) return { status: 404, jsonBody: { error: 'not_found' }, headers: corsHeaders() }
+
+  const payload = await readPayload(request)
+  if (!payload) return { status: 400, jsonBody: { error: 'invalid_json' }, headers: corsHeaders() }
+
+  const parsed = parseFields(payload)
+  if ('error' in parsed) return { status: 400, jsonBody: { error: parsed.error }, headers: corsHeaders() }
+
+  // The image is optional on edit: omitting it keeps the current one.
+  let image: Buffer | null = null
+  if (payload.image) {
+    image = parseImage(payload.image)
+    if (!image) return { status: 400, jsonBody: { error: 'invalid_image' }, headers: corsHeaders() }
+  }
+
+  try {
+    const updated = await updateFlyer(id, parsed.fields, image)
+    return updated
+      ? { status: 200, jsonBody: { event: toPublic(updated) }, headers: corsHeaders() }
+      : { status: 404, jsonBody: { error: 'not_found' }, headers: corsHeaders() }
+  } catch (err) {
+    context.error('adminUpdateFlyer failed', err)
     return { status: 500, jsonBody: { error: 'storage_failed' }, headers: corsHeaders() }
   }
 }
@@ -170,6 +219,13 @@ app.http('adminCreateFlyer', {
   methods: ['POST'],
   authLevel: 'anonymous',
   handler: adminCreateFlyer,
+})
+
+app.http('adminUpdateFlyer', {
+  route: 'manage/events/{id}',
+  methods: ['PUT'],
+  authLevel: 'anonymous',
+  handler: adminUpdateFlyer,
 })
 
 app.http('adminDeleteFlyer', {

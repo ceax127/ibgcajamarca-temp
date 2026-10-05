@@ -4,10 +4,16 @@ export interface EventFlyer {
   id: string
   title: string
   link: string
+  // Free text shown next to the image on the homepage. Optional so flyers
+  // created before this field existed keep working.
+  details?: string
   // Inclusive, "YYYY-MM-DD", compared against the current date in Lima.
   startDate: string
   endDate: string
   createdAt: string
+  // Changes whenever the flyer is edited; used to bust the browser cache of
+  // the (otherwise long-cached) image URL.
+  updatedAt?: string
 }
 
 const CONTAINER_NAME = 'event-flyers'
@@ -46,6 +52,26 @@ export async function addFlyer(flyer: EventFlyer, image: Buffer): Promise<void> 
   })
   const flyers = await readFlyers()
   await writeFlyers([...flyers, flyer])
+}
+
+/** Applies edits to an existing flyer; returns null if it doesn't exist. */
+export async function updateFlyer(
+  id: string,
+  fields: Pick<EventFlyer, 'title' | 'link' | 'details' | 'startDate' | 'endDate'>,
+  image: Buffer | null,
+): Promise<EventFlyer | null> {
+  const flyers = await readFlyers()
+  const existing = flyers.find((f) => f.id === id)
+  if (!existing) return null
+
+  if (image) {
+    await getContainerClient().getBlockBlobClient(`${id}.jpg`).upload(image, image.length, {
+      blobHTTPHeaders: { blobContentType: 'image/jpeg' },
+    })
+  }
+  const updated: EventFlyer = { ...existing, ...fields, updatedAt: new Date().toISOString() }
+  await writeFlyers(flyers.map((f) => (f.id === id ? updated : f)))
+  return updated
 }
 
 export async function removeFlyer(id: string): Promise<boolean> {

@@ -7,8 +7,10 @@ interface AdminFlyer {
   id: string
   title: string
   link: string
+  details: string
   startDate: string
   endDate: string
+  version: string
   active: boolean
 }
 
@@ -162,6 +164,8 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
   const [events, setEvents] = useState<AdminFlyer[] | null>(null)
   const [title, setTitle] = useState('')
   const [link, setLink] = useState('')
+  const [details, setDetails] = useState('')
+  const [editingId, setEditingId] = useState<string | null>(null)
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [file, setFile] = useState<File | null>(null)
@@ -169,6 +173,7 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
   const [message, setMessage] = useState<{ kind: 'ok' | 'error'; text: string } | null>(null)
   const [busy, setBusy] = useState(false)
 
+  const editingEvent = events?.find((e) => e.id === editingId) ?? null
   const preview = useMemo(() => (file ? URL.createObjectURL(file) : null), [file])
   useEffect(() => {
     return () => {
@@ -196,32 +201,52 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
     }
   }, [auth, onLogout, refreshKey])
 
+  function resetForm() {
+    setTitle('')
+    setLink('')
+    setDetails('')
+    setStartDate('')
+    setEndDate('')
+    setFile(null)
+    setEditingId(null)
+  }
+
+  function startEdit(event: AdminFlyer) {
+    setTitle(event.title)
+    setLink(event.link)
+    setDetails(event.details)
+    setStartDate(event.startDate)
+    setEndDate(event.endDate)
+    setFile(null)
+    setEditingId(event.id)
+    setMessage(null)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault()
-    if (!file) return setMessage({ kind: 'error', text: 'Selecciona una imagen.' })
+    if (!file && !editingId) return setMessage({ kind: 'error', text: 'Selecciona una imagen.' })
     if (endDate < startDate) {
       return setMessage({ kind: 'error', text: 'La fecha final no puede ser anterior a la inicial.' })
     }
     setBusy(true)
     setMessage(null)
     try {
-      const image = await imageToJpegBase64(file)
-      const res = await fetch(`${API_BASE_URL}/manage/events`, {
-        method: 'POST',
+      // When editing, omitting the image keeps the current one.
+      const image = file ? await imageToJpegBase64(file) : undefined
+      const res = await fetch(`${API_BASE_URL}/manage/events${editingId ? `/${editingId}` : ''}`, {
+        method: editingId ? 'PUT' : 'POST',
         headers: { Authorization: auth, 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, link, startDate, endDate, image }),
+        body: JSON.stringify({ title, link, details, startDate, endDate, image }),
       })
       if (res.status === 401) return onLogout()
       if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      setTitle('')
-      setLink('')
-      setStartDate('')
-      setEndDate('')
-      setFile(null)
-      setMessage({ kind: 'ok', text: 'Evento publicado.' })
+      const wasEditing = editingId !== null
+      resetForm()
+      setMessage({ kind: 'ok', text: wasEditing ? 'Cambios guardados.' : 'Evento publicado.' })
       setRefreshKey((k) => k + 1)
     } catch {
-      setMessage({ kind: 'error', text: 'No se pudo publicar el evento. Revisa los datos e inténtalo de nuevo.' })
+      setMessage({ kind: 'error', text: 'No se pudo guardar el evento. Revisa los datos e inténtalo de nuevo.' })
     } finally {
       setBusy(false)
     }
@@ -255,7 +280,9 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
       </div>
 
       <form onSubmit={handleSubmit} className={`${cardClasses} flex flex-col gap-4`}>
-        <h2 className="text-xl font-semibold text-brand-950 dark:text-white">Nuevo evento</h2>
+        <h2 className="text-xl font-semibold text-brand-950 dark:text-white">
+          {editingId ? 'Editar evento' : 'Nuevo evento'}
+        </h2>
         <div>
           <label htmlFor="ev-title" className={labelClasses}>
             Título
@@ -312,28 +339,54 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
           />
         </div>
         <div>
+          <label htmlFor="ev-details" className={labelClasses}>
+            Detalles (opcional)
+          </label>
+          <textarea
+            id="ev-details"
+            rows={5}
+            maxLength={1500}
+            placeholder="Fechas, horarios, lugar, oradores… Se muestra como texto junto a la imagen. Los saltos de línea se respetan."
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+            className={inputClasses}
+          />
+          <p className="mt-1 text-right text-xs text-slate-500 dark:text-night-400">{details.length}/1500</p>
+        </div>
+        <div>
           <label htmlFor="ev-image" className={labelClasses}>
-            Imagen del evento
+            {editingId ? 'Cambiar imagen (opcional)' : 'Imagen del evento'}
           </label>
           <input
             id="ev-image"
             type="file"
             accept="image/png,image/jpeg,image/webp"
-            required
+            required={!editingId}
             onChange={(e) => setFile(e.target.files?.[0] ?? null)}
             className="mt-1 block w-full text-sm text-slate-700 file:mr-4 file:rounded-lg file:border-0 file:bg-brand-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-brand-800 dark:text-night-300 dark:file:bg-night-800 dark:file:text-gold-300"
           />
-          {preview && (
+          {(preview || editingEvent) && (
             <img
-              src={preview}
-              alt="Vista previa"
+              src={preview ?? flyerImageUrl(editingEvent!.id, editingEvent!.version)}
+              alt={preview ? 'Vista previa' : 'Imagen actual'}
               className="mt-3 max-h-64 rounded-xl border border-slate-200 dark:border-night-700"
             />
           )}
         </div>
-        <button type="submit" disabled={busy} className={primaryButton}>
-          {busy ? 'Publicando…' : 'Publicar evento'}
-        </button>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <button type="submit" disabled={busy} className={`${primaryButton} flex-1`}>
+            {editingId ? (busy ? 'Guardando…' : 'Guardar cambios') : busy ? 'Publicando…' : 'Publicar evento'}
+          </button>
+          {editingId && (
+            <button
+              type="button"
+              onClick={resetForm}
+              className="flex h-11 items-center justify-center rounded-xl border border-slate-300 px-6 text-sm font-medium text-slate-700 hover:bg-slate-50 dark:border-night-700 dark:text-night-300 dark:hover:bg-white/5"
+            >
+              Cancelar
+            </button>
+          )}
+        </div>
         {message && (
           <p
             className={`text-sm font-medium ${
@@ -356,7 +409,7 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
             {events.map((event) => (
               <li key={event.id} className="flex items-center gap-4 py-4">
                 <img
-                  src={flyerImageUrl(event.id)}
+                  src={flyerImageUrl(event.id, event.version)}
                   alt=""
                   className="h-16 w-16 shrink-0 rounded-lg border border-slate-200 object-cover dark:border-night-700"
                 />
@@ -375,13 +428,22 @@ function Manager({ auth, onLogout }: { auth: string; onLogout: () => void }) {
                     </span>
                   </p>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => handleDelete(event)}
-                  className="shrink-0 text-sm font-medium text-red-700 hover:underline dark:text-red-400"
-                >
-                  Eliminar
-                </button>
+                <div className="flex shrink-0 flex-col items-end gap-1 sm:flex-row sm:gap-4">
+                  <button
+                    type="button"
+                    onClick={() => startEdit(event)}
+                    className="text-sm font-medium text-brand-700 hover:underline dark:text-gold-300"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDelete(event)}
+                    className="text-sm font-medium text-red-700 hover:underline dark:text-red-400"
+                  >
+                    Eliminar
+                  </button>
+                </div>
               </li>
             ))}
           </ul>

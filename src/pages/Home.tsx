@@ -39,13 +39,13 @@ export function Home() {
   return (
     <div className="flex flex-col">
       <section
-        className="relative overflow-hidden text-white"
+        className="relative grid overflow-hidden text-white"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
         <div
           inert={current !== 0}
-          className={`relative flex min-h-[85vh] items-center justify-center px-4 py-24 text-center transition-opacity duration-700 sm:px-6 ${
+          className={`relative col-start-1 row-start-1 flex min-h-[85vh] items-center justify-center px-4 py-24 text-center transition-opacity duration-700 sm:px-6 ${
             current === 0 ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -92,33 +92,66 @@ export function Home() {
         </div>
         </div>
 
+        {/* Event slides share the grid cell with the main hero, so the
+            section is as tall as its tallest slide (no layout jump while
+            rotating) and a long description simply makes it taller. */}
         {flyers.map((flyer, i) => {
           const active = current === i + 1
+          const imageUrl = flyerImageUrl(flyer.id, flyer.version)
+          const hasText = Boolean(flyer.details || flyer.link)
           const image = (
             <img
-              src={flyerImageUrl(flyer.id)}
+              src={imageUrl}
               alt={flyer.title}
-              className="max-h-full max-w-full rounded-xl object-contain shadow-2xl"
+              className="max-h-[55vh] w-auto max-w-full rounded-xl shadow-2xl lg:max-h-[65vh]"
             />
           )
           return (
             <div
               key={flyer.id}
               inert={!active}
-              className={`absolute inset-0 transition-opacity duration-700 ${active ? 'opacity-100' : 'opacity-0'}`}
+              className={`relative col-start-1 row-start-1 flex min-h-[85vh] items-center justify-center px-4 pb-28 pt-12 transition-opacity duration-700 sm:px-20 ${
+                active ? 'opacity-100' : 'opacity-0'
+              }`}
             >
               <img
-                src={flyerImageUrl(flyer.id)}
+                src={imageUrl}
                 alt=""
                 className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl brightness-50"
               />
-              <div className="relative flex h-full items-center justify-center px-4 pb-24 pt-8 sm:px-16">
-                {flyer.link ? (
-                  <a href={flyer.link} target="_blank" rel="noreferrer" className="flex max-h-full max-w-full">
-                    {image}
-                  </a>
-                ) : (
-                  image
+              <div
+                className={`relative mx-auto grid w-full max-w-6xl items-center gap-8 lg:gap-12 ${
+                  hasText ? 'lg:grid-cols-[3fr_2fr]' : ''
+                }`}
+              >
+                <div className="flex justify-center">
+                  {flyer.link ? (
+                    <a href={flyer.link} target="_blank" rel="noreferrer" className="flex max-w-full">
+                      {image}
+                    </a>
+                  ) : (
+                    image
+                  )}
+                </div>
+                {hasText && (
+                  <div className="flex flex-col items-center gap-4 text-center lg:items-start lg:text-left">
+                    <h2 className="text-3xl font-extrabold leading-tight sm:text-4xl">{flyer.title}</h2>
+                    {flyer.details && (
+                      <p className="max-w-prose whitespace-pre-line text-base text-night-200 sm:text-lg">
+                        {flyer.details}
+                      </p>
+                    )}
+                    {flyer.link && (
+                      <a
+                        href={flyer.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-flex h-11 items-center justify-center rounded-xl bg-gold-400 px-6 text-sm font-semibold text-brand-950 shadow-[0_0_20px_rgba(214,184,108,0.25)] transition-all hover:scale-[1.02] hover:bg-gold-300"
+                      >
+                        {t.home.eventMoreInfo} →
+                      </a>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
