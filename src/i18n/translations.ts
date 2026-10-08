@@ -336,8 +336,8 @@ export const translations = {
     },
     home: {
       heroBadge: 'Welcome to Our Church',
-      heroNameLine1: 'Bible Church',
-      heroNameLine2: 'Grace Cajamarca',
+      heroNameLine1: 'Grace Bible Church',
+      heroNameLine2: 'Cajamarca',
       heroSubtitle:
         'A community committed to the faithful exposition of Scripture, reverent worship, and Christ-centered discipleship.',
       planVisit: 'Plan your visit',
