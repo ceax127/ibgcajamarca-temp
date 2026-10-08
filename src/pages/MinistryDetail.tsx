@@ -44,21 +44,17 @@ export function MinistryDetail() {
 
       {ministry.leaders.length > 0 && (
         <div className="mt-6 flex flex-wrap gap-6">
+          {/* Not a link yet: once leaders have a bio, this becomes the
+              clickable entry point to it. Email lives in the contact card. */}
           {ministry.leaders.map((leader) => (
-            <a
-              key={leader.email}
-              href={`mailto:${leader.email}`}
-              className="group flex items-center gap-3"
-            >
+            <div key={leader.email} className="flex items-center gap-3">
               <img
                 src={leader.photo ?? logoMark}
                 alt=""
                 className="h-14 w-14 rounded-full object-cover ring-2 ring-brand-100 dark:ring-night-700"
               />
-              <span className="text-sm font-medium text-brand-900 group-hover:text-brand-700 group-hover:underline dark:text-white dark:group-hover:text-gold-300">
-                {leader.name}
-              </span>
-            </a>
+              <span className="text-sm font-medium text-brand-900 dark:text-white">{leader.name}</span>
+            </div>
           ))}
         </div>
       )}
@@ -92,6 +88,33 @@ export function MinistryDetail() {
             {t.ministries.joinTitle}
           </h2>
           <p className="mt-3 text-slate-700 dark:text-night-300">{ministry.invitation[lang]}</p>
+        </div>
+      )}
+
+      {ministry.leaders.length > 0 && (
+        <div className="group relative mt-6 overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300 hover:shadow-md dark:border-night-800 dark:bg-night-900 dark:shadow-none dark:hover:border-gold-500/40">
+          <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl transition-colors group-hover:bg-gold-400/25 dark:bg-gold-400/5 dark:group-hover:bg-gold-400/10" />
+          <div className="text-gold-600 transition-transform duration-300 group-hover:scale-105 dark:text-gold-400">
+            <MinistryIcon id="contact-email" className="h-6 w-6" />
+          </div>
+          <h2 className="mt-4 text-lg font-semibold tracking-tight text-brand-950 dark:text-white">
+            {t.ministries.contactTitle}
+          </h2>
+          <ul className="mt-4 grid gap-4 md:grid-cols-2">
+            {ministry.leaders.map((leader) => (
+              <li key={leader.email} className="min-w-0">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-night-400">
+                  {leader.name}
+                </p>
+                <a
+                  href={`mailto:${leader.email}`}
+                  className="mt-1 block break-words font-medium text-brand-700 hover:underline dark:text-gold-300"
+                >
+                  {leader.email}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </div>
