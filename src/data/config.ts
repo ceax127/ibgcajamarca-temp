@@ -51,6 +51,14 @@ export const SERMONS_API_URL: string =
 // while the Sermones/Home page is open, in milliseconds.
 export const SERMONS_POLL_INTERVAL_MS = 60_000;
 
+// Google Ads "Page view" conversion. The base Google tag is in index.html;
+// the conversion event is sent (by ConversionTracker) whenever a visitor
+// lands on `path`. Change `path` to count a different page as the conversion.
+export const googleAdsConversion = {
+  path: "/contacto",
+  sendTo: "AW-18502717560/Mm0TCN_jjZcdEPig5PZE",
+} as const;
+
 // Base URL of the same Function App (no trailing slash), derived from the
 // sermons URL so the monthly-event flyer endpoints need no extra build secret.
 export const API_BASE_URL: string = SERMONS_API_URL.replace(/\/sermons\/?$/, "");

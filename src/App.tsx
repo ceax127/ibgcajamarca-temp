@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import { ConversionTracker } from './components/ConversionTracker'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
 import { ScrollToTop } from './components/ScrollToTop'
@@ -18,6 +19,7 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col bg-white text-slate-900 dark:bg-night-950 dark:text-night-100">
       <ScrollToTop />
+      <ConversionTracker />
       <SplashScreen />
       <Header />
       <main className="flex-1">
