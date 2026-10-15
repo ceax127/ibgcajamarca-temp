@@ -16,6 +16,9 @@ export const churchInfo = {
   // embedding (YouTube's own restriction), so that section links out here
   // instead of trying to embed them. Curated playlists aren't affected.
   youtubeStreamsUrl: "https://www.youtube.com/@Ibgcajamarca9670/streams",
+  // Opens Google Maps with a route to the church (official URL format, no API key).
+  googleMapsDirectionsUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=-7.1655248,-78.4999980",
   googleMapsEmbedSrc:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3582.3789313228212!2d-78.49999798591!3d-7.165524801680548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91b25bd5119e03a9%3A0xa2b8115eb4974e78!2sIglesia%20Gracia%20CAJAMARCA!5e1!3m2!1sen!2spe!4v1789600357134!5m2!1sen!2spe",
 } as const;
@@ -51,12 +54,18 @@ export const SERMONS_API_URL: string =
 // while the Sermones/Home page is open, in milliseconds.
 export const SERMONS_POLL_INTERVAL_MS = 60_000;
 
-// Google Ads "Page view" conversion. The base Google tag is in index.html;
-// the conversion event is sent (by ConversionTracker) whenever a visitor
-// lands on `path`. Change `path` to count a different page as the conversion.
-export const googleAdsConversion = {
-  path: "/contacto",
-  sendTo: "AW-18502717560/Mm0TCN_jjZcdEPig5PZE",
+// Google Ads conversions. The base Google tag is in index.html.
+export const googleAds = {
+  // Sent (by ConversionTracker) whenever a visitor lands on `path`. Change
+  // `path` to count a different page as the conversion.
+  pageView: {
+    path: "/contacto",
+    sendTo: "AW-18502717560/Mm0TCN_jjZcdEPig5PZE",
+  },
+  // Sent when a visitor clicks the "Cómo llegar" (get directions) button.
+  directions: {
+    sendTo: "AW-18502717560/73omCMLQv50dEPig5PZE",
+  },
 } as const;
 
 // Base URL of the same Function App (no trailing slash), derived from the

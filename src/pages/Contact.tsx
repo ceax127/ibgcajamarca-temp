@@ -2,8 +2,9 @@ import { type FormEvent, useState } from 'react'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
-import { CONTACT_API_URL, churchInfo } from '../data/config'
+import { CONTACT_API_URL, churchInfo, googleAds } from '../data/config'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { trackConversion } from '../hooks/useTrackConversion'
 
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error'
 
@@ -86,6 +87,15 @@ export function Contact() {
                   {t.contact.addressTitle}
                 </h3>
                 <p className="mt-1 break-words text-brand-900 dark:text-white">{churchInfo.address[lang]}</p>
+                <a
+                  href={churchInfo.googleMapsDirectionsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackConversion(googleAds.directions.sendTo)}
+                  className="mt-3 inline-flex h-9 items-center justify-center rounded-lg bg-gold-400 px-4 text-xs font-semibold text-brand-950 shadow-[0_0_16px_rgba(214,184,108,0.3)] transition-all hover:scale-[1.03] hover:bg-gold-300"
+                >
+                  {t.contact.getDirections} ↗
+                </a>
               </div>
             </div>
             <div className="aspect-video w-full border-t border-slate-200 dark:border-night-800">
