@@ -16,12 +16,13 @@ export function Header() {
     { to: '/ministerios', label: t.nav.ministries },
     { to: '/eventos', label: t.nav.events },
     { to: '/sermones', label: t.nav.sermons },
+    { to: '/instituto-biblico', label: t.nav.institute },
     { to: '/ofrendas', label: t.nav.giving },
     { to: '/contacto', label: t.nav.contact },
   ]
 
   const linkClasses = ({ isActive }: { isActive: boolean }) =>
-    `group relative rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+    `group relative rounded-md px-3 py-2 text-sm font-medium transition-colors lg:px-2 xl:px-3 ${
       isActive
         ? 'text-brand-700 dark:text-gold-300'
         : 'text-slate-600 hover:text-brand-700 dark:text-night-300 dark:hover:text-gold-300'
@@ -30,7 +31,7 @@ export function Header() {
   // Animated underline that grows from the center on hover, and stays fully
   // shown for the current page — brand navy in light mode, gold in dark.
   const underlineClasses = (isActive: boolean) =>
-    `pointer-events-none absolute inset-x-3 -bottom-0.5 h-0.5 origin-center rounded-full bg-brand-700 transition-transform duration-300 ease-out dark:bg-gold-400 ${
+    `pointer-events-none absolute inset-x-3 -bottom-0.5 lg:inset-x-2 xl:inset-x-3 h-0.5 origin-center rounded-full bg-brand-700 transition-transform duration-300 ease-out dark:bg-gold-400 ${
       isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
     }`
 

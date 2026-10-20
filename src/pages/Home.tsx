@@ -256,7 +256,16 @@ export function Home() {
                   {midweek.map((item) => (
                     <div key={item.id} className="flex items-center justify-between py-3">
                       <div>
-                        <p className="text-sm font-medium text-brand-950 dark:text-white">{item.title[lang]}</p>
+                        {item.link ? (
+                          <NavLink
+                            to={item.link}
+                            className="text-sm font-medium text-brand-950 hover:text-brand-700 hover:underline dark:text-white dark:hover:text-gold-300"
+                          >
+                            {item.title[lang]} →
+                          </NavLink>
+                        ) : (
+                          <p className="text-sm font-medium text-brand-950 dark:text-white">{item.title[lang]}</p>
+                        )}
                         <span className="text-xs text-gold-600 dark:text-gold-400">
                           {dayName(item.dayOfWeek, lang)}
                         </span>

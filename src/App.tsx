@@ -10,6 +10,7 @@ import { Contact } from './pages/Contact'
 import { Events } from './pages/Events'
 import { Giving } from './pages/Giving'
 import { Home } from './pages/Home'
+import { InstitutoBiblico } from './pages/InstitutoBiblico'
 import { Ministries } from './pages/Ministries'
 import { MinistryDetail } from './pages/MinistryDetail'
 import { NotFound } from './pages/NotFound'
@@ -30,6 +31,7 @@ function App() {
           <Route path="/ministerios/:id" element={<MinistryDetail />} />
           <Route path="/eventos" element={<Events />} />
           <Route path="/sermones" element={<Sermons />} />
+          <Route path="/instituto-biblico" element={<InstitutoBiblico />} />
           <Route path="/ofrendas" element={<Giving />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/admin/eventos" element={<AdminEvents />} />

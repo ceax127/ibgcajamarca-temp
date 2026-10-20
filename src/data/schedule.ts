@@ -4,6 +4,8 @@ export interface ScheduleItem {
   dayOfWeek: number
   time: { es: string; en: string }
   title: { es: string; en: string }
+  /** Site page with more detail; items without one link to Contacto. */
+  link?: string
 }
 
 // The church's recurring weekly schedule (not one-off dated events, so
@@ -35,6 +37,7 @@ export const weeklySchedule: ScheduleItem[] = [
   },
   {
     id: 'instituto-biblico',
+    link: '/instituto-biblico',
     dayOfWeek: 6,
     time: { es: '7:30 p. m.', en: '7:30 p.m.' },
     title: { es: 'Instituto Bíblico', en: 'Bible Institute' },

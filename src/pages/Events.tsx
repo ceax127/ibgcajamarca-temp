@@ -70,7 +70,7 @@ export function Events() {
               </div>
 
               <NavLink
-                to="/contacto"
+                to={item.link ?? '/contacto'}
                 className="shrink-0 text-sm font-semibold text-brand-700 hover:underline dark:text-gold-400"
               >
                 {t.events.details} →
