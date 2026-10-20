@@ -20,14 +20,23 @@ export interface Level {
 
 export const levels: Level[] = [
   {
-    id: 'fundamentos',
+    id: 'interpretacion-biblia',
     number: 1,
-    name: { es: 'Fundamentos', en: 'Foundations' },
+    name: { es: 'Interpretación y Biblia', en: 'Interpretation & Scripture' },
     goal: {
-      es: 'Una base sólida en las Escrituras y la fe cristiana para todo creyente.',
-      en: 'A solid foundation in Scripture and the Christian faith for every believer.',
+      es: 'Aprender a leer e interpretar la Biblia correctamente, y recorrerla de principio a fin.',
+      en: 'Learning to read and interpret the Bible rightly, and surveying it from beginning to end.',
     },
     courses: [
+      {
+        id: 'hermeneutica',
+        title: { es: 'Hermenéutica Bíblica', en: 'Biblical Hermeneutics' },
+        hours: 20,
+        summary: {
+          es: 'El método literal-gramatical-histórico para interpretar cada género bíblico correctamente.',
+          en: 'The literal-grammatical-historical method for correctly interpreting every biblical genre.',
+        },
+      },
       {
         id: 'panorama-at',
         title: { es: 'Panorama del Antiguo Testamento', en: 'Old Testament Survey' },
@@ -47,21 +56,12 @@ export const levels: Level[] = [
         },
       },
       {
-        id: 'doctrina-salvacion',
-        title: { es: 'Doctrina de la Salvación', en: 'Doctrine of Salvation' },
-        hours: 16,
-        summary: {
-          es: 'Elección, regeneración, justificación, santificación y glorificación conforme a las doctrinas de la gracia.',
-          en: 'Election, regeneration, justification, sanctification, and glorification according to the doctrines of grace.',
-        },
-      },
-      {
-        id: 'vida-devocional',
-        title: { es: 'Vida Cristiana y Devocional', en: 'Christian & Devotional Life' },
+        id: 'metodos-estudio',
+        title: { es: 'Métodos de Estudio Bíblico', en: 'Bible Study Methods' },
         hours: 12,
         summary: {
-          es: 'Disciplinas espirituales: oración, estudio personal de la Biblia, ayuno y comunión con Dios.',
-          en: 'Spiritual disciplines: prayer, personal Bible study, fasting, and communion with God.',
+          es: 'Estudio inductivo, uso de idiomas originales en herramientas digitales y comentarios.',
+          en: 'Inductive study, using original-language tools and commentaries.',
         },
       },
     ],
@@ -75,6 +75,15 @@ export const levels: Level[] = [
       en: 'Complete systematic theology, built verse by verse on the biblical text.',
     },
     courses: [
+      {
+        id: 'doctrina-salvacion',
+        title: { es: 'Doctrina de la Salvación', en: 'Doctrine of Salvation' },
+        hours: 16,
+        summary: {
+          es: 'Elección, regeneración, justificación, santificación y glorificación conforme a las doctrinas de la gracia.',
+          en: 'Election, regeneration, justification, sanctification, and glorification according to the doctrines of grace.',
+        },
+      },
       {
         id: 'teologia-1',
         title: { es: 'Teología Sistemática I: Dios y la Biblia', en: 'Systematic Theology I: God & Scripture' },
@@ -123,30 +132,21 @@ export const levels: Level[] = [
     ],
   },
   {
-    id: 'interpretacion',
+    id: 'vida-defensa',
     number: 3,
-    name: { es: 'Interpretación y Herramientas', en: 'Interpretation & Tools' },
+    name: { es: 'Vida Cristiana y Defensa de la Fe', en: 'Christian Life & Defense of the Faith' },
     goal: {
-      es: 'Herramientas para manejar con precisión la Palabra de verdad y defender la fe.',
-      en: 'Tools to rightly handle the word of truth and defend the faith.',
+      es: 'Una fe vivida en comunión con Dios y preparada para dar razón de la esperanza.',
+      en: 'A faith lived in communion with God and ready to give a reason for its hope.',
     },
     courses: [
       {
-        id: 'hermeneutica',
-        title: { es: 'Hermenéutica Bíblica', en: 'Biblical Hermeneutics' },
-        hours: 20,
-        summary: {
-          es: 'El método literal-gramatical-histórico para interpretar cada género bíblico correctamente.',
-          en: 'The literal-grammatical-historical method for correctly interpreting every biblical genre.',
-        },
-      },
-      {
-        id: 'metodos-estudio',
-        title: { es: 'Métodos de Estudio Bíblico', en: 'Bible Study Methods' },
+        id: 'vida-devocional',
+        title: { es: 'Vida Cristiana y Devocional', en: 'Christian & Devotional Life' },
         hours: 12,
         summary: {
-          es: 'Estudio inductivo, uso de idiomas originales en herramientas digitales y comentarios.',
-          en: 'Inductive study, using original-language tools and commentaries.',
+          es: 'Disciplinas espirituales: oración, estudio personal de la Biblia, ayuno y comunión con Dios.',
+          en: 'Spiritual disciplines: prayer, personal Bible study, fasting, and communion with God.',
         },
       },
       {

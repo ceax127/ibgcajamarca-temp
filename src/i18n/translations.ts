@@ -211,9 +211,8 @@ export const translations = {
       statusCompleted: 'Completado',
       statusCurrent: 'En curso',
       statusUpcoming: 'Próximamente',
-      ctaTitle: '¿Quieres unirte?',
-      ctaText: 'Escríbenos y te damos más información sobre el instituto.',
-      ctaButton: 'Contáctanos',
+      ctaTitle: 'Visítanos',
+      ctaText: 'Cursos gratuitos · sábados {time}',
     },
     seminario: {
       eyebrow: 'Formación Bíblica y Teológica',
@@ -559,9 +558,8 @@ export const translations = {
       statusCompleted: 'Completed',
       statusCurrent: 'In progress',
       statusUpcoming: 'Coming up',
-      ctaTitle: 'Would you like to join?',
-      ctaText: 'Write to us and we will tell you more about the institute.',
-      ctaButton: 'Contact us',
+      ctaTitle: 'Visit us',
+      ctaText: 'Free courses · Saturdays at {time}',
     },
     seminario: {
       eyebrow: 'Biblical & Theological Training',

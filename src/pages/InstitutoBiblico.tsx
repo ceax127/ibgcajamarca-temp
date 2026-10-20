@@ -1,8 +1,7 @@
-import { NavLink } from 'react-router-dom'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
-import { churchInfo } from '../data/config'
+import { churchInfo, googleAds } from '../data/config'
 import { dayName, weeklySchedule } from '../data/schedule'
 import {
   type Course,
@@ -14,6 +13,7 @@ import {
   totalCourses,
 } from '../data/seminario'
 import { usePageMeta } from '../hooks/usePageMeta'
+import { trackConversion } from '../hooks/useTrackConversion'
 
 const statusBadgeClasses: Record<CourseStatus, string> = {
   completed: 'bg-green-100 text-green-800 dark:bg-green-500/15 dark:text-green-400',
@@ -197,14 +197,27 @@ export function InstitutoBiblico() {
 
       <div className="relative mt-16 overflow-hidden rounded-2xl border border-gold-400/30 bg-brand-50 p-8 text-center shadow-sm dark:border-gold-500/30 dark:bg-night-900 dark:shadow-none">
         <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gold-400/15 blur-2xl dark:bg-gold-400/5" />
-        <h2 className="text-2xl font-bold text-brand-950 dark:text-white">{s.ctaTitle}</h2>
-        <p className="mx-auto mt-2 max-w-xl text-slate-600 dark:text-night-300">{s.ctaText}</p>
-        <NavLink
-          to="/contacto"
-          className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-gold-400 px-6 text-sm font-semibold text-brand-950 shadow-[0_0_16px_rgba(214,184,108,0.3)] transition-all hover:scale-[1.02] hover:bg-gold-300"
-        >
-          {s.ctaButton}
-        </NavLink>
+        <h2 className="text-2xl font-bold text-brand-950 sm:text-3xl dark:text-white">{s.ctaTitle}</h2>
+        <p className="mx-auto mt-2 max-w-xl text-lg font-semibold text-gold-700 dark:text-gold-400">
+          {s.ctaText.split('{time}')[0]}
+          <span className="whitespace-nowrap">{classTime?.time[lang]}</span>
+          {s.ctaText.split('{time}')[1]}
+        </p>
+        <p className="mx-auto mt-2 inline-flex max-w-xl items-center gap-1.5 text-sm text-slate-600 dark:text-night-300">
+          <MinistryIcon id="contact-address" className="h-4 w-4 shrink-0" />
+          {churchInfo.address[lang]}
+        </p>
+        <div>
+          <a
+            href={churchInfo.googleMapsDirectionsUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => trackConversion(googleAds.directions.sendTo)}
+            className="mt-6 inline-flex h-11 items-center justify-center rounded-xl bg-gold-400 px-6 text-sm font-semibold text-brand-950 shadow-[0_0_16px_rgba(214,184,108,0.3)] transition-all hover:scale-[1.02] hover:bg-gold-300"
+          >
+            {t.contact.getDirections} ↗
+          </a>
+        </div>
       </div>
     </div>
   )
