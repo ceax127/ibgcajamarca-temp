@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { useLanguage } from '../context/LanguageContext'
-import { churchInfo } from '../data/config'
 import { ministries, type MinistryCategory } from '../data/ministries'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 
 export function Ministries() {
   const { t, lang } = useLanguage()
-  usePageMeta(`${t.ministries.title} — ${churchInfo.shortName}`, t.ministries.subtitle)
+  usePageMeta(seoFor('/ministerios', lang).title, seoFor('/ministerios', lang).description)
 
   // Column counts chosen per section so a section's card count never
   // leaves a single card stranded alone in the last row at the lg

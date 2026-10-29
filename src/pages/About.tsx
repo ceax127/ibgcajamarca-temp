@@ -2,8 +2,7 @@ import pastoresPhoto from '../assets/foto_pastores.jpg'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
-import { churchInfo } from '../data/config'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 
 // Belief/distinctive copy ends with a trailing "(scripture refs)" — split
 // that off so it can be rendered as its own badge instead of buried inline.
@@ -14,8 +13,8 @@ function splitScripture(body: string): { text: string; refs: string | null } {
 }
 
 export function About() {
-  const { t } = useLanguage()
-  usePageMeta(`${t.about.title} — ${churchInfo.shortName}`, t.about.mission)
+  const { t, lang } = useLanguage()
+  usePageMeta(seoFor('/nosotros', lang).title, seoFor('/nosotros', lang).description)
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">

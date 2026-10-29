@@ -2,11 +2,11 @@ import yapeQr from '../assets/yape_qr.png'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo, givingInfo } from '../data/config'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 
 export function Giving() {
-  const { t } = useLanguage()
-  usePageMeta(`${t.giving.title} — ${churchInfo.shortName}`, t.giving.subtitle)
+  const { t, lang } = useLanguage()
+  usePageMeta(seoFor('/ofrendas', lang).title, seoFor('/ofrendas', lang).description)
 
   const accounts = [
     { title: t.giving.solesAccountTitle, account: givingInfo.bcpSoles },

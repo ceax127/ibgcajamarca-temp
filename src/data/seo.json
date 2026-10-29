@@ -1,0 +1,85 @@
+{
+  "siteUrl": "https://www.ibgcajamarca.org",
+  "pages": {
+    "/": {
+      "es": {
+        "title": "Iglesia Bíblica Gracia Cajamarca | Iglesia cristiana en Cajamarca, Perú",
+        "description": "Iglesia cristiana bíblica en Cajamarca, Perú. Culto dominical 10:00 a. m. en Av. Atahualpa 931 (frente a la UNC). Prédicas en vivo, ministerios e instituto bíblico."
+      },
+      "en": {
+        "title": "Grace Bible Church Cajamarca | Christian church in Cajamarca, Peru",
+        "description": "Bible-centered Christian church in Cajamarca, Peru. Sunday service at 10:00 a.m. at Av. Atahualpa 931 (across from UNC). Live sermons, ministries and a Bible institute."
+      }
+    },
+    "/nosotros": {
+      "es": {
+        "title": "Quiénes somos y qué creemos | Iglesia Bíblica Gracia Cajamarca",
+        "description": "Conoce a la Iglesia Bíblica Gracia Cajamarca: una iglesia cristiana centrada en la exposición fiel de la Biblia, la adoración reverente y el discipulado."
+      },
+      "en": {
+        "title": "Who we are and what we believe | Grace Bible Church Cajamarca",
+        "description": "Meet Grace Bible Church Cajamarca: a Christian church devoted to faithful Bible exposition, reverent worship and Christ-centered discipleship."
+      }
+    },
+    "/ministerios": {
+      "es": {
+        "title": "Ministerios | Iglesia Bíblica Gracia Cajamarca",
+        "description": "Ministerios de la Iglesia Bíblica Gracia Cajamarca para niños, adolescentes, hombres y mujeres. Encuentra tu lugar para crecer y servir."
+      },
+      "en": {
+        "title": "Ministries | Grace Bible Church Cajamarca",
+        "description": "Ministries of Grace Bible Church Cajamarca for children, teens, men and women. Find your place to grow and serve."
+      }
+    },
+    "/eventos": {
+      "es": {
+        "title": "Horarios de culto y reuniones | Iglesia Bíblica Gracia Cajamarca",
+        "description": "Culto dominical a las 10:00 a. m. y reuniones entre semana en Cajamarca: reunión de hombres, estudio bíblico, reunión de mujeres e instituto bíblico."
+      },
+      "en": {
+        "title": "Service times and meetings | Grace Bible Church Cajamarca",
+        "description": "Sunday service at 10:00 a.m. and weekday meetings in Cajamarca: men's meeting, Bible study, women's meeting and Bible institute."
+      }
+    },
+    "/sermones": {
+      "es": {
+        "title": "Prédicas y culto en vivo | Iglesia Bíblica Gracia Cajamarca",
+        "description": "Mira el culto en vivo cada domingo y las prédicas expositivas de la Iglesia Bíblica Gracia Cajamarca, organizadas por serie."
+      },
+      "en": {
+        "title": "Sermons and live service | Grace Bible Church Cajamarca",
+        "description": "Watch the live service every Sunday and the expository sermons of Grace Bible Church Cajamarca, organized by series."
+      }
+    },
+    "/instituto-biblico": {
+      "es": {
+        "title": "Instituto Bíblico gratuito en Cajamarca | Iglesia Bíblica Gracia",
+        "description": "Cursos bíblicos gratuitos los sábados a las 7:30 p. m. en Cajamarca: hermenéutica, panorama bíblico, doctrina y ministerio."
+      },
+      "en": {
+        "title": "Free Bible Institute in Cajamarca | Grace Bible Church",
+        "description": "Free Bible courses on Saturdays at 7:30 p.m. in Cajamarca: hermeneutics, Bible survey, doctrine and ministry."
+      }
+    },
+    "/ofrendas": {
+      "es": {
+        "title": "Ofrendas | Iglesia Bíblica Gracia Cajamarca",
+        "description": "Apoya la obra de la Iglesia Bíblica Gracia Cajamarca con tu ofrenda por Yape o por transferencia bancaria BCP."
+      },
+      "en": {
+        "title": "Giving | Grace Bible Church Cajamarca",
+        "description": "Support the work of Grace Bible Church Cajamarca with your offering via Yape or BCP bank transfer."
+      }
+    },
+    "/contacto": {
+      "es": {
+        "title": "Contacto y cómo llegar | Iglesia Bíblica Gracia Cajamarca",
+        "description": "Visítanos en Av. Atahualpa 931, frente a la UNC, Cajamarca. Teléfono, correo y mapa para llegar a la Iglesia Bíblica Gracia."
+      },
+      "en": {
+        "title": "Contact and directions | Grace Bible Church Cajamarca",
+        "description": "Visit us at Av. Atahualpa 931, across from UNC, Cajamarca. Phone, email and a map to find Grace Bible Church."
+      }
+    }
+  }
+}

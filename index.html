@@ -16,28 +16,30 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#13294d" />
+    <!-- Title, description, canonical and og:url are per page: set at runtime
+         by usePageMeta and baked into each page's HTML at build time by
+         scripts/prerender-seo.mjs (texts in src/data/seo.json). No static
+         canonical here: this file is also the fallback for every route. -->
     <meta
       name="description"
-      content="Iglesia Bíblica Gracia Cajamarca: horarios de servicio, ministerios, eventos y prédicas en vivo."
+      content="Iglesia cristiana bíblica en Cajamarca, Perú. Culto dominical 10:00 a. m. en Av. Atahualpa 931 (frente a la UNC). Prédicas en vivo, ministerios e instituto bíblico."
     />
-    <link rel="canonical" href="https://www.ibgcajamarca.org/" />
 
     <!-- Open Graph / social sharing previews -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Iglesia Bíblica Gracia Cajamarca" />
-    <meta property="og:title" content="Iglesia Bíblica Gracia Cajamarca" />
+    <meta property="og:title" content="Iglesia Bíblica Gracia Cajamarca | Iglesia cristiana en Cajamarca, Perú" />
     <meta
       property="og:description"
-      content="Horarios de servicio, ministerios, eventos y prédicas en vivo de Iglesia Bíblica Gracia Cajamarca."
+      content="Iglesia cristiana bíblica en Cajamarca, Perú. Culto dominical 10:00 a. m. en Av. Atahualpa 931 (frente a la UNC). Prédicas en vivo, ministerios e instituto bíblico."
     />
-    <meta property="og:url" content="https://www.ibgcajamarca.org/" />
     <meta property="og:image" content="https://www.ibgcajamarca.org/og-image.png" />
     <meta property="og:locale" content="es_PE" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Iglesia Bíblica Gracia Cajamarca" />
+    <meta name="twitter:title" content="Iglesia Bíblica Gracia Cajamarca | Iglesia cristiana en Cajamarca, Perú" />
     <meta
       name="twitter:description"
-      content="Horarios de servicio, ministerios, eventos y prédicas en vivo de Iglesia Bíblica Gracia Cajamarca."
+      content="Iglesia cristiana bíblica en Cajamarca, Perú. Culto dominical 10:00 a. m. en Av. Atahualpa 931 (frente a la UNC). Prédicas en vivo, ministerios e instituto bíblico."
     />
     <meta name="twitter:image" content="https://www.ibgcajamarca.org/og-image.png" />
 
@@ -47,29 +49,52 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <title>Iglesia Bíblica Gracia Cajamarca</title>
+    <title>Iglesia Bíblica Gracia Cajamarca | Iglesia cristiana en Cajamarca, Perú</title>
 
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Church",
-        "name": "Iglesia Bíblica Gracia Cajamarca",
-        "alternateName": "IBG Cajamarca",
-        "url": "https://www.ibgcajamarca.org/",
-        "logo": "https://www.ibgcajamarca.org/og-image.png",
-        "image": "https://www.ibgcajamarca.org/og-image.png",
-        "telephone": "+51 940 007 521",
-        "email": "administracion@ibgcajamarca.org",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Atahualpa 931 (frente a la UNC)",
-          "addressLocality": "Cajamarca",
-          "addressCountry": "PE"
-        },
-        "sameAs": [
-          "https://www.facebook.com/IglesiaGraciaCajamarca",
-          "https://www.instagram.com/ibg_cajamarca",
-          "https://www.youtube.com/@Ibgcajamarca9670"
+        "@graph": [
+          {
+            "@type": "Church",
+            "@id": "https://www.ibgcajamarca.org/#church",
+            "name": "Iglesia Bíblica Gracia Cajamarca",
+            "alternateName": ["IBG Cajamarca", "Iglesia Gracia Cajamarca", "Grace Bible Church Cajamarca"],
+            "description": "Iglesia cristiana bíblica en Cajamarca, Perú, centrada en la exposición fiel de las Escrituras. Culto dominical a las 10:00 a. m.",
+            "url": "https://www.ibgcajamarca.org/",
+            "logo": "https://www.ibgcajamarca.org/og-image.png",
+            "image": "https://www.ibgcajamarca.org/og-image.png",
+            "telephone": "+51 940 007 521",
+            "email": "administracion@ibgcajamarca.org",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Av. Atahualpa 931 (frente a la UNC)",
+              "addressLocality": "Cajamarca",
+              "addressRegion": "Cajamarca",
+              "addressCountry": "PE"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": -7.1655248,
+              "longitude": -78.4999980
+            },
+            "hasMap": "https://www.google.com/maps/search/?api=1&query=-7.1655248,-78.4999980",
+            "areaServed": "Cajamarca, Perú",
+            "sameAs": [
+              "https://www.facebook.com/IglesiaGraciaCajamarca",
+              "https://www.instagram.com/ibg_cajamarca",
+              "https://www.youtube.com/@Ibgcajamarca9670"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.ibgcajamarca.org/#website",
+            "name": "Iglesia Bíblica Gracia Cajamarca",
+            "alternateName": "IBG Cajamarca",
+            "url": "https://www.ibgcajamarca.org/",
+            "inLanguage": ["es", "en"],
+            "publisher": { "@id": "https://www.ibgcajamarca.org/#church" }
+          }
         ]
       }
     </script>

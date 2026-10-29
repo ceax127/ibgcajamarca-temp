@@ -3,14 +3,14 @@ import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
 import { CONTACT_API_URL, churchInfo, googleAds } from '../data/config'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 import { trackConversion } from '../hooks/useTrackConversion'
 
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error'
 
 export function Contact() {
   const { t, lang } = useLanguage()
-  usePageMeta(`${t.contact.title} — ${churchInfo.shortName}`, t.contact.subtitle)
+  usePageMeta(seoFor('/contacto', lang).title, seoFor('/contacto', lang).description)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')

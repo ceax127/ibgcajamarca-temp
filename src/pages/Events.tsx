@@ -4,11 +4,11 @@ import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
 import { churchInfo } from '../data/config'
 import { dayName, weeklySchedule } from '../data/schedule'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 
 export function Events() {
   const { t, lang } = useLanguage()
-  usePageMeta(`${t.events.title} — ${churchInfo.shortName}`, t.events.subtitle)
+  usePageMeta(seoFor('/eventos', lang).title, seoFor('/eventos', lang).description)
 
   const sundayService = weeklySchedule.find((s) => s.dayOfWeek === 0)
   const midweek = weeklySchedule.filter((s) => s.id !== sundayService?.id).sort((a, b) => a.dayOfWeek - b.dayOfWeek)

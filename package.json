@@ -10,7 +10,7 @@
     "dev": "vite",
     "fetch:sermons": "node scripts/fetch-sermons.mjs",
     "prebuild": "node scripts/fetch-sermons.mjs",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender-seo.mjs",
     "lint": "oxlint",
     "preview": "vite preview"
   },

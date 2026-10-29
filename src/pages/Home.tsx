@@ -5,10 +5,9 @@ import { LiveSermon } from '../components/LiveSermon'
 import { MinistryIcon } from '../components/MinistryIcon'
 import { SectionHeading } from '../components/SectionHeading'
 import { useLanguage } from '../context/LanguageContext'
-import { churchInfo } from '../data/config'
 import { dayName, weeklySchedule } from '../data/schedule'
 import { flyerImageUrl, useEventFlyers } from '../hooks/useEventFlyers'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 
 const ministryPillarIcons = ['pillar-teaching', 'pillar-adults', 'pillar-youth', 'pillar-service'] as const
 
@@ -35,7 +34,7 @@ function FlyerImage({ src, alt }: { src: string; alt: string }) {
 
 export function Home() {
   const { t, lang } = useLanguage()
-  usePageMeta(churchInfo.name, t.home.heroSubtitle)
+  usePageMeta(seoFor('/', lang).title, seoFor('/', lang).description)
 
   // Slide 0 is the permanent church hero; slides 1..n are the currently
   // active monthly-event flyers. With no flyers the hero is shown as-is.

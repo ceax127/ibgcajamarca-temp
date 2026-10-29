@@ -12,7 +12,7 @@ import {
   levels,
   totalCourses,
 } from '../data/seminario'
-import { usePageMeta } from '../hooks/usePageMeta'
+import { seoFor, usePageMeta } from '../hooks/usePageMeta'
 import { trackConversion } from '../hooks/useTrackConversion'
 
 const statusBadgeClasses: Record<CourseStatus, string> = {
@@ -38,7 +38,7 @@ function CheckIcon({ className }: { className: string }) {
 export function InstitutoBiblico() {
   const { t, lang } = useLanguage()
   const s = t.institute
-  usePageMeta(`${s.title} — ${churchInfo.shortName}`, s.subtitle)
+  usePageMeta(seoFor('/instituto-biblico', lang).title, seoFor('/instituto-biblico', lang).description)
 
   const classTime = weeklySchedule.find((item) => item.id === 'instituto-biblico')
   const currentCourse = instituteProgress.current ? findCourse(instituteProgress.current) : undefined

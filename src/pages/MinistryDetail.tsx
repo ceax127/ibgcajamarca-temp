@@ -12,7 +12,7 @@ export function MinistryDetail() {
   const ministry = ministries.find((m) => m.id === id)
 
   usePageMeta(
-    ministry ? `${ministry.name[lang]} — ${churchInfo.shortName}` : t.ministries.notFound,
+    ministry ? `${ministry.name[lang]} | ${t.ministries.title} | ${lang === 'es' ? churchInfo.name : 'Grace Bible Church Cajamarca'}` : t.ministries.notFound,
     ministry?.mission[lang],
     { noIndex: !ministry },
   )
